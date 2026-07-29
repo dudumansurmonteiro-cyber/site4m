@@ -2,13 +2,14 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/logo-grupo4m.png';
 import { MENU } from '../lib/dados';
+import { comBase } from '../lib/util';
 
 const caminhoAtual = Astro.url.pathname;
 ---
 
 <header class="bg-grafite text-branco">
   <div class="container-site flex h-20 items-center justify-between">
-    <a href="/" class="shrink-0" aria-label="Grupo 4M — página inicial">
+    <a href={comBase('/')} class="shrink-0" aria-label="Grupo 4M — página inicial">
       <Image src={logo} alt="Grupo 4M" height={40} densities={[1, 2]} loading="eager" class="h-10 w-auto" />
     </a>
 
@@ -18,8 +19,8 @@ const caminhoAtual = Astro.url.pathname;
           MENU.map((item) => (
             <li>
               <a
-                href={item.href}
-                aria-current={caminhoAtual === item.href ? 'page' : undefined}
+                href={comBase(item.href)}
+                aria-current={caminhoAtual === comBase(item.href) ? 'page' : undefined}
                 class:list={[
                   'text-sm font-medium tracking-wide transition-colors hover:text-bronze',
                   caminhoAtual === item.href ? 'text-bronze' : 'text-branco',
@@ -53,7 +54,7 @@ const caminhoAtual = Astro.url.pathname;
     class="fixed inset-0 z-50 hidden flex-col bg-grafite lg:hidden"
   >
     <div class="container-site flex h-20 shrink-0 items-center justify-between">
-      <a href="/" aria-label="Grupo 4M — página inicial">
+      <a href={comBase('/')} aria-label="Grupo 4M — página inicial">
         <Image src={logo} alt="Grupo 4M" height={40} densities={[1, 2]} loading="eager" class="h-10 w-auto" />
       </a>
       <button
@@ -74,8 +75,8 @@ const caminhoAtual = Astro.url.pathname;
           MENU.map((item, i) => (
             <li>
               <a
-                href={item.href}
-                aria-current={caminhoAtual === item.href ? 'page' : undefined}
+                href={comBase(item.href)}
+                aria-current={caminhoAtual === comBase(item.href) ? 'page' : undefined}
                 class="titulo-display flex items-baseline gap-4 text-3xl text-branco transition-colors hover:text-bronze"
               >
                 <span class="text-sm text-bronze numeros-tabulares" aria-hidden="true">

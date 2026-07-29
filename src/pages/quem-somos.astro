@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import ValueItem from '../components/ValueItem.astro';
 import { SETORES } from '../lib/dados';
 import { imagemSite } from '../lib/imagens';
+import { comBase } from '../lib/util';
 
 // "O que fazemos": os 4 cards usam os textos oficiais dos setores (seção
 // 4.2). O card Financeiro usa o texto de Financeiro — erro nº 2 do site
@@ -174,7 +175,7 @@ const valores = [
                 </span>
                 <h3 class="titulo-display text-2xl">
                   <a
-                    href={`/${setor.slug}/`}
+                    href={comBase(`/${setor.slug}/`)}
                     class="transition-colors hover:text-bronze"
                   >
                     {setor.nome}

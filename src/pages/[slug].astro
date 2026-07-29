@@ -6,7 +6,7 @@ import StatBlock from '../components/StatBlock.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { setorPorSlug } from '../lib/dados';
 import { imagemProjeto } from '../lib/imagens';
-import { slugificar } from '../lib/util';
+import { comBase, slugificar } from '../lib/util';
 
 export async function getStaticPaths() {
   const projetos = await getCollection('projetos');
@@ -44,14 +44,17 @@ const outros = (
       <nav aria-label="Trilha de navegação">
         <ol class="flex flex-wrap items-center gap-2 text-sm text-pedra/70">
           <li>
-            <a href={`/${setor.slug}/`} class="transition-colors hover:text-bronze"
-              >{setor.nome}</a
+            <a
+              href={comBase(`/${setor.slug}/`)}
+              class="transition-colors hover:text-bronze">{setor.nome}</a
             >
           </li>
           <li aria-hidden="true" class="text-aco">/</li>
           <li>
             <a
-              href={`/${setor.slug}/#categoria-${slugificar(dados.categoria)}`}
+              href={comBase(
+                `/${setor.slug}/#categoria-${slugificar(dados.categoria)}`
+              )}
               class="transition-colors hover:text-bronze">{dados.categoria}</a
             >
           </li>

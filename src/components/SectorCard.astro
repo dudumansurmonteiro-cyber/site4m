@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import { comBase } from '../lib/util';
 
 interface Props {
   indice: string;
@@ -29,7 +30,7 @@ const { indice, nome, texto, href, imagem, alt } = Astro.props;
       {indice}
     </span>
     <h3 class="titulo-display text-2xl transition-colors group-hover:text-bronze">
-      <a href={href} class="after:absolute after:inset-0">{nome}</a>
+      <a href={comBase(href)} class="after:absolute after:inset-0">{nome}</a>
     </h3>
   </div>
   <p class="mt-3 medida-texto text-base text-aco">{texto}</p>

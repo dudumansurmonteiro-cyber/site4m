@@ -7,7 +7,7 @@ import Hero from '../components/Hero.astro';
 import ProjectGrid from '../components/ProjectGrid.astro';
 import { setorPorSlug } from '../lib/dados';
 import { imagemProjeto } from '../lib/imagens';
-import { slugificar } from '../lib/util';
+import { comBase, slugificar } from '../lib/util';
 
 interface Props {
   slug: 'imobiliario' | 'energia' | 'educacao' | 'financeiro';
@@ -67,7 +67,7 @@ const destaqueUnico = projetos.length === 1 ? projetos[0] : null;
               <p class="eyebrow text-aco">{destaqueUnico.data.categoria}</p>
               <h2 class="titulo-display mt-4 text-3xl transition-colors group-hover:text-bronze md:text-4xl">
                 <a
-                  href={`/${destaqueUnico.data.slug}/`}
+                  href={comBase(`/${destaqueUnico.data.slug}/`)}
                   class="after:absolute after:inset-0"
                 >
                   {destaqueUnico.data.titulo}

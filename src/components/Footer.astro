@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/logo-grupo4m.png';
 import { CONTATO, MENU } from '../lib/dados';
+import { comBase } from '../lib/util';
 
 const ano = new Date().getFullYear();
 ---
@@ -9,7 +10,7 @@ const ano = new Date().getFullYear();
 <footer class="bg-grafite text-branco">
   <div class="container-site grid gap-12 py-16 md:grid-cols-[1fr_auto] md:py-20">
     <div class="max-w-md">
-      <a href="/" aria-label="Grupo 4M — página inicial">
+      <a href={comBase('/')} aria-label="Grupo 4M — página inicial">
         <Image src={logo} alt="Grupo 4M" height={36} densities={[1, 2]} class="h-9 w-auto" />
       </a>
       <address class="mt-8 space-y-3 text-sm leading-relaxed not-italic text-pedra/80">
@@ -31,7 +32,7 @@ const ano = new Date().getFullYear();
           MENU.map((item) => (
             <li>
               <a
-                href={item.href}
+                href={comBase(item.href)}
                 class="text-sm text-pedra/80 transition-colors hover:text-bronze"
               >
                 {item.rotulo}
