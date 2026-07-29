@@ -1,0 +1,33 @@
+---
+/**
+ * ProjectCard (CLAUDE.md, seção 8): imagem, categoria (eyebrow), título, link.
+ */
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  projeto: CollectionEntry<'projetos'>;
+  /** Categoria mostrada no eyebrow (um projeto pode ter mais de uma). */
+  categoria?: string;
+}
+
+const { projeto, categoria = projeto.data.categorias[0] } = Astro.props;
+---
+
+<article class="group">
+  <a href={`/${projeto.data.slug}/`} class="block">
+    <div class="overflow-hidden bg-grafite">
+      <Image
+        src={projeto.data.imagem}
+        alt={projeto.data.imagemAlt}
+        widths={[400, 640, 960, 1280]}
+        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
+        class="aspect-[8/5] w-full object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.03]"
+      />
+    </div>
+    <p class="eyebrow mt-5 text-aco-escuro">{categoria}</p>
+    <h3 class="titulo-display mt-1 text-22 transition-colors group-hover:text-bronze-escuro">
+      {projeto.data.titulo}
+    </h3>
+  </a>
+</article>

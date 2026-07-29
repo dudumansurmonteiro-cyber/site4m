@@ -1,0 +1,24 @@
+---
+/**
+ * Página de erro (CLAUDE.md, seção 3).
+ */
+import Base from '../layouts/Base.astro';
+import { DESCRICOES } from '../data/site';
+---
+
+<Base titulo="Página não encontrada | Grupo 4M" descricao={DESCRICOES.home} noindex>
+  <section class="flex min-h-[70svh] items-center bg-grafite text-branco">
+    <div class="container-site hero-anim py-24">
+      <p class="tnum text-14 font-medium text-bronze">404</p>
+      <h1 class="titulo-display mt-4 max-w-[18ch] text-36 text-balance md:text-48">
+        Página não encontrada.
+      </h1>
+      <a
+        href="/"
+        class="eyebrow mt-10 inline-block border-b-2 border-bronze pb-1 text-branco transition-colors hover:text-bronze"
+      >
+        Voltar à página inicial
+      </a>
+    </div>
+  </section>
+</Base>

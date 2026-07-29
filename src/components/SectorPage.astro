@@ -1,0 +1,95 @@
+---
+/**
+ * Estrutura compartilhada das 4 páginas de setor (CLAUDE.md, seções 4.3–4.6):
+ * hero interno com índice da malha, intro oficial em 2 parágrafos e, conforme
+ * o setor, grade agrupada por categoria (Imobiliário/Energia) ou destaque
+ * único (Educação/Financeiro).
+ */
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from './Hero.astro';
+import ProjectGrid from './ProjectGrid.astro';
+import { SETOR_POR_ID, type SetorId } from '../data/setores';
+import imobiliarioHero from '../assets/imobiliario-hero.jpg';
+
+interface Props {
+  id: SetorId;
+}
+
+const { id } = Astro.props;
+const setor = SETOR_POR_ID[id];
+
+const projetos = (await getCollection('projetos', ({ data }) => data.setor === id)).sort(
+  (a, b) => a.data.ordem - b.data.ordem
+);
+
+// Educação e Financeiro têm um único destaque (4.5 e 4.6)
+const destaqueUnico = projetos.length === 1 ? projetos[0] : null;
+---
+
+<Base titulo={`${setor.nome} | Grupo 4M`} descricao={setor.metaDescription}>
+  <Hero titulo={setor.nome} eyebrow="Setor" indice={setor.indice} />
+
+  <section class="bg-branco">
+    <div class="container-site py-20 md:py-28">
+      <div class="grid md:grid-cols-12" data-reveal>
+        <div class="md:col-span-9 lg:col-span-8">
+          <p class="titulo-display text-22 text-balance md:text-28">{setor.textoHome}</p>
+          <p class="mt-8 max-w-[68ch] text-16 text-aco-escuro md:text-18">{setor.intro2}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {
+    id === 'imobiliario' && (
+      <div class="bg-branco" data-reveal>
+        <Image
+          src={imobiliarioHero}
+          alt="Empreendimento imobiliário desenvolvido pelo Grupo 4M"
+          widths={[768, 1280, 1920, 2000]}
+          sizes="100vw"
+          class="aspect-[21/9] w-full object-cover"
+        />
+      </div>
+    )
+  }
+
+  <section class="bg-branco">
+    <div class="container-site pt-20 pb-24 md:pt-28 md:pb-32">
+      {
+        destaqueUnico ? (
+          <article class="group" data-reveal>
+            <span class="filete" aria-hidden="true" />
+            <a href={`/${destaqueUnico.data.slug}/`} class="mt-10 grid gap-10 md:grid-cols-12 md:items-center">
+              <div class="overflow-hidden bg-grafite md:col-span-7">
+                <Image
+                  src={destaqueUnico.data.imagem}
+                  alt={destaqueUnico.data.imagemAlt}
+                  widths={[640, 960, 1280, 1600]}
+                  sizes="(min-width: 768px) 56vw, 92vw"
+                  class="aspect-[8/5] w-full object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.03]"
+                />
+              </div>
+              <div class="md:col-span-5">
+                <p class="eyebrow text-aco-escuro">{destaqueUnico.data.categorias[0]}</p>
+                <h2 class="titulo-display mt-2 text-28 transition-colors group-hover:text-bronze-escuro md:text-36">
+                  {destaqueUnico.data.titulo}
+                </h2>
+                {destaqueUnico.data.tipo && (
+                  <p class="mt-4 text-16 text-aco-escuro">{destaqueUnico.data.tipo}</p>
+                )}
+                <span class="eyebrow mt-8 inline-block border-b-2 border-bronze pb-1 text-tinta">
+                  Conheça
+                </span>
+              </div>
+            </a>
+          </article>
+        ) : (
+          <ProjectGrid {projetos} categorias={setor.categorias} />
+        )
+      }
+    </div>
+  </section>
+</Base>

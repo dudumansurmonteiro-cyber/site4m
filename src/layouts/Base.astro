@@ -1,0 +1,85 @@
+---
+/**
+ * Layout base: <head> completo, fontes self-hosted, Header/Footer
+ * e o script global de scroll-reveal (CLAUDE.md, seções 2, 7 e 8).
+ */
+import '@fontsource/archivo/400.css';
+import '@fontsource/archivo/500.css';
+import '@fontsource/archivo/600.css';
+import '@fontsource/newsreader/400.css';
+import '@fontsource/newsreader/400-italic.css';
+import '@fontsource/newsreader/500.css';
+import '../styles/global.css';
+
+import type { ImageMetadata } from 'astro';
+import SEO from '../components/SEO.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import faviconPng from '../assets/favicon-src.png';
+
+interface Props {
+  titulo: string;
+  descricao: string;
+  ogImagem?: ImageMetadata;
+  organizacao?: boolean;
+  headerVariant?: 'overlay' | 'solid';
+  noindex?: boolean;
+}
+
+const {
+  titulo,
+  descricao,
+  ogImagem,
+  organizacao = false,
+  headerVariant = 'solid',
+  noindex = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={faviconPng.src} />
+    <meta name="theme-color" content="#16191D" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <SEO {titulo} {descricao} {ogImagem} {organizacao} {noindex} />
+  </head>
+  <body>
+    <a
+      href="#conteudo"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-branco focus:px-4 focus:py-2 focus:text-14 focus:text-tinta"
+    >
+      Ir para o conteúdo
+    </a>
+
+    <Header variant={headerVariant} />
+
+    <main id="conteudo" class:list={[headerVariant === 'solid' && 'pt-16 md:pt-[72px]']}>
+      <slot />
+    </main>
+
+    <Footer />
+
+    <script>
+      // Scroll-reveal sutil (seção 7); desligado sob prefers-reduced-motion.
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const observador = new IntersectionObserver(
+          (entradas) => {
+            for (const entrada of entradas) {
+              if (entrada.isIntersecting) {
+                entrada.target.classList.add('revelado');
+                observador.unobserve(entrada.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.1 }
+        );
+        document.querySelectorAll('[data-reveal]').forEach((el) => observador.observe(el));
+      }
+    </script>
+  </body>
+</html>

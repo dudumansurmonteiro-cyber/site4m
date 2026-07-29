@@ -1,0 +1,135 @@
+---
+/**
+ * Página de projeto (CLAUDE.md, seção 4.9): slugs preservados na raiz,
+ * breadcrumb Setor → Categoria → Projeto, imagem hero grande, tipo + stats
+ * em numerais tabulares e "Outros projetos" do mesmo setor. O layout
+ * funciona bem mesmo quando o projeto ainda não tem tipo/stats.
+ */
+import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import StatBlock from '../components/StatBlock.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { SETOR_POR_ID, ANCORA_CATEGORIA } from '../data/setores';
+
+export async function getStaticPaths() {
+  const projetos = await getCollection('projetos');
+  return projetos.map((projeto) => ({
+    params: { slug: projeto.data.slug },
+    props: { projeto },
+  }));
+}
+
+interface Props {
+  projeto: CollectionEntry<'projetos'>;
+}
+
+const { projeto } = Astro.props;
+const dados = projeto.data;
+const setor = SETOR_POR_ID[dados.setor];
+const categoriaPrincipal = dados.categorias[0];
+
+const { Content } = await render(projeto);
+const temTexto = Boolean(projeto.body?.trim() || dados.descricao?.trim());
+
+const outros = (await getCollection('projetos', ({ data }) => data.setor === dados.setor))
+  .filter((p) => p.data.slug !== dados.slug)
+  .sort((a, b) => a.data.ordem - b.data.ordem)
+  .slice(0, 3);
+
+const descricaoMeta = dados.tipo
+  ? `${dados.titulo}: ${dados.tipo.toLowerCase()} do Grupo 4M no setor ${setor.nome}.`
+  : `${dados.titulo} — projeto do Grupo 4M no setor ${setor.nome}.`;
+---
+
+<Base titulo={`${dados.titulo} | Grupo 4M`} descricao={descricaoMeta} ogImagem={dados.imagem}>
+  <!-- Cabeçalho do projeto -->
+  <section class="bg-grafite text-branco">
+    <div class="container-site hero-anim pt-16 pb-14 md:pt-24 md:pb-20">
+      <Breadcrumb
+        itens={[
+          { rotulo: setor.nome, href: setor.href },
+          {
+            rotulo: categoriaPrincipal,
+            href: `${setor.href}#${ANCORA_CATEGORIA[categoriaPrincipal] ?? ''}`,
+          },
+          { rotulo: dados.titulo },
+        ]}
+      />
+      <h1 class="titulo-display mt-8 max-w-[20ch] text-36 text-balance md:text-48 lg:text-64">
+        {dados.titulo}
+      </h1>
+      {dados.tipo && <p class="mt-5 text-18 text-aco-claro md:text-22">{dados.tipo}</p>}
+    </div>
+  </section>
+
+  <!-- Imagem hero -->
+  <div class="bg-grafite">
+    <Image
+      src={dados.imagem}
+      alt={dados.imagemAlt}
+      widths={[768, 1280, 1600, 1920]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="aspect-[16/9] max-h-[78svh] w-full object-cover md:aspect-[21/10]"
+    />
+  </div>
+
+  <!-- Dados do empreendimento -->
+  {
+    (dados.stats.length > 0 || temTexto) && (
+      <section class="bg-branco">
+        <div class="container-site py-20 md:py-28">
+          <div class="grid gap-16 md:grid-cols-12">
+            {temTexto && (
+              <div class="md:col-span-6" data-reveal>
+                {dados.descricao?.trim() && (
+                  <p class="titulo-display text-22 md:text-28">{dados.descricao}</p>
+                )}
+                {projeto.body?.trim() && (
+                  <div class="mt-6 max-w-[68ch] text-16 text-aco-escuro md:text-18 [&_p+p]:mt-4">
+                    <Content />
+                  </div>
+                )}
+              </div>
+            )}
+            {dados.stats.length > 0 && (
+              <div
+                class:list={[temTexto ? 'md:col-span-6' : 'md:col-span-10 lg:col-span-8']}
+                data-reveal
+              >
+                <StatBlock stats={dados.stats} />
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Outros projetos do setor -->
+  {
+    outros.length > 0 && (
+      <section aria-labelledby="titulo-outros" class="bg-pedra">
+        <div class="container-site py-20 md:py-28">
+          <div data-reveal>
+            <span class="filete" aria-hidden="true" />
+            <h2 id="titulo-outros" class="titulo-display mt-6 text-28 md:text-36">
+              Outros projetos
+            </h2>
+          </div>
+          <div class="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+            {outros.map((outro) => (
+              <div data-reveal>
+                <ProjectCard projeto={outro} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</Base>

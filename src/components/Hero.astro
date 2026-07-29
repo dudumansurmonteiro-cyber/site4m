@@ -1,0 +1,35 @@
+---
+/**
+ * Hero de página interna (CLAUDE.md, seção 8): faixa grafite com
+ * eyebrow (índice do setor quando houver) + título display.
+ * O hero da home é próprio da página (foto grande + frase).
+ */
+interface Props {
+  titulo: string;
+  eyebrow?: string;
+  /** Índice 01–04 da malha 4M, exibido em bronze antes do eyebrow. */
+  indice?: string;
+}
+
+const { titulo, eyebrow, indice } = Astro.props;
+---
+
+<section class="bg-grafite text-branco">
+  <div class="container-site hero-anim pt-24 pb-16 md:pt-36 md:pb-24">
+    {
+      (eyebrow || indice) && (
+        <p class="eyebrow flex items-baseline gap-3 text-aco-claro">
+          {indice && (
+            <span class="tnum text-bronze" aria-hidden="true">
+              {indice}
+            </span>
+          )}
+          {eyebrow}
+        </p>
+      )
+    }
+    <h1 class="titulo-display mt-4 max-w-[16ch] text-36 text-balance md:text-48 lg:text-64">
+      {titulo}
+    </h1>
+  </div>
+</section>

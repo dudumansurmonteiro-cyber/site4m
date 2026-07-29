@@ -1,0 +1,155 @@
+@import 'tailwindcss';
+
+/*
+ * Tokens do briefing (CLAUDE.md, seção 7) como CSS custom properties,
+ * consumidos pelo Tailwind via @theme. Os tons "derivados" existem só para
+ * garantir contraste AA (seção 10) em cada pareamento de fundo/texto.
+ */
+:root {
+  --cor-grafite: #16191d; /* fundo escuro: header, footer, seções de respiro */
+  --cor-tinta: #1b1e23; /* texto principal sobre fundo claro */
+  --cor-pedra: #f3f2ef; /* fundo claro de seções alternadas (frio, não creme) */
+  --cor-branco: #ffffff;
+  --cor-aco: #6e7680; /* texto secundário, legendas */
+  --cor-bronze: #a8875a; /* acento único — filetes, marcadores, hover */
+
+  /* Derivados (contraste AA) */
+  --cor-aco-escuro: #5e6570; /* secundário sobre pedra/branco */
+  --cor-aco-claro: #9aa1a9; /* secundário sobre grafite */
+  --cor-bronze-escuro: #7e6239; /* bronze legível sobre fundos claros */
+  --cor-linha: #e2e0da; /* hairline sobre claro */
+  --cor-linha-escura: #272c33; /* hairline sobre grafite */
+}
+
+@theme inline {
+  --color-grafite: var(--cor-grafite);
+  --color-tinta: var(--cor-tinta);
+  --color-pedra: var(--cor-pedra);
+  --color-branco: var(--cor-branco);
+  --color-aco: var(--cor-aco);
+  --color-bronze: var(--cor-bronze);
+  --color-aco-escuro: var(--cor-aco-escuro);
+  --color-aco-claro: var(--cor-aco-claro);
+  --color-bronze-escuro: var(--cor-bronze-escuro);
+  --color-linha: var(--cor-linha);
+  --color-linha-escura: var(--cor-linha-escura);
+
+  --font-display: 'Newsreader', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-sans: 'Archivo', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+
+  /* Escala tipográfica da seção 7: 14/16/18/22/28/36/48/64 */
+  --text-14: 0.875rem;
+  --text-14--line-height: 1.5;
+  --text-16: 1rem;
+  --text-16--line-height: 1.6;
+  --text-18: 1.125rem;
+  --text-18--line-height: 1.6;
+  --text-22: 1.375rem;
+  --text-22--line-height: 1.45;
+  --text-28: 1.75rem;
+  --text-28--line-height: 1.3;
+  --text-36: 2.25rem;
+  --text-36--line-height: 1.15;
+  --text-48: 3rem;
+  --text-48--line-height: 1.1;
+  --text-64: 4rem;
+  --text-64--line-height: 1.05;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-branco font-sans text-16 text-tinta antialiased;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--cor-bronze) 28%, transparent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--cor-bronze);
+    outline-offset: 3px;
+  }
+}
+
+/* Container: máx. 1240px (seção 7) */
+@utility container-site {
+  @apply mx-auto w-full max-w-[1240px] px-6 md:px-10;
+}
+
+/* Numerais tabulares para metragens, MW e telefone (seção 7) */
+@utility tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility eyebrow {
+  @apply text-14 font-medium tracking-[0.14em] uppercase;
+}
+
+/* Filete fino em bronze — o único ornamento permitido (seção 7) */
+@utility filete {
+  @apply block h-[2px] w-16 bg-bronze;
+}
+
+/* Títulos display: Newsreader, tracking levemente negativo */
+@utility titulo-display {
+  @apply font-display font-normal tracking-[-0.015em];
+}
+
+/*
+ * Movimento (seção 7): hero com stagger no load, scroll-reveal sutil.
+ * Tudo desligado sob prefers-reduced-motion.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.7s ease;
+  }
+
+  [data-reveal].revelado {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-anim > * {
+    opacity: 0;
+    animation: hero-subir 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-anim > :nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  .hero-anim > :nth-child(2) {
+    animation-delay: 0.25s;
+  }
+  .hero-anim > :nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes hero-subir {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

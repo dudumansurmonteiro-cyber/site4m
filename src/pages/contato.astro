@@ -1,0 +1,21 @@
+---
+/**
+ * Contato — página nova (CLAUDE.md, seção 4.8): telefone em destaque,
+ * endereço completo, link leve para o mapa e formulário condicionado
+ * à variável PUBLIC_FORM_ENDPOINT (seção 2).
+ */
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import { DESCRICOES } from '../data/site';
+---
+
+<Base titulo="Contato | Grupo 4M" descricao={DESCRICOES.contato}>
+  <Hero titulo="Fale com o Grupo 4M" eyebrow="Contato" />
+
+  <section class="bg-branco">
+    <div class="container-site py-20 md:py-28" data-reveal>
+      <ContactBlock />
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,79 @@
+---
+/**
+ * Home (CLAUDE.md, seções 4.2 e 7): hero com foto grande + frase oficial,
+ * malha 2×2 dos 4 setores com índices 01–04, fecho levando ao contato.
+ */
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import SectorCard from '../components/SectorCard.astro';
+import { SETORES } from '../data/setores';
+import { DESCRICOES, TELEFONE } from '../data/site';
+import homeHero from '../assets/home-hero.jpg';
+---
+
+<Base
+  titulo="Grupo 4M | Grupo privado de investimentos e operações"
+  descricao={DESCRICOES.home}
+  headerVariant="overlay"
+  organizacao
+>
+  <!-- Hero -->
+  <section class="relative flex min-h-[92svh] items-end bg-grafite text-branco">
+    <Image
+      src={homeHero}
+      alt="Empreendimentos do Grupo 4M"
+      widths={[768, 1280, 1920]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-grafite/85 via-grafite/40 to-grafite/25"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="container-site hero-anim relative pt-44 pb-20 md:pb-28">
+      <h1 class="titulo-display max-w-[24ch] text-36 text-balance md:text-48 lg:text-[3.5rem] lg:leading-[1.1]">
+        Investimos e operamos negócios nos setores de energia e infraestrutura, real estate,
+        bancos e educação.
+      </h1>
+      <p class="mt-6 max-w-[44ch] text-18 text-branco/85 md:text-22">
+        Somos um grupo privado de investimentos e operações, sediado em São Paulo, Brasil.
+      </p>
+    </div>
+  </section>
+
+  <!-- Malha 4M: os 4 setores em grade 2×2 -->
+  <section aria-label="Frentes de atuação" class="bg-branco">
+    <div class="container-site py-24 md:py-32">
+      <span class="filete" aria-hidden="true"></span>
+      <div class="mt-14 grid gap-x-10 gap-y-20 md:grid-cols-2">
+        {
+          SETORES.map((setor) => (
+            <div data-reveal>
+              <SectorCard {setor} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Fecho: contato -->
+  <section class="bg-grafite text-branco">
+    <div class="container-site py-24 md:py-32">
+      <div data-reveal>
+        <span class="filete" aria-hidden="true"></span>
+        <a href="/contato/" class="group mt-10 block">
+          <h2 class="titulo-display max-w-[18ch] text-36 transition-colors group-hover:text-bronze md:text-48">
+            Fale com o Grupo 4M
+          </h2>
+          <p class="tnum mt-5 text-18 text-aco-claro transition-colors group-hover:text-branco">
+            {TELEFONE.display}
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

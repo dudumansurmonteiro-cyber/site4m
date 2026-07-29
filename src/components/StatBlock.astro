@@ -1,0 +1,22 @@
+---
+/**
+ * StatBlock (CLAUDE.md, seção 8): label pequeno + valor grande em
+ * tabular-nums, para as metragens dos projetos.
+ */
+interface Props {
+  stats: { label: string; valor: string }[];
+}
+
+const { stats } = Astro.props;
+---
+
+<dl class="grid gap-x-12 gap-y-8 sm:grid-cols-2">
+  {
+    stats.map((stat) => (
+      <div class="border-t border-linha pt-5">
+        <dt class="eyebrow text-aco-escuro">{stat.label}</dt>
+        <dd class="tnum mt-2 text-28 font-medium md:text-36">{stat.valor}</dd>
+      </div>
+    ))
+  }
+</dl>
