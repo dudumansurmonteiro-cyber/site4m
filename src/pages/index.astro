@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import SectorCard from '../components/SectorCard.astro';
+import { SETORES } from '../lib/dados';
+import { imagemSite } from '../lib/imagens';
+import heroImagem from '../assets/home-hero.jpg';
+
+const altSetor: Record<string, string> = {
+  imobiliario: 'Empreendimento imobiliário do Grupo 4M',
+  energia: 'Usina de geração de energia',
+  educacao: 'Ambiente de ensino do Grupo Unieduk',
+  financeiro: 'Distrito financeiro de São Paulo',
+};
+---
+
+<Base
+  tituloCompleto="Grupo 4M | Grupo privado de investimentos e operações"
+  descricao="Investimos e operamos negócios nos setores de energia e infraestrutura, real estate, bancos e educação. Grupo privado sediado em São Paulo."
+  organizacao
+>
+  <Hero
+    imagem={heroImagem}
+    alt="Vista aérea da região da Av. Juscelino Kubitschek, em São Paulo"
+  >
+    Investimos e operamos negócios nos setores de energia e infraestrutura,
+    real estate, bancos e educação.
+    <Fragment slot="texto">
+      <p>
+        <strong class="font-semibold text-branco"
+          >Somos um grupo privado de investimentos e operações</strong
+        >, sediado em São Paulo, Brasil.
+      </p>
+    </Fragment>
+  </Hero>
+
+  <section class="section-pad" aria-labelledby="titulo-setores">
+    <div class="container-site">
+      <div class="filete-bronze pt-5" data-revelar>
+        <p class="eyebrow text-bronze">Frentes de atuação</p>
+        <h2 id="titulo-setores" class="titulo-display mt-4 text-3xl md:text-4xl">
+          Quatro frentes, uma mesma visão de longo prazo.
+        </h2>
+      </div>
+
+      <div class="mt-16 grid gap-x-10 gap-y-16 md:grid-cols-2">
+        {
+          SETORES.map((setor) => (
+            <SectorCard
+              indice={setor.indice}
+              nome={setor.nome}
+              texto={setor.texto}
+              href={`/${setor.slug}/`}
+              imagem={imagemSite(`setor-${setor.slug}.jpg`)}
+              alt={altSetor[setor.slug] ?? setor.nome}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>

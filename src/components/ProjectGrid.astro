@@ -1,0 +1,64 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+import { imagemProjeto } from '../lib/imagens';
+
+interface Props {
+  projetos: CollectionEntry<'projetos'>[];
+  /** Ordem das categorias (ex.: ["Edifícios", "Loteamentos", "Terrenos"]). */
+  categorias: string[];
+}
+
+const { projetos, categorias } = Astro.props;
+
+function daCategoria(categoria: string) {
+  return projetos
+    .filter(
+      (p) =>
+        p.data.categoria === categoria ||
+        p.data.categoriaSecundaria === categoria
+    )
+    .sort((a, b) => a.data.ordem - b.data.ordem);
+}
+
+const grupos = categorias
+  .map((categoria) => ({ categoria, itens: daCategoria(categoria) }))
+  .filter((g) => g.itens.length > 0);
+
+function altDe(projeto: CollectionEntry<'projetos'>) {
+  return projeto.data.tipo
+    ? `${projeto.data.titulo} — ${projeto.data.tipo}`
+    : projeto.data.titulo;
+}
+---
+
+<div class="space-y-20">
+  {
+    grupos.map((grupo) => (
+      <section aria-labelledby={`categoria-${grupo.categoria}`}>
+        <div class="filete-bronze flex items-baseline justify-between pt-5">
+          <h3
+            id={`categoria-${grupo.categoria}`}
+            class="titulo-display text-2xl"
+          >
+            {grupo.categoria}
+          </h3>
+          <p class="text-sm text-aco numeros-tabulares">
+            {String(grupo.itens.length).padStart(2, '0')}
+          </p>
+        </div>
+        <div class="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+          {grupo.itens.map((projeto) => (
+            <ProjectCard
+              titulo={projeto.data.titulo}
+              categoria={grupo.categoria}
+              href={`/${projeto.data.slug}/`}
+              imagem={imagemProjeto(projeto.data.imagem)}
+              alt={altDe(projeto)}
+            />
+          ))}
+        </div>
+      </section>
+    ))
+  }
+</div>

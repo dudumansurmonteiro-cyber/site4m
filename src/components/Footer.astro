@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-grupo4m.png';
+import { CONTATO, MENU } from '../lib/dados';
+
+const ano = new Date().getFullYear();
+---
+
+<footer class="bg-grafite text-branco">
+  <div class="container-site grid gap-12 py-16 md:grid-cols-[1fr_auto] md:py-20">
+    <div class="max-w-md">
+      <a href="/" aria-label="Grupo 4M — página inicial">
+        <Image src={logo} alt="Grupo 4M" height={36} densities={[1, 2]} class="h-9 w-auto" />
+      </a>
+      <address class="mt-8 space-y-3 text-sm leading-relaxed not-italic text-pedra/80">
+        <p>
+          <a
+            href={CONTATO.telefoneHref}
+            class="text-lg font-medium text-branco numeros-tabulares transition-colors hover:text-bronze"
+          >
+            {CONTATO.telefone}
+          </a>
+        </p>
+        <p>{CONTATO.endereco}</p>
+      </address>
+    </div>
+
+    <nav aria-label="Navegação do rodapé">
+      <ul class="space-y-3">
+        {
+          MENU.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-sm text-pedra/80 transition-colors hover:text-bronze"
+              >
+                {item.rotulo}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <div class="border-t border-branco/10">
+    <div class="container-site py-6">
+      <p class="text-sm text-aco">© Grupo 4M {ano}</p>
+    </div>
+  </div>
+</footer>

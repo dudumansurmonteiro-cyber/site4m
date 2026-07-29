@@ -1,0 +1,177 @@
+/* Fontes self-hosted (seção 2) */
+@import '@fontsource/newsreader/400.css';
+@import '@fontsource/newsreader/500.css';
+@import '@fontsource/newsreader/400-italic.css';
+@import '@fontsource/newsreader/500-italic.css';
+@import '@fontsource/archivo/400.css';
+@import '@fontsource/archivo/500.css';
+@import '@fontsource/archivo/600.css';
+
+@import 'tailwindcss';
+
+/* Design tokens (seção 7) — fonte de verdade em CSS custom properties */
+:root {
+  --cor-grafite: #16191d; /* fundo escuro: header, footer, seções de respiro */
+  --cor-tinta: #1b1e23; /* texto principal sobre fundo claro */
+  --cor-pedra: #f3f2ef; /* fundo claro de seções alternadas (frio, não creme) */
+  --cor-branco: #ffffff;
+  --cor-aco: #6e7680; /* texto secundário, legendas */
+  --cor-bronze: #a8875a; /* acento único — usar com muita parcimônia */
+}
+
+@theme {
+  --color-*: initial;
+  --color-grafite: var(--cor-grafite);
+  --color-tinta: var(--cor-tinta);
+  --color-pedra: var(--cor-pedra);
+  --color-branco: var(--cor-branco);
+  --color-aco: var(--cor-aco);
+  --color-bronze: var(--cor-bronze);
+
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Archivo', system-ui, -apple-system, sans-serif;
+
+  /* Escala tipográfica: 14 / 16 / 18 / 22 / 28 / 36 / 48 / 64 (seção 7) */
+  --text-*: initial;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5;
+  --text-base: 1rem;
+  --text-base--line-height: 1.6;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.6;
+  --text-xl: 1.375rem;
+  --text-xl--line-height: 1.4;
+  --text-2xl: 1.75rem;
+  --text-2xl--line-height: 1.25;
+  --text-3xl: 2.25rem;
+  --text-3xl--line-height: 1.15;
+  --text-4xl: 3rem;
+  --text-4xl--line-height: 1.1;
+  --text-5xl: 4rem;
+  --text-5xl--line-height: 1.05;
+
+  /* Container máx. 1240px (seção 7) */
+  --container-site: 77.5rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--cor-tinta);
+    background-color: var(--cor-branco);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--cor-bronze);
+    color: var(--cor-branco);
+  }
+
+  /* Foco visível em todos os elementos interativos (seção 10) */
+  :focus-visible {
+    outline: 2px solid var(--cor-bronze);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility container-site {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* Padding vertical generoso de seção: 96–140px no desktop (seção 7) */
+@utility section-pad {
+  padding-block: 4rem;
+
+  @media (width >= 48rem) {
+    padding-block: 7rem;
+  }
+}
+
+/* Títulos display: Newsreader, tracking levemente negativo (seção 7) */
+@utility titulo-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* Eyebrow: rótulo pequeno em caps sobre títulos */
+@utility eyebrow {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Dados e numerais alinhados (metragens, MW, telefone) */
+@utility numeros-tabulares {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Filete fino em bronze (2px) — único ornamento permitido (seção 7) */
+@utility filete-bronze {
+  border-top: 2px solid var(--cor-bronze);
+}
+
+/* Texto corrido: nunca mais de ~70 caracteres por linha (seção 7) */
+@utility medida-texto {
+  max-width: 65ch;
+}
+
+/* ===== Movimento (seção 7) ===== */
+
+/* Sequência orquestrada no load do hero: fade + leve subida com stagger */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-entrada {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: hero-surgir 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-entrada:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+
+  .hero-entrada:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes hero-surgir {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Scroll-reveal muito sutil: opacidade + 12px */
+  .revelar {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.7s ease-out,
+      transform 0.7s ease-out;
+  }
+
+  .revelar.visivel {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

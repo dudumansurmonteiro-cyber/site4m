@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  /** Rótulo pequeno acima do título (ex.: "Setor 01 — Imobiliário"). */
+  eyebrow?: string;
+  /** Foto grande abaixo do texto (home e páginas internas com imagem). */
+  imagem?: ImageMetadata;
+  alt?: string;
+}
+
+const { eyebrow, imagem, alt = '' } = Astro.props;
+---
+
+<section class="bg-grafite text-branco">
+  <div class="container-site section-pad">
+    {
+      eyebrow && (
+        <p class="hero-entrada eyebrow text-bronze">{eyebrow}</p>
+      )
+    }
+    <h1
+      class="hero-entrada titulo-display mt-6 max-w-4xl text-4xl md:text-5xl"
+    >
+      <slot />
+    </h1>
+    {
+      Astro.slots.has('texto') && (
+        <div class="hero-entrada mt-8 max-w-2xl text-lg text-pedra/85">
+          <slot name="texto" />
+        </div>
+      )
+    }
+  </div>
+  {
+    imagem && (
+      <div class="hero-entrada">
+        <Image
+          src={imagem}
+          alt={alt}
+          widths={[640, 1024, 1440, 1920]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="h-[46vh] w-full object-cover md:h-[62vh]"
+        />
+      </div>
+    )
+  }
+</section>

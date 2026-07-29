@@ -1,0 +1,23 @@
+---
+interface Props {
+  indice?: string;
+  titulo: string;
+  texto: string;
+}
+
+const { indice, titulo, texto } = Astro.props;
+---
+
+<div class="filete-bronze pt-5" data-revelar>
+  <h3 class="titulo-display flex items-baseline gap-3 text-xl">
+    {
+      indice && (
+        <span class="text-sm font-sans font-semibold text-bronze numeros-tabulares" aria-hidden="true">
+          {indice}
+        </span>
+      )
+    }
+    {titulo}
+  </h3>
+  <p class="mt-3 medida-texto text-base text-aco">{texto}</p>
+</div>

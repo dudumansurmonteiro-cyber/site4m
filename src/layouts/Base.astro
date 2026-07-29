@@ -1,0 +1,74 @@
+---
+import type { ImageMetadata } from 'astro';
+import SEO from '../components/SEO.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  /** Nome da página; vira "{Página} | Grupo 4M" (seção 9). */
+  titulo?: string;
+  /** Título completo, para a home ("Grupo 4M | Grupo privado…"). */
+  tituloCompleto?: string;
+  descricao: string;
+  imagemOg?: ImageMetadata;
+  organizacao?: boolean;
+}
+
+const { titulo, tituloCompleto, descricao, imagemOg, organizacao } =
+  Astro.props;
+
+const tituloFinal = tituloCompleto ?? `${titulo} | Grupo 4M`;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <SEO
+      titulo={tituloFinal}
+      descricao={descricao}
+      imagemOg={imagemOg}
+      organizacao={organizacao}
+    />
+  </head>
+  <body>
+    <a
+      href="#conteudo"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:bg-branco focus:px-4 focus:py-2 focus:text-tinta"
+    >
+      Pular para o conteúdo
+    </a>
+    <Header />
+    <main id="conteudo">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // Scroll-reveal muito sutil (seção 7): só com JS ativo e sem
+      // prefers-reduced-motion; sem JS, nada é escondido.
+      const reduzido = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
+      if (!reduzido && 'IntersectionObserver' in window) {
+        const alvos = document.querySelectorAll('[data-revelar]');
+        const observador = new IntersectionObserver(
+          (entradas) => {
+            for (const entrada of entradas) {
+              if (entrada.isIntersecting) {
+                entrada.target.classList.add('visivel');
+                observador.unobserve(entrada.target);
+              }
+            }
+          },
+          { threshold: 0.15 }
+        );
+        for (const alvo of alvos) {
+          alvo.classList.add('revelar');
+          observador.observe(alvo);
+        }
+      }
+    </script>
+  </body>
+</html>

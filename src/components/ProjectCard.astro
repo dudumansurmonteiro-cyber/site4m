@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  titulo: string;
+  categoria: string;
+  href: string;
+  imagem: ImageMetadata;
+  alt: string;
+}
+
+const { titulo, categoria, href, imagem, alt } = Astro.props;
+---
+
+<article class="group relative" data-revelar>
+  <div class="overflow-hidden">
+    <Image
+      src={imagem}
+      alt={alt}
+      widths={[480, 768, 1200]}
+      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+      class="aspect-[4/3] w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
+    />
+  </div>
+  <p class="eyebrow mt-5 text-aco">{categoria}</p>
+  <h3 class="titulo-display mt-2 text-xl transition-colors group-hover:text-bronze">
+    <a href={href} class="after:absolute after:inset-0">{titulo}</a>
+  </h3>
+</article>

@@ -1,0 +1,119 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-grupo4m.png';
+import { MENU } from '../lib/dados';
+
+const caminhoAtual = Astro.url.pathname;
+---
+
+<header class="bg-grafite text-branco">
+  <div class="container-site flex h-20 items-center justify-between">
+    <a href="/" class="shrink-0" aria-label="Grupo 4M — página inicial">
+      <Image src={logo} alt="Grupo 4M" height={40} densities={[1, 2]} loading="eager" class="h-10 w-auto" />
+    </a>
+
+    <nav aria-label="Navegação principal" class="hidden lg:block">
+      <ul class="flex items-center gap-9">
+        {
+          MENU.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={caminhoAtual === item.href ? 'page' : undefined}
+                class:list={[
+                  'text-sm font-medium tracking-wide transition-colors hover:text-bronze',
+                  caminhoAtual === item.href ? 'text-bronze' : 'text-branco',
+                ]}
+              >
+                {item.rotulo}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <button
+      id="botao-menu"
+      type="button"
+      class="flex h-11 w-11 items-center justify-center lg:hidden"
+      aria-expanded="false"
+      aria-controls="menu-mobile"
+      aria-label="Abrir menu"
+    >
+      <span class="relative block h-3.5 w-6" aria-hidden="true">
+        <span class="linha-menu absolute top-0 left-0 block h-0.5 w-6 bg-branco transition-transform"></span>
+        <span class="linha-menu absolute bottom-0 left-0 block h-0.5 w-6 bg-branco transition-transform"></span>
+      </span>
+    </button>
+  </div>
+
+  <div
+    id="menu-mobile"
+    class="fixed inset-0 z-50 hidden flex-col bg-grafite lg:hidden"
+  >
+    <div class="container-site flex h-20 shrink-0 items-center justify-between">
+      <a href="/" aria-label="Grupo 4M — página inicial">
+        <Image src={logo} alt="Grupo 4M" height={40} densities={[1, 2]} loading="eager" class="h-10 w-auto" />
+      </a>
+      <button
+        id="botao-fechar-menu"
+        type="button"
+        class="flex h-11 w-11 items-center justify-center text-branco"
+        aria-label="Fechar menu"
+      >
+        <span class="relative block h-6 w-6" aria-hidden="true">
+          <span class="absolute top-1/2 left-0 block h-0.5 w-6 -translate-y-1/2 rotate-45 bg-branco"></span>
+          <span class="absolute top-1/2 left-0 block h-0.5 w-6 -translate-y-1/2 -rotate-45 bg-branco"></span>
+        </span>
+      </button>
+    </div>
+    <nav aria-label="Navegação principal (móvel)" class="flex flex-1 items-center">
+      <ul class="container-site flex flex-col gap-6">
+        {
+          MENU.map((item, i) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={caminhoAtual === item.href ? 'page' : undefined}
+                class="titulo-display flex items-baseline gap-4 text-3xl text-branco transition-colors hover:text-bronze"
+              >
+                <span class="text-sm text-bronze numeros-tabulares" aria-hidden="true">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                {item.rotulo}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const botao = document.getElementById('botao-menu');
+  const fechar = document.getElementById('botao-fechar-menu');
+  const menu = document.getElementById('menu-mobile');
+
+  function alternarMenu(aberto: boolean) {
+    if (!botao || !menu) return;
+    menu.classList.toggle('hidden', !aberto);
+    menu.classList.toggle('flex', aberto);
+    botao.setAttribute('aria-expanded', String(aberto));
+    document.documentElement.classList.toggle('overflow-hidden', aberto);
+    if (aberto) {
+      fechar?.focus();
+    } else {
+      botao.focus();
+    }
+  }
+
+  botao?.addEventListener('click', () => alternarMenu(true));
+  fechar?.addEventListener('click', () => alternarMenu(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu && !menu.classList.contains('hidden')) {
+      alternarMenu(false);
+    }
+  });
+</script>
