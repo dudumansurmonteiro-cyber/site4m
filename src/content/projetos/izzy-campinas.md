@@ -9,7 +9,7 @@ localizacao: "Campinas/SP"
 stats:
   - { label: "Área do terreno", valor: "661,25 m²" }
   - { label: "Área total construída", valor: "2.635,76 m²" }
-imagem: "../../assets/projetos/izzy-campinas.webp"
-imagemAlt: "Fachada do edifício Izzy Campinas, em Campinas"
+imagem: "../../assets/projetos/izzy-campinas.jpg"
+imagemAlt: "Fachada do edifício Izzy Campinas, em Campinas, com base de tijolo aparente e palmeiras"
 ordem: 3
 ---
