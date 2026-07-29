@@ -27,6 +27,7 @@ De uma máquina com internet normal:
 ```bash
 bash scripts/baixar-assets.sh      # logo, favicon, hero, cards, ícones, impacto
 node scripts/extrair-projetos.mjs  # og:image das 18 páginas de projeto + relatório de tipo/metragens
+node scripts/gerar-favicon.mjs     # regenera public/favicon.ico com o logo real
 npm run build                      # re-otimiza tudo
 ```
 

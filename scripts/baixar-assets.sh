@@ -65,4 +65,6 @@ if [ ${#FALHAS[@]} -gt 0 ]; then
   printf '  %s\n' "${FALHAS[@]}"
   exit 1
 fi
-echo "Todos os assets baixados. Agora rode: node scripts/extrair-projetos.mjs"
+echo "Todos os assets baixados. Agora rode:"
+echo "  node scripts/extrair-projetos.mjs   # fotos e dados das páginas de projeto"
+echo "  node scripts/gerar-favicon.mjs      # regenera o favicon.ico com o logo real"

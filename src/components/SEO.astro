@@ -82,4 +82,4 @@ const jsonLd = organizacao
 <meta name="twitter:description" content={descricao} />
 <meta name="twitter:image" content={ogUrl} />
 
-{jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+{jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}
