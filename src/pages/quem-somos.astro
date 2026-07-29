@@ -17,7 +17,8 @@ const impacto = [
     texto:
       'Empreendimentos como Izzy Campinas, Alphagran e Saint Paul transformam regiões urbanas, criam novos espaços de convivência e impulsionam a valorização imobiliária.',
     imagem: SETORES[0].imagemImpacto,
-    alt: 'Empreendimento imobiliário do Grupo 4M em área urbana',
+    modo: SETORES[0].imagemImpactoModo,
+    alt: SETORES[0].altImpacto,
   },
   {
     indice: '02',
@@ -25,7 +26,8 @@ const impacto = [
     texto:
       'Usinas como Suape Termelétrica e Guaçu fortalecem a infraestrutura energética e estimulam o desenvolvimento regional.',
     imagem: SETORES[1].imagemImpacto,
-    alt: 'Usina de geração de energia do Grupo 4M',
+    modo: SETORES[1].imagemImpactoModo,
+    alt: SETORES[1].altImpacto,
   },
   {
     indice: '03',
@@ -33,14 +35,16 @@ const impacto = [
     texto:
       'O Grupo Unieduk amplia o acesso ao conhecimento, capacitando profissionais e gerando inclusão social.',
     imagem: SETORES[2].imagemImpacto,
-    alt: 'Estudantes em ambiente do Grupo Unieduk',
+    modo: SETORES[2].imagemImpactoModo,
+    alt: SETORES[2].altImpacto,
   },
   {
     indice: '04',
     titulo: 'Financeiro',
     texto: 'O Grupo 4M realizou a construção do Banco Industrial do Brasil em São Paulo.',
     imagem: SETORES[3].imagemImpacto,
-    alt: 'Edifício do Banco Industrial do Brasil, em São Paulo',
+    modo: SETORES[3].imagemImpactoModo,
+    alt: SETORES[3].altImpacto,
   },
 ];
 
@@ -210,15 +214,21 @@ const valores = [
         {
           impacto.map((bloco) => (
             <article data-reveal>
-              <div class="overflow-hidden bg-grafite">
-                <Image
-                  src={bloco.imagem}
-                  alt={bloco.alt}
-                  widths={[480, 800, 1200, 1600]}
-                  sizes="(min-width: 768px) 46vw, 92vw"
-                  class="aspect-[3/2] w-full object-cover"
-                />
-              </div>
+              {bloco.modo === 'conter' ? (
+                <div class="flex aspect-[3/2] w-full items-center justify-center border border-linha bg-branco p-12">
+                  <Image src={bloco.imagem} alt={bloco.alt} class="max-h-full w-auto max-w-full object-contain" />
+                </div>
+              ) : (
+                <div class="overflow-hidden bg-grafite">
+                  <Image
+                    src={bloco.imagem}
+                    alt={bloco.alt}
+                    widths={[480, 800, 1200, 1600]}
+                    sizes="(min-width: 768px) 46vw, 92vw"
+                    class="aspect-[3/2] w-full object-cover"
+                  />
+                </div>
+              )}
               <div class="mt-6 flex gap-5">
                 <span class="tnum pt-[5px] text-14 font-medium text-bronze-escuro">
                   {bloco.indice}

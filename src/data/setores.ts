@@ -1,21 +1,24 @@
 /**
  * As 4 frentes do Grupo 4M — a "malha 4M" (CLAUDE.md, seção 7).
  * Toda a copy vem das seções 4.2 a 4.6 e deve ser usada exatamente como está.
+ *
+ * Imagens dos cards/impacto: enquanto não chegam fotos dedicadas de cada
+ * setor, usamos as imagens reais já enviadas pelo cliente (fotos dos
+ * projetos e logomarcas — estas exibidas em modo "conter").
  */
 import type { ImageMetadata } from 'astro';
 
-import setorImobiliario from '../assets/setor-imobiliario.jpg';
-import setorEnergia from '../assets/setor-energia.jpg';
-import setorEducacao from '../assets/setor-educacao.jpg';
-import setorFinanceiro from '../assets/setor-financeiro.jpg';
-import impactoImobiliario from '../assets/impacto-imobiliario.jpg';
-import impactoEnergia from '../assets/impacto-energia.jpg';
-import impactoEducacao from '../assets/impacto-educacao.jpg';
-import impactoFinanceiro from '../assets/impacto-financeiro.jpg';
+import fotoMuse from '../assets/projetos/muse.jpg';
+import fotoSalma from '../assets/projetos/salma-tower.jpg';
+import fotoBosque from '../assets/projetos/bosque-ipiranga.webp';
+import fotoUnieduk from '../assets/projetos/unieduk-campus.jpg';
+import marcaSuape from '../assets/projetos/suape.webp';
 
 import { DESCRICOES, rota } from './site';
 
 export type SetorId = 'imobiliario' | 'energia' | 'educacao' | 'financeiro';
+
+export type ModoImagem = 'cobrir' | 'conter';
 
 export interface Setor {
   id: SetorId;
@@ -30,8 +33,11 @@ export interface Setor {
   /** Ordem das categorias na grade de projetos (seção 3). */
   categorias: string[];
   imagemCard: ImageMetadata;
+  imagemCardModo?: ModoImagem;
   imagemImpacto: ImageMetadata;
+  imagemImpactoModo?: ModoImagem;
   altCard: string;
+  altImpacto: string;
 }
 
 export const SETORES: Setor[] = [
@@ -46,9 +52,10 @@ export const SETORES: Setor[] = [
       'Projetos como Izzy Campinas, Alphagran e Saint Paul refletem nossa capacidade de identificar localizações estratégicas, estruturar produtos imobiliários alinhados à demanda do mercado e entregar empreendimentos com alto potencial de valorização e liquidez, contribuindo para a transformação positiva das cidades onde atuamos.',
     metaDescription: DESCRICOES.imobiliario,
     categorias: ['Edifícios', 'Loteamentos', 'Terrenos'],
-    imagemCard: setorImobiliario,
-    imagemImpacto: impactoImobiliario,
-    altCard: 'Empreendimento imobiliário do Grupo 4M',
+    imagemCard: fotoMuse,
+    imagemImpacto: fotoBosque,
+    altCard: 'Fachada do edifício Muse, torre com jardins verticais',
+    altImpacto: 'Vista aérea dos edifícios do Bosque Ipiranga cercados de área verde',
   },
   {
     id: 'energia',
@@ -61,9 +68,12 @@ export const SETORES: Setor[] = [
       'Nossa atuação no setor é orientada por eficiência operacional, viabilidade econômica e visão de longo prazo, buscando projetos que gerem impacto positivo, estabilidade e retorno consistente.',
     metaDescription: DESCRICOES.energia,
     categorias: ['Geração', 'Transmissão'],
-    imagemCard: setorEnergia,
-    imagemImpacto: impactoEnergia,
-    altCard: 'Infraestrutura de energia do Grupo 4M',
+    imagemCard: marcaSuape,
+    imagemCardModo: 'conter',
+    imagemImpacto: marcaSuape,
+    imagemImpactoModo: 'conter',
+    altCard: 'Logomarca da Suape Energia',
+    altImpacto: 'Logomarca da Suape Energia',
   },
   {
     id: 'educacao',
@@ -76,9 +86,10 @@ export const SETORES: Setor[] = [
       'Nosso compromisso com a educação está diretamente ligado à criação de capital humano qualificado, essencial para o crescimento sustentável dos negócios e da sociedade.',
     metaDescription: DESCRICOES.educacao,
     categorias: ['Ensino'],
-    imagemCard: setorEducacao,
-    imagemImpacto: impactoEducacao,
-    altCard: 'Ambiente educacional do Grupo Unieduk',
+    imagemCard: fotoUnieduk,
+    imagemImpacto: fotoUnieduk,
+    altCard: 'Prédio da UniEduk — Centro Escola de Especialidades Médicas',
+    altImpacto: 'Prédio da UniEduk — Centro Escola de Especialidades Médicas',
   },
   {
     id: 'financeiro',
@@ -91,9 +102,10 @@ export const SETORES: Setor[] = [
       'A área financeira atua como pilar estratégico do Grupo 4M, garantindo governança, eficiência na alocação de recursos e integração entre os negócios, sempre com foco em crescimento sólido e disciplinado.',
     metaDescription: DESCRICOES.financeiro,
     categorias: ['Financeiro'],
-    imagemCard: setorFinanceiro,
-    imagemImpacto: impactoFinanceiro,
-    altCard: 'Distrito financeiro de São Paulo',
+    imagemCard: fotoSalma,
+    imagemImpacto: fotoSalma,
+    altCard: 'Salma Tower, sede do Banco Industrial do Brasil',
+    altImpacto: 'Salma Tower, sede do Banco Industrial do Brasil, em São Paulo',
   },
 ];
 

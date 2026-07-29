@@ -15,15 +15,27 @@ const { setor } = Astro.props;
 
 <article class="group">
   <a href={setor.href} class="block">
-    <div class="overflow-hidden bg-grafite">
-      <Image
-        src={setor.imagemCard}
-        alt={setor.altCard}
-        widths={[480, 800, 1200, 1600]}
-        sizes="(min-width: 768px) 46vw, 92vw"
-        class="aspect-[3/2] w-full object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.03]"
-      />
-    </div>
+    {
+      setor.imagemCardModo === 'conter' ? (
+        <div class="flex aspect-[3/2] w-full items-center justify-center border border-linha bg-branco p-12">
+          <Image
+            src={setor.imagemCard}
+            alt={setor.altCard}
+            class="max-h-full w-auto max-w-full object-contain"
+          />
+        </div>
+      ) : (
+        <div class="overflow-hidden bg-grafite">
+          <Image
+            src={setor.imagemCard}
+            alt={setor.altCard}
+            widths={[480, 800, 1200, 1600]}
+            sizes="(min-width: 768px) 46vw, 92vw"
+            class="aspect-[3/2] w-full object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.03]"
+          />
+        </div>
+      )
+    }
     <div class="mt-6 flex gap-5">
       <span class="tnum pt-[6px] text-14 font-medium text-bronze-escuro">{setor.indice}</span>
       <div>
