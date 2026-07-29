@@ -7,18 +7,15 @@ on:
       - claude/claude-md-briefing-9og1ab
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-e-publicar:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -31,18 +28,11 @@ jobs:
         env:
           SITE_URL: https://${{ github.repository_owner }}.github.io
           BASE_PATH: /${{ github.event.repository.name }}
-      - uses: actions/configure-pages@v5
+      - name: Desativa Jekyll (preserva a pasta _astro)
+        run: touch dist/.nojekyll
+      - name: Publica no branch gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          commit_message: 'Deploy do site (build automático)'
