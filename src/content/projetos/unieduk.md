@@ -5,6 +5,6 @@ setor: "educacao"
 categorias:
   - "Ensino"
 imagem: "../../assets/projetos/unieduk.jpg"
-imagemAlt: "Campus do Grupo Unieduk"
+imagemAlt: "Prédio da UniEduk — Centro Escola de Especialidades Médicas"
 ordem: 17
 ---
