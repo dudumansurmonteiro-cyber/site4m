@@ -7,7 +7,7 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import SectorCard from '../components/SectorCard.astro';
 import { SETORES } from '../data/setores';
-import { DESCRICOES, TELEFONE } from '../data/site';
+import { DESCRICOES, TELEFONE, rota } from '../data/site';
 import homeHero from '../assets/home-hero.jpg';
 ---
 
@@ -65,7 +65,7 @@ import homeHero from '../assets/home-hero.jpg';
     <div class="container-site py-24 md:py-32">
       <div data-reveal>
         <span class="filete" aria-hidden="true"></span>
-        <a href="/contato/" class="group mt-10 block">
+        <a href={rota('/contato/')} class="group mt-10 block">
           <h2 class="titulo-display max-w-[18ch] text-36 transition-colors group-hover:text-bronze md:text-48">
             Fale com o Grupo 4M
           </h2>

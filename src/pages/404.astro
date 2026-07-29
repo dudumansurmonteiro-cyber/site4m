@@ -3,7 +3,7 @@
  * Página de erro (CLAUDE.md, seção 3).
  */
 import Base from '../layouts/Base.astro';
-import { DESCRICOES } from '../data/site';
+import { DESCRICOES, rota } from '../data/site';
 ---
 
 <Base titulo="Página não encontrada | Grupo 4M" descricao={DESCRICOES.home} noindex>
@@ -14,7 +14,7 @@ import { DESCRICOES } from '../data/site';
         Página não encontrada.
       </h1>
       <a
-        href="/"
+        href={rota('/')}
         class="eyebrow mt-10 inline-block border-b-2 border-bronze pb-1 text-branco transition-colors hover:text-bronze"
       >
         Voltar à página inicial

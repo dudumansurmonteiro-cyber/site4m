@@ -13,7 +13,7 @@ import impactoEnergia from '../assets/impacto-energia.jpg';
 import impactoEducacao from '../assets/impacto-educacao.jpg';
 import impactoFinanceiro from '../assets/impacto-financeiro.jpg';
 
-import { DESCRICOES } from './site';
+import { DESCRICOES, rota } from './site';
 
 export type SetorId = 'imobiliario' | 'energia' | 'educacao' | 'financeiro';
 
@@ -39,7 +39,7 @@ export const SETORES: Setor[] = [
     id: 'imobiliario',
     indice: '01',
     nome: 'Imobiliário',
-    href: '/imobiliario/',
+    href: rota('/imobiliario/'),
     textoHome:
       'Planejamos, investimos, desenvolvemos e gerenciamos empreendimentos residenciais, comerciais e loteamentos urbanos com foco em urbanização planejada, qualidade construtiva e geração de valor no longo prazo.',
     intro2:
@@ -54,7 +54,7 @@ export const SETORES: Setor[] = [
     id: 'energia',
     indice: '02',
     nome: 'Energia',
-    href: '/energia/',
+    href: rota('/energia/'),
     textoHome:
       'Investimos e participamos de projetos de geração de energia de grande porte, como Suape Termelétrica e Guaçu, contribuindo para a segurança energética e o fortalecimento da matriz regional.',
     intro2:
@@ -69,7 +69,7 @@ export const SETORES: Setor[] = [
     id: 'educacao',
     indice: '03',
     nome: 'Educação',
-    href: '/educacao/',
+    href: rota('/educacao/'),
     textoHome:
       'Por meio da participação no Grupo Unieduk, atuamos no desenvolvimento de soluções educacionais voltadas à formação, capacitação e especialização de profissionais, preparando talentos para um mercado cada vez mais exigente e dinâmico.',
     intro2:
@@ -84,7 +84,7 @@ export const SETORES: Setor[] = [
     id: 'financeiro',
     indice: '04',
     nome: 'Financeiro',
-    href: '/financeiro/',
+    href: rota('/financeiro/'),
     textoHome:
       'Estruturamos e coordenamos operações financeiras, modelos de funding e soluções de capital que viabilizam, sustentam e aceleram cada uma das frentes do grupo.',
     intro2:

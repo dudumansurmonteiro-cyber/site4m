@@ -5,7 +5,7 @@
  */
 import { Image } from 'astro:assets';
 import logo from '../assets/logo-grupo4m.png';
-import { MENU, NOME, TAGLINE, TELEFONE, ENDERECO } from '../data/site';
+import { MENU, NOME, TAGLINE, TELEFONE, ENDERECO, rota } from '../data/site';
 
 const ano = new Date().getFullYear();
 ---
@@ -14,7 +14,7 @@ const ano = new Date().getFullYear();
   <div class="container-site pt-16 pb-10 md:pt-24">
     <div class="grid gap-12 md:grid-cols-12">
       <div class="md:col-span-5">
-        <a href="/" class="inline-block" aria-label={`${NOME} — página inicial`}>
+        <a href={rota('/')} class="inline-block" aria-label={`${NOME} — página inicial`}>
           <Image src={logo} alt={NOME} height={26} densities={[1, 2]} class="h-[26px] w-auto" />
         </a>
         <p class="mt-4 max-w-[36ch] text-14 text-aco-claro">{TAGLINE}</p>

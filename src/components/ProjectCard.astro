@@ -4,6 +4,7 @@
  */
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
+import { rota } from '../data/site';
 
 interface Props {
   projeto: CollectionEntry<'projetos'>;
@@ -15,7 +16,7 @@ const { projeto, categoria = projeto.data.categorias[0] } = Astro.props;
 ---
 
 <article class="group">
-  <a href={`/${projeto.data.slug}/`} class="block">
+  <a href={rota(`/${projeto.data.slug}/`)} class="block">
     <div class="overflow-hidden bg-grafite">
       <Image
         src={projeto.data.imagem}

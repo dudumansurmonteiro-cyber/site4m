@@ -6,7 +6,7 @@
  */
 import { Image } from 'astro:assets';
 import logo from '../assets/logo-grupo4m.png';
-import { MENU, NOME, TELEFONE } from '../data/site';
+import { MENU, NOME, TELEFONE, rota } from '../data/site';
 
 interface Props {
   variant?: 'overlay' | 'solid';
@@ -29,7 +29,7 @@ const caminhoAtual = Astro.url.pathname.endsWith('/')
   ]}
 >
   <div class="container-site flex h-16 items-center justify-between md:h-[72px]">
-    <a href="/" class="shrink-0" aria-label={`${NOME} — página inicial`}>
+    <a href={rota('/')} class="shrink-0" aria-label={`${NOME} — página inicial`}>
       <Image src={logo} alt={NOME} height={26} densities={[1, 2]} class="h-[22px] w-auto md:h-[26px]" />
     </a>
 
@@ -74,7 +74,7 @@ const caminhoAtual = Astro.url.pathname.endsWith('/')
 <div id="menu-mobile" class="fixed inset-0 z-50 hidden bg-grafite" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="flex h-full flex-col">
     <div class="container-site flex h-16 items-center justify-between">
-      <a href="/" aria-label={`${NOME} — página inicial`}>
+      <a href={rota('/')} aria-label={`${NOME} — página inicial`}>
         <Image src={logo} alt={NOME} height={22} densities={[1, 2]} class="h-[22px] w-auto" />
       </a>
       <button

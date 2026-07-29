@@ -1,5 +1,12 @@
 /** Dados institucionais oficiais (CLAUDE.md, seções 4.1 e 9). */
 
+const BASE = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL.slice(0, -1)
+  : import.meta.env.BASE_URL;
+
+/** Prefixa rotas internas com a base do deploy (''/ raiz em produção). */
+export const rota = (caminho: string) => `${BASE}${caminho}`;
+
 export const NOME = 'Grupo 4M';
 export const URL_SITE = 'https://www.grupo4m.com';
 export const TAGLINE = 'Grupo privado de investimentos e operações';
@@ -24,12 +31,12 @@ export interface ItemMenu {
 }
 
 export const MENU: ItemMenu[] = [
-  { rotulo: 'Imobiliário', href: '/imobiliario/' },
-  { rotulo: 'Energia', href: '/energia/' },
-  { rotulo: 'Educação', href: '/educacao/' },
-  { rotulo: 'Financeiro', href: '/financeiro/' },
-  { rotulo: 'Quem somos', href: '/quem-somos/' },
-  { rotulo: 'Contato', href: '/contato/' },
+  { rotulo: 'Imobiliário', href: rota('/imobiliario/') },
+  { rotulo: 'Energia', href: rota('/energia/') },
+  { rotulo: 'Educação', href: rota('/educacao/') },
+  { rotulo: 'Financeiro', href: rota('/financeiro/') },
+  { rotulo: 'Quem somos', href: rota('/quem-somos/') },
+  { rotulo: 'Contato', href: rota('/contato/') },
 ];
 
 /** Meta descriptions exatas da seção 9. */
