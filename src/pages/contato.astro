@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+---
+
+<Base
+  titulo="Contato"
+  descricao="Fale com o Grupo 4M. Av. Pres. Juscelino Kubitschek, 1703, São Paulo/SP — (11) 3049 9700."
+>
+  <section class="bg-grafite text-branco">
+    <div class="container-site section-pad">
+      <p class="hero-entrada eyebrow text-bronze">Contato</p>
+      <h1
+        class="hero-entrada titulo-display mt-6 max-w-4xl text-4xl md:text-5xl"
+      >
+        Fale com o Grupo 4M
+      </h1>
+    </div>
+  </section>
+
+  <section class="section-pad" aria-label="Informações de contato">
+    <div class="container-site">
+      <ContactBlock />
+    </div>
+  </section>
+</Base>

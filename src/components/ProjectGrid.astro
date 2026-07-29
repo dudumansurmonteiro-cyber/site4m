@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import ProjectCard from './ProjectCard.astro';
 import { imagemProjeto } from '../lib/imagens';
+import { slugificar } from '../lib/util';
 
 interface Props {
   projetos: CollectionEntry<'projetos'>[];
@@ -35,10 +36,10 @@ function altDe(projeto: CollectionEntry<'projetos'>) {
 <div class="space-y-20">
   {
     grupos.map((grupo) => (
-      <section aria-labelledby={`categoria-${grupo.categoria}`}>
+      <section aria-labelledby={`categoria-${slugificar(grupo.categoria)}`}>
         <div class="filete-bronze flex items-baseline justify-between pt-5">
           <h3
-            id={`categoria-${grupo.categoria}`}
+            id={`categoria-${slugificar(grupo.categoria)}`}
             class="titulo-display text-2xl"
           >
             {grupo.categoria}

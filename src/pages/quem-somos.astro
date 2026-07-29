@@ -1,0 +1,322 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import ValueItem from '../components/ValueItem.astro';
+import { SETORES } from '../lib/dados';
+import { imagemSite } from '../lib/imagens';
+
+// "O que fazemos": os 4 cards usam os textos oficiais dos setores (seção
+// 4.2). O card Financeiro usa o texto de Financeiro — erro nº 2 do site
+// atual, corrigido (seção 5).
+const fazemos = SETORES.map((setor) => ({
+  ...setor,
+  icone: imagemSite(`icone-${setor.slug}.png`),
+}));
+
+const impacto = [
+  {
+    indice: '01',
+    titulo: 'Projetos imobiliários',
+    texto:
+      'Empreendimentos como Izzy Campinas, Alphagran e Saint Paul transformam regiões urbanas, criam novos espaços de convivência e impulsionam a valorização imobiliária.',
+    imagem: imagemSite('impacto-imobiliario.jpg'),
+    alt: 'Empreendimento imobiliário em região urbana',
+  },
+  {
+    indice: '02',
+    titulo: 'Energia',
+    texto:
+      'Usinas como Suape Termelétrica e Guaçu fortalecem a infraestrutura energética e estimulam o desenvolvimento regional.',
+    imagem: imagemSite('impacto-energia.jpg'),
+    alt: 'Usina de geração de energia',
+  },
+  {
+    indice: '03',
+    titulo: 'Educação',
+    texto:
+      'O Grupo Unieduk amplia o acesso ao conhecimento, capacitando profissionais e gerando inclusão social.',
+    imagem: imagemSite('impacto-educacao.jpg'),
+    alt: 'Estudantes em ambiente de ensino',
+  },
+  {
+    indice: '04',
+    titulo: 'Financeiro',
+    texto:
+      'O Grupo 4M realizou a construção do Banco Industrial do Brasil em São Paulo.',
+    imagem: imagemSite('impacto-financeiro.jpg'),
+    alt: 'Edifício do Banco Industrial do Brasil em São Paulo',
+  },
+];
+
+const valores = [
+  {
+    titulo: 'Visão de longo prazo',
+    texto:
+      'Investimos com foco em crescimento sustentável, priorizando projetos sólidos, bem estruturados e capazes de gerar valor duradouro ao longo do tempo.',
+  },
+  {
+    titulo: 'Excelência em planejamento e execução',
+    texto:
+      'Buscamos altos padrões de qualidade em todas as etapas dos nossos projetos, desde a concepção até a entrega, com gestão profissional e atenção aos detalhes.',
+  },
+  {
+    titulo: 'Diversificação com responsabilidade',
+    texto:
+      'Atuamos em diferentes setores estratégicos para garantir solidez e resiliência, sempre avaliando riscos, oportunidades e impactos de forma consciente.',
+  },
+  {
+    titulo: 'Compromisso com o desenvolvimento urbano e social',
+    texto:
+      'Acreditamos que nossos projetos devem contribuir para a melhoria das cidades, geração de empregos, fortalecimento da infraestrutura e avanço social das comunidades onde estamos presentes.',
+  },
+  {
+    titulo: 'Ética, transparência e governança',
+    texto:
+      'Conduzimos nossos negócios com integridade, clareza e respeito às normas, construindo relações de confiança com parceiros, investidores, colaboradores e a sociedade.',
+  },
+  {
+    titulo: 'Sustentabilidade e uso responsável dos recursos',
+    texto:
+      'Incorporamos práticas que valorizam a eficiência, a preservação ambiental e o equilíbrio entre crescimento econômico e responsabilidade socioambiental.',
+  },
+  {
+    titulo: 'Parcerias estratégicas e colaboração',
+    texto:
+      'Valorizamos relações sólidas no Brasil e no exterior, acreditando que a colaboração é essencial para ampliar impacto, inovação e resultados consistentes.',
+  },
+];
+---
+
+<Base
+  titulo="Quem Somos"
+  descricao="Somos uma holding que reúne diferentes frentes de negócios: incorporação imobiliária, educação, energia, infraestrutura e área financeira."
+>
+  <section class="bg-grafite text-branco">
+    <div class="container-site section-pad">
+      <p class="hero-entrada eyebrow text-bronze">Quem somos</p>
+      <h1
+        class="hero-entrada titulo-display mt-6 max-w-4xl text-4xl italic md:text-5xl"
+      >
+        Investir, desenvolver e estruturar.
+      </h1>
+      <div class="hero-entrada mt-8 max-w-2xl space-y-5 text-lg text-pedra/85">
+        <p>
+          O Grupo 4M nasceu em São Paulo em 2017 com um propósito claro:
+          investir em projetos que transformem cidades e gerem valor
+          duradouro.
+        </p>
+        <p>
+          Hoje somos uma holding que reúne diferentes frentes de negócios –
+          incorporação imobiliária, educação, energia, infraestrutura e área
+          financeira – sempre com a mesma ideia em mente: gerar valor de forma
+          sustentável, criar oportunidades e impulsionar o desenvolvimento
+          econômico e social.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" aria-labelledby="titulo-historia">
+    <div class="container-site">
+      <div class="filete-bronze pt-5" data-revelar>
+        <p class="eyebrow text-bronze">Trajetória</p>
+        <h2 id="titulo-historia" class="titulo-display mt-4 text-3xl md:text-4xl">
+          Nossa história
+        </h2>
+      </div>
+      <div class="mt-10 max-w-none space-y-5 text-lg" data-revelar>
+        <p class="medida-texto">
+          Em poucos anos de trajetória, crescemos e diversificamos. Começamos
+          com investimentos em projetos imobiliários de alto padrão e, a
+          partir dessa base sólida, expandimos para outros setores
+          estratégicos.
+        </p>
+        <p class="medida-texto">
+          Entre os marcos mais importantes, vale destacar o desenvolvimento de
+          empreendimentos residenciais e comerciais que elevaram o padrão de
+          urbanização, como o Izzy Campinas, Alphagran e Saint Paul, além de
+          investimentos em educação, com o Grupo Unieduk, e em energia, com a
+          Suape Termelétrica e a Guaçu.
+        </p>
+        <p class="medida-texto">
+          Esses projetos reforçam a infraestrutura de cidades e abrem caminho
+          para novas oportunidades de crescimento.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-pedra" aria-labelledby="titulo-fazemos">
+    <div class="container-site">
+      <div class="filete-bronze pt-5" data-revelar>
+        <p class="eyebrow text-bronze">Frentes de atuação</p>
+        <h2 id="titulo-fazemos" class="titulo-display mt-4 text-3xl md:text-4xl">
+          O que fazemos
+        </h2>
+      </div>
+      <div class="mt-14 grid gap-x-10 gap-y-14 md:grid-cols-2">
+        {
+          fazemos.map((setor) => (
+            <article data-revelar>
+              <Image
+                src={setor.icone}
+                alt=""
+                width={56}
+                height={56}
+                class="h-14 w-14"
+              />
+              <div class="mt-5 flex items-baseline gap-4">
+                <span
+                  class="text-sm font-semibold text-bronze numeros-tabulares"
+                  aria-hidden="true"
+                >
+                  {setor.indice}
+                </span>
+                <h3 class="titulo-display text-2xl">
+                  <a
+                    href={`/${setor.slug}/`}
+                    class="transition-colors hover:text-bronze"
+                  >
+                    {setor.nome}
+                  </a>
+                </h3>
+              </div>
+              <p class="mt-3 medida-texto text-base text-aco">{setor.texto}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" aria-labelledby="titulo-destacamos">
+    <div class="container-site">
+      <div class="filete-bronze pt-5" data-revelar>
+        <p class="eyebrow text-bronze">Diferenciais</p>
+        <h2
+          id="titulo-destacamos"
+          class="titulo-display mt-4 text-3xl md:text-4xl"
+        >
+          Por que nos destacamos
+        </h2>
+      </div>
+      <div class="mt-10 space-y-5 text-lg" data-revelar>
+        <p class="medida-texto">
+          O que nos move é a capacidade de criar e transformar espaços urbanos
+          em polos de desenvolvimento. Diversificamos nossas áreas de atuação
+          para ser uma empresa sólida em qualquer cenário econômico.
+        </p>
+        <p class="medida-texto">
+          Somos reconhecidos pela excelência em planejamento e gestão de
+          empreendimentos, atuando desde a aquisição de terrenos estratégicos
+          até a entrega de projetos de alto padrão.
+        </p>
+        <p class="medida-texto">
+          Contamos com parcerias estratégicas no Brasil e no exterior,
+          garantindo geração de empregos, melhorias de infraestrutura e
+          impacto positivo para as comunidades.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-pedra" aria-labelledby="titulo-impacto">
+    <div class="container-site">
+      <div class="filete-bronze pt-5" data-revelar>
+        <p class="eyebrow text-bronze">Presença real</p>
+        <h2 id="titulo-impacto" class="titulo-display mt-4 text-3xl md:text-4xl">
+          Nosso impacto
+        </h2>
+      </div>
+      <div class="mt-14 grid gap-x-10 gap-y-16 md:grid-cols-2">
+        {
+          impacto.map((bloco) => (
+            <article data-revelar>
+              <div class="overflow-hidden">
+                <Image
+                  src={bloco.imagem}
+                  alt={bloco.alt}
+                  widths={[480, 768, 1200]}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  class="aspect-[4/3] w-full object-cover"
+                />
+              </div>
+              <div class="mt-6 flex items-baseline gap-4">
+                <span
+                  class="text-sm font-semibold text-bronze numeros-tabulares"
+                  aria-hidden="true"
+                >
+                  {bloco.indice}
+                </span>
+                <h3 class="titulo-display text-2xl">{bloco.titulo}</h3>
+              </div>
+              <p class="mt-3 medida-texto text-base text-aco">{bloco.texto}</p>
+            </article>
+          ))
+        }
+      </div>
+      <p
+        class="titulo-display mt-16 max-w-3xl text-xl italic text-tinta"
+        data-revelar
+      >
+        Em todas as iniciativas, levamos a sério o compromisso com
+        sustentabilidade e uso responsável de recursos.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-pad bg-grafite text-branco" aria-labelledby="titulo-missao">
+    <div class="container-site">
+      <div class="filete-bronze pt-5" data-revelar>
+        <p class="eyebrow text-bronze">Propósito</p>
+        <h2 id="titulo-missao" class="titulo-display mt-4 text-3xl md:text-4xl">
+          Nossa missão
+        </h2>
+      </div>
+      <div class="mt-10 space-y-5 text-lg text-pedra/85" data-revelar>
+        <p class="medida-texto">
+          A missão do Grupo 4M é investir, desenvolver e estruturar projetos
+          que transformem cidades e gerem valor duradouro, promovendo
+          crescimento econômico aliado a impacto social positivo e uso
+          responsável dos recursos. Atuamos de forma integrada nos setores
+          imobiliário, educacional, energético, de infraestrutura e
+          financeiro, sempre com foco em planejamento estratégico, excelência
+          na execução e visão de longo prazo.
+        </p>
+        <p class="medida-texto">
+          Buscamos criar empreendimentos que elevem o padrão urbano,
+          fortaleçam a infraestrutura regional, ampliem o acesso à educação e
+          contribuam para uma matriz energética mais robusta e eficiente.
+        </p>
+        <p class="medida-texto">
+          Nosso compromisso é gerar oportunidades, impulsionar o
+          desenvolvimento das comunidades onde atuamos e construir negócios
+          sólidos e sustentáveis, capazes de atravessar diferentes ciclos
+          econômicos e deixar um legado.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad" aria-labelledby="titulo-valores">
+    <div class="container-site">
+      <div class="filete-bronze pt-5" data-revelar>
+        <p class="eyebrow text-bronze">Princípios</p>
+        <h2 id="titulo-valores" class="titulo-display mt-4 text-3xl md:text-4xl">
+          Nossos valores
+        </h2>
+      </div>
+      <div class="mt-14 grid gap-x-10 gap-y-12 md:grid-cols-2">
+        {
+          valores.map((valor, i) => (
+            <ValueItem
+              indice={String(i + 1).padStart(2, '0')}
+              titulo={valor.titulo}
+              texto={valor.texto}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
