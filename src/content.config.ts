@@ -22,6 +22,7 @@ const projetos = defineCollection({
       // por isso lista — os demais projetos têm uma única categoria.
       categorias: z.array(z.enum(CATEGORIAS)).nonempty(),
       tipo: z.string().optional(),
+      localizacao: z.string().optional(),
       stats: z.array(z.object({ label: z.string(), valor: z.string() })).default([]),
       imagem: image(),
       imagemAlt: z.string(),

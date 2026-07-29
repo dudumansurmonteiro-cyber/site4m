@@ -77,8 +77,12 @@ const destaqueUnico = projetos.length === 1 ? projetos[0] : null;
                 <h2 class="titulo-display mt-2 text-28 transition-colors group-hover:text-bronze-escuro md:text-36">
                   {destaqueUnico.data.titulo}
                 </h2>
-                {destaqueUnico.data.tipo && (
-                  <p class="mt-4 text-16 text-aco-escuro">{destaqueUnico.data.tipo}</p>
+                {(destaqueUnico.data.tipo || destaqueUnico.data.localizacao) && (
+                  <p class="mt-4 text-16 text-aco-escuro">
+                    {[destaqueUnico.data.tipo, destaqueUnico.data.localizacao]
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </p>
                 )}
                 <span class="eyebrow mt-8 inline-block border-b-2 border-bronze pb-1 text-tinta">
                   Conheça

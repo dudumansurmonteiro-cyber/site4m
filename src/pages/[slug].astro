@@ -61,7 +61,13 @@ const descricaoMeta = dados.tipo
       <h1 class="titulo-display mt-8 max-w-[20ch] text-36 text-balance md:text-48 lg:text-64">
         {dados.titulo}
       </h1>
-      {dados.tipo && <p class="mt-5 text-18 text-aco-claro md:text-22">{dados.tipo}</p>}
+      {
+        (dados.tipo || dados.localizacao) && (
+          <p class="mt-5 text-18 text-aco-claro md:text-22">
+            {[dados.tipo, dados.localizacao].filter(Boolean).join(' · ')}
+          </p>
+        )
+      }
     </div>
   </section>
 
