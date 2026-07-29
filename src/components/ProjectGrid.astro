@@ -27,6 +27,7 @@ const grupos = categorias
   .filter((g) => g.itens.length > 0);
 
 function altDe(projeto: CollectionEntry<'projetos'>) {
+  if (projeto.data.imagemAlt) return projeto.data.imagemAlt;
   return projeto.data.tipo
     ? `${projeto.data.titulo} — ${projeto.data.tipo}`
     : projeto.data.titulo;
@@ -56,6 +57,7 @@ function altDe(projeto: CollectionEntry<'projetos'>) {
               href={`/${projeto.data.slug}/`}
               imagem={imagemProjeto(projeto.data.imagem)}
               alt={altDe(projeto)}
+              modo={projeto.data.imagemModo}
             />
           ))}
         </div>

@@ -20,7 +20,11 @@ const { projeto } = Astro.props;
 const dados = projeto.data;
 const setor = setorPorSlug(dados.setor);
 const imagem = imagemProjeto(dados.imagem);
-const alt = dados.tipo ? `${dados.titulo} — ${dados.tipo}` : dados.titulo;
+const alt =
+  dados.imagemAlt ??
+  (dados.tipo ? `${dados.titulo} — ${dados.tipo}` : dados.titulo);
+const temDados =
+  dados.stats.length > 0 || Boolean(dados.descricao) || Boolean(dados.localizacao);
 
 // Meta description gerada a partir de tipo + setor (seção 9)
 const descricao = dados.tipo
@@ -77,7 +81,9 @@ const outros = (
         {dados.titulo}
       </h1>
     </div>
-    <div class="hero-entrada">
+    <div
+      class:list={['hero-entrada', dados.imagemModo === 'conter' && 'bg-pedra']}
+    >
       <Image
         src={imagem}
         alt={alt}
@@ -85,13 +91,18 @@ const outros = (
         sizes="100vw"
         loading="eager"
         fetchpriority="high"
-        class="h-[46vh] w-full object-cover md:h-[62vh]"
+        class:list={[
+          'h-[46vh] w-full md:h-[62vh]',
+          dados.imagemModo === 'conter'
+            ? 'object-contain p-10 md:p-20'
+            : 'object-cover',
+        ]}
       />
     </div>
   </section>
 
   {
-    (dados.stats.length > 0 || dados.descricao) && (
+    temDados && (
       <section class="section-pad" aria-label="Dados do projeto">
         <div class="container-site">
           {dados.descricao && (
@@ -99,7 +110,7 @@ const outros = (
               {dados.descricao}
             </p>
           )}
-          {dados.stats.length > 0 && (
+          {(dados.stats.length > 0 || dados.localizacao) && (
             <dl
               class:list={[
                 'grid gap-10 sm:grid-cols-2 lg:grid-cols-3',
@@ -107,6 +118,9 @@ const outros = (
               ]}
               data-revelar
             >
+              {dados.localizacao && (
+                <StatBlock label="Localização" valor={dados.localizacao} />
+              )}
               {dados.stats.map((stat) => (
                 <StatBlock label={stat.label} valor={stat.valor} />
               ))}
@@ -120,10 +134,7 @@ const outros = (
   {
     outros.length > 0 && (
       <section
-        class:list={[
-          'section-pad',
-          (dados.stats.length > 0 || dados.descricao) && 'bg-pedra',
-        ]}
+        class:list={['section-pad', temDados && 'bg-pedra']}
         aria-labelledby="titulo-outros"
       >
         <div class="container-site">
@@ -141,10 +152,12 @@ const outros = (
                 href={`/${outro.data.slug}/`}
                 imagem={imagemProjeto(outro.data.imagem)}
                 alt={
-                  outro.data.tipo
+                  outro.data.imagemAlt ??
+                  (outro.data.tipo
                     ? `${outro.data.titulo} — ${outro.data.tipo}`
-                    : outro.data.titulo
+                    : outro.data.titulo)
                 }
+                modo={outro.data.imagemModo}
               />
             ))}
           </div>

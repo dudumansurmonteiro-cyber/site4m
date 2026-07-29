@@ -1,10 +1,9 @@
 name: Publicar no GitHub Pages
 
+# Deploy apenas manual: o branch paralelo (claude/claude-md-briefing-wra9g0)
+# também publica no gh-pages; o gatilho automático foi removido para as duas
+# versões não ficarem se sobrescrevendo. Rode via "Run workflow" no Actions.
 on:
-  push:
-    branches:
-      - main
-      - claude/claude-md-briefing-9og1ab
   workflow_dispatch:
 
 concurrency:

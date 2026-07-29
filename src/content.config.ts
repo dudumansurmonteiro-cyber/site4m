@@ -21,10 +21,15 @@ const projetos = defineCollection({
       .enum(['Edifícios', 'Loteamentos', 'Terrenos'])
       .optional(),
     tipo: z.string().optional(),
+    localizacao: z.string().optional(),
     stats: z
       .array(z.object({ label: z.string(), valor: z.string() }))
       .default([]),
     imagem: z.string(),
+    /** Alt específico da imagem; sem ele, gera-se a partir de título/tipo. */
+    imagemAlt: z.string().optional(),
+    /** "conter" para logomarcas (object-contain em fundo claro). */
+    imagemModo: z.enum(['cobrir', 'conter']).default('cobrir'),
     descricao: z.string().default(''),
     // ordem de exibição dentro da categoria
     ordem: z.number().default(99),

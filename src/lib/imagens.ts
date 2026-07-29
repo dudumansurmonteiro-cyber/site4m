@@ -1,12 +1,12 @@
 import type { ImageMetadata } from 'astro';
 
 const doSite = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/*.{jpg,png}',
+  '../assets/*.{jpg,png,webp}',
   { eager: true }
 );
 
 const deProjetos = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/projetos/*.jpg',
+  '../assets/projetos/*.{jpg,png,webp}',
   { eager: true }
 );
 

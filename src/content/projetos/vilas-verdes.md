@@ -1,9 +1,9 @@
 ---
-titulo: "Vilas Verdes"
+titulo: "Manhattan"
 slug: "vilas-verdes"
 setor: "imobiliario"
 categoria: "Loteamentos"
 imagem: "vilas-verdes.jpg"
-ordem: 5
-dadosPendentes: true
+imagemAlt: "Vista aérea do loteamento Manhattan"
+ordem: 4
 ---

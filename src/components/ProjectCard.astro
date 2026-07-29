@@ -9,19 +9,26 @@ interface Props {
   href: string;
   imagem: ImageMetadata;
   alt: string;
+  /** "conter" para logomarcas: object-contain sobre fundo pedra. */
+  modo?: 'cobrir' | 'conter';
 }
 
-const { titulo, categoria, href, imagem, alt } = Astro.props;
+const { titulo, categoria, href, imagem, alt, modo = 'cobrir' } = Astro.props;
 ---
 
 <article class="group relative" data-revelar>
-  <div class="overflow-hidden">
+  <div
+    class:list={['overflow-hidden', modo === 'conter' && 'bg-pedra']}
+  >
     <Image
       src={imagem}
       alt={alt}
       widths={[480, 768, 1200]}
       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-      class="aspect-[4/3] w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
+      class:list={[
+        'aspect-[4/3] w-full transition-transform duration-500 motion-safe:group-hover:scale-[1.03]',
+        modo === 'conter' ? 'object-contain p-10' : 'object-cover',
+      ]}
     />
   </div>
   <p class="eyebrow mt-5 text-aco">{categoria}</p>

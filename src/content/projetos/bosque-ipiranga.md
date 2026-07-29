@@ -3,7 +3,7 @@ titulo: "Bosque Ipiranga"
 slug: "bosque-ipiranga"
 setor: "imobiliario"
 categoria: "Edifícios"
-imagem: "bosque-ipiranga.jpg"
+imagem: "bosque-ipiranga.webp"
+imagemAlt: "Vista aérea dos edifícios do Bosque Ipiranga cercados de área verde"
 ordem: 2
-dadosPendentes: true
 ---

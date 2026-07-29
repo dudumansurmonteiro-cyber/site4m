@@ -3,7 +3,8 @@ titulo: "Unieduk"
 slug: "unieduk"
 setor: "educacao"
 categoria: "Ensino"
-imagem: "unieduk.jpg"
+imagem: "unieduk.webp"
+imagemAlt: "Logomarca da UniEduK, com as instituições unifaj, unimax e faagroh"
+imagemModo: "conter"
 ordem: 1
-dadosPendentes: true
 ---
