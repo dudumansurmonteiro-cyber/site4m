@@ -5,6 +5,6 @@ setor: "imobiliario"
 categorias:
   - "Edifícios"
 imagem: "../../assets/projetos/muse.jpg"
-imagemAlt: "Fachada do edifício Muse"
+imagemAlt: "Fachada do edifício Muse, torre com jardins verticais nas sacadas"
 ordem: 1
 ---

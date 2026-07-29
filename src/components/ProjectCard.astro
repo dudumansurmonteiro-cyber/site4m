@@ -17,15 +17,27 @@ const { projeto, categoria = projeto.data.categorias[0] } = Astro.props;
 
 <article class="group">
   <a href={rota(`/${projeto.data.slug}/`)} class="block">
-    <div class="overflow-hidden bg-grafite">
-      <Image
-        src={projeto.data.imagem}
-        alt={projeto.data.imagemAlt}
-        widths={[400, 640, 960, 1280]}
-        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
-        class="aspect-[8/5] w-full object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.03]"
-      />
-    </div>
+    {
+      projeto.data.imagemModo === 'conter' ? (
+        <div class="flex aspect-[8/5] w-full items-center justify-center border border-linha bg-branco p-8">
+          <Image
+            src={projeto.data.imagem}
+            alt={projeto.data.imagemAlt}
+            class="max-h-full w-auto max-w-full object-contain"
+          />
+        </div>
+      ) : (
+        <div class="overflow-hidden bg-grafite">
+          <Image
+            src={projeto.data.imagem}
+            alt={projeto.data.imagemAlt}
+            widths={[400, 640, 960, 1280]}
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
+            class="aspect-[8/5] w-full object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.03]"
+          />
+        </div>
+      )
+    }
     <p class="eyebrow mt-5 text-aco-escuro">{categoria}</p>
     <h3 class="titulo-display mt-1 text-22 transition-colors group-hover:text-bronze-escuro">
       {projeto.data.titulo}

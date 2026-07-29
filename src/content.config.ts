@@ -26,6 +26,8 @@ const projetos = defineCollection({
       stats: z.array(z.object({ label: z.string(), valor: z.string() })).default([]),
       imagem: image(),
       imagemAlt: z.string(),
+      /** 'cobrir' = foto em tela cheia; 'conter' = logomarca centrada em painel. */
+      imagemModo: z.enum(['cobrir', 'conter']).default('cobrir'),
       descricao: z.string().optional(),
       ordem: z.number().default(99),
     }),

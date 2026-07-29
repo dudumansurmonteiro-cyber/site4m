@@ -71,18 +71,31 @@ const descricaoMeta = dados.tipo
     </div>
   </section>
 
-  <!-- Imagem hero -->
-  <div class="bg-grafite">
-    <Image
-      src={dados.imagem}
-      alt={dados.imagemAlt}
-      widths={[768, 1280, 1600, 1920]}
-      sizes="100vw"
-      loading="eager"
-      fetchpriority="high"
-      class="aspect-[16/9] max-h-[78svh] w-full object-cover md:aspect-[21/10]"
-    />
-  </div>
+  <!-- Imagem hero (foto em tela cheia ou logomarca em painel) -->
+  {
+    dados.imagemModo === 'conter' ? (
+      <div class="flex justify-center border-b border-linha bg-branco px-6 py-16 md:py-24">
+        <Image
+          src={dados.imagem}
+          alt={dados.imagemAlt}
+          loading="eager"
+          class="h-auto max-h-[220px] w-auto max-w-full object-contain md:max-h-[300px]"
+        />
+      </div>
+    ) : (
+      <div class="bg-grafite">
+        <Image
+          src={dados.imagem}
+          alt={dados.imagemAlt}
+          widths={[768, 1280, 1600, 1920]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="aspect-[16/9] max-h-[78svh] w-full object-cover md:aspect-[21/10]"
+        />
+      </div>
+    )
+  }
 
   <!-- Dados do empreendimento -->
   {

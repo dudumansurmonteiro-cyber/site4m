@@ -5,6 +5,7 @@ setor: "energia"
 categorias:
   - "Geração"
 imagem: "../../assets/projetos/guacu.jpg"
-imagemAlt: "Instalações da Guaçu Geração de Energia"
+imagemAlt: "Logomarca da Guaçu Geração de Energia"
+imagemModo: "conter"
 ordem: 14
 ---
