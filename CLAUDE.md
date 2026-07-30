@@ -86,7 +86,7 @@ Não incluir o crédito "Desenvolvido por Mindy Marketing" (era da agência do s
 
 **4 blocos de setor** (cada um com imagem, título, texto e link "Conheça"):
 
-1. **Imobiliário** — Planejamos, investimos, desenvolvemos e gerenciamos empreendimentos residenciais, comerciais e loteamentos urbanos com foco em urbanização planejada, qualidade construtiva e geração de valor no longo prazo.
+1. **Imobiliário** — Planejamos, investimos, desenvolvemos e gerenciamos empreendimentos residenciais, comerciais e loteamentos urbanos, com foco em urbanização planejada, qualidade construtiva e geração de valor no longo prazo.
 2. **Energia** — Investimos e participamos de projetos de geração de energia de grande porte, como Suape Termelétrica e Guaçu, contribuindo para a segurança energética e o fortalecimento da matriz regional.
 3. **Educação** — Por meio da participação no Grupo Unieduk, atuamos no desenvolvimento de soluções educacionais voltadas à formação, capacitação e especialização de profissionais, preparando talentos para um mercado cada vez mais exigente e dinâmico.
 4. **Financeiro** — Estruturamos e coordenamos operações financeiras, modelos de funding e soluções de capital que viabilizam, sustentam e aceleram cada uma das frentes do grupo.
@@ -95,9 +95,9 @@ Não incluir o crédito "Desenvolvido por Mindy Marketing" (era da agência do s
 
 **Intro:**
 
-> Planejamos, investimos, desenvolvemos e gerenciamos empreendimentos residenciais, comerciais e loteamentos urbanos com foco em urbanização planejada, qualidade construtiva e geração de valor no longo prazo.
+> Planejamos, investimos, desenvolvemos e gerenciamos empreendimentos residenciais, comerciais e loteamentos urbanos, com foco em urbanização planejada, qualidade construtiva e geração de valor no longo prazo.
 >
-> Projetos como Izzy Campinas, Alphagran e Saint Paul refletem nossa capacidade de identificar localizações estratégicas, estruturar produtos imobiliários alinhados à demanda do mercado e entregar empreendimentos com alto potencial de valorização e liquidez, contribuindo para a transformação positiva das cidades onde atuamos.
+> Projetos como Salma Tower, Alphagran e Muse refletem nossa capacidade de identificar localizações estratégicas, estruturar produtos imobiliários alinhados à demanda do mercado e entregar empreendimentos com alto potencial de valorização e liquidez — contribuindo para a transformação positiva das cidades onde atuamos.
 
 Depois, grade de projetos agrupada em **Edifícios**, **Loteamentos** e **Terrenos** (lista da seção 3).
 
