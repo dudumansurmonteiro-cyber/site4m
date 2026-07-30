@@ -1,5 +1,5 @@
 ---
-titulo: "Banco BIB"
+titulo: "Projeto JK"
 slug: "banco-bib"
 setor: "imobiliario"
 categorias:
@@ -7,7 +7,7 @@ categorias:
 localizacao: "Av. Presidente Juscelino Kubitschek, 1703"
 descricao: "Localizado na Avenida Presidente Juscelino Kubitschek, 1703, um dos endereços mais desejados de São Paulo, o empreendimento nasce com uma proposta inovadora: reunir, em um único complexo de uso misto, uma torre corporativa de alto padrão e uma torre residencial com lojas no térreo e fachada ativa, trazendo um novo ar para a região."
 imagem: "../../assets/projetos/banco-bib.jpg"
-imagemAlt: "Perspectiva do empreendimento projetado para o terreno do Banco BIB, torre de vidro com terraços verdes"
+imagemAlt: "Perspectiva do Projeto JK, torre de vidro com terraços verdes na Av. Juscelino Kubitschek"
 ordem: 12
 ---
 
