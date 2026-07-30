@@ -145,7 +145,7 @@ Destaque único: **BIB — Banco Industrial do Brasil** (link para `/banco-indus
 
 > Em poucos anos de trajetória, crescemos e diversificamos. Começamos com investimentos em projetos imobiliários de alto padrão e, a partir dessa base sólida, expandimos para outros setores estratégicos.
 >
-> Entre os marcos mais importantes, vale destacar o desenvolvimento de empreendimentos residenciais e comerciais que elevaram o padrão de urbanização, como o Izzy Campinas, Alphagran e Saint Paul, além de investimentos em educação, com o Grupo Unieduk, e em energia, com a Suape Termelétrica e a Guaçu.
+> Entre os marcos mais importantes, vale destacar o desenvolvimento de empreendimentos residenciais e comerciais que elevaram o padrão de urbanização, como o Salma Tower, Alphagran e Muse, além de investimentos em educação, com o Grupo Unieduk, e em energia, com a Suape Termelétrica e a Guaçu.
 >
 > Esses projetos reforçam a infraestrutura de cidades e abrem caminho para novas oportunidades de crescimento.
 
@@ -161,7 +161,7 @@ Destaque único: **BIB — Banco Industrial do Brasil** (link para `/banco-indus
 
 **Nosso impacto** (4 blocos com imagem):
 
-1. **Projetos imobiliários** — Empreendimentos como Izzy Campinas, Alphagran e Saint Paul transformam regiões urbanas, criam novos espaços de convivência e impulsionam a valorização imobiliária.
+1. **Projetos imobiliários** — Empreendimentos como Salma Tower, Alphagran e Muse transformam regiões urbanas, criam novos espaços de convivência e impulsionam a valorização imobiliária.
 2. **Energia** — Usinas como Suape Termelétrica e Guaçu fortalecem a infraestrutura energética e estimulam o desenvolvimento regional.
 3. **Educação** — O Grupo Unieduk amplia o acesso ao conhecimento, capacitando profissionais e gerando inclusão social.
 4. **Financeiro** — O Grupo 4M realizou a construção do Banco Industrial do Brasil em São Paulo.
