@@ -30,7 +30,7 @@ const caminhoAtual = Astro.url.pathname.endsWith('/')
 >
   <div class="container-site flex h-16 items-center justify-between md:h-[72px]">
     <a href={rota('/')} class="shrink-0" aria-label={`${NOME} — página inicial`}>
-      <Image src={logo} alt={NOME} height={26} densities={[1, 2]} class="h-[22px] w-auto md:h-[26px]" />
+      <Image src={logo} alt={NOME} height={36} densities={[1, 2]} class="h-8 w-auto md:h-9" />
     </a>
 
     <nav aria-label="Navegação principal" class="hidden lg:block">
@@ -75,7 +75,7 @@ const caminhoAtual = Astro.url.pathname.endsWith('/')
   <div class="flex h-full flex-col">
     <div class="container-site flex h-16 items-center justify-between">
       <a href={rota('/')} aria-label={`${NOME} — página inicial`}>
-        <Image src={logo} alt={NOME} height={22} densities={[1, 2]} class="h-[22px] w-auto" />
+        <Image src={logo} alt={NOME} height={32} densities={[1, 2]} class="h-8 w-auto" />
       </a>
       <button
         id="fechar-menu"
