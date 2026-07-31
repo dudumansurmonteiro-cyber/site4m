@@ -156,8 +156,7 @@ const valores = [
       <div class="mt-12 grid gap-x-10 gap-y-14 md:grid-cols-2">
         {
           SETORES.map((setor) => (
-            <div class="flex gap-5" data-reveal>
-              <span class="tnum pt-[5px] text-14 font-medium text-bronze-escuro">{setor.indice}</span>
+            <div data-reveal>
               <div>
                 <h3 class="titulo-display text-22 md:text-28">
                   <a href={setor.href} class="transition-colors hover:text-bronze-escuro">
@@ -229,10 +228,7 @@ const valores = [
                   />
                 </div>
               )}
-              <div class="mt-6 flex gap-5">
-                <span class="tnum pt-[5px] text-14 font-medium text-bronze-escuro">
-                  {bloco.indice}
-                </span>
+              <div class="mt-6">
                 <div>
                   <h3 class="titulo-display text-22 md:text-28">{bloco.titulo}</h3>
                   <p class="mt-3 max-w-[58ch] text-16 text-aco-escuro">{bloco.texto}</p>

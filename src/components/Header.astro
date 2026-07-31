@@ -93,7 +93,7 @@ const caminhoAtual = Astro.url.pathname.endsWith('/')
     <nav aria-label="Navegação principal" class="container-site flex flex-1 items-center">
       <ul class="flex flex-col gap-5">
         {
-          MENU.map((item, i) => (
+          MENU.map((item) => (
             <li>
               <a
                 href={item.href}
@@ -103,11 +103,6 @@ const caminhoAtual = Astro.url.pathname.endsWith('/')
                   'aria-[current=page]:text-bronze',
                 ]}
               >
-                {i < 4 && (
-                  <span class="tnum mr-4 align-middle text-14 font-sans text-bronze" aria-hidden="true">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                )}
                 {item.rotulo}
               </a>
             </li>
