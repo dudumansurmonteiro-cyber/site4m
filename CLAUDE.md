@@ -71,7 +71,7 @@ Usar **exatamente** os textos abaixo. Não parafrasear, não "melhorar" a copy p
 **Rodapé:**
 
 - Telefone: (11) 3049 9700 (link `tel:+551130499700`)
-- Endereço: Av. Pres. Juscelino Kubitschek, 1703 | 1º Andar — Vila Nova Conceição — São Paulo/SP | Brasil
+- Endereço: Av. Brigadeiro Faria Lima, 3477 | 16º Andar — São Paulo/SP | Brasil
 - © Grupo 4M {ano atual}
 
 Não incluir o crédito "Desenvolvido por Mindy Marketing" (era da agência do site antigo).
@@ -319,7 +319,7 @@ Sem gradientes decorativos, sem glassmorphism, sem emojis, sem carrossel automá
   - **Educação:** "Por meio da participação no Grupo Unieduk, atuamos no desenvolvimento de soluções educacionais voltadas à formação, capacitação e especialização de profissionais."
   - **Financeiro:** "Estruturamos e coordenamos operações financeiras, modelos de funding e soluções de capital para as frentes do grupo."
   - **Quem Somos:** "Somos uma holding que reúne diferentes frentes de negócios: incorporação imobiliária, educação, energia, infraestrutura e área financeira."
-  - **Contato:** "Fale com o Grupo 4M. Av. Pres. Juscelino Kubitschek, 1703, São Paulo/SP — (11) 3049 9700."
+  - **Contato:** "Fale com o Grupo 4M. Av. Brigadeiro Faria Lima, 3477, São Paulo/SP — (11) 3049 9700."
   - **Projetos:** gerar a partir de tipo + setor.
 - OG/Twitter card em todas as páginas (imagem padrão `home-hero.jpg`; nos projetos, a imagem do projeto).
 - `sitemap.xml` (integração `@astrojs/sitemap`) e `robots.txt`.

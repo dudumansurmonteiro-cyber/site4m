@@ -18,11 +18,11 @@ export const TELEFONE = {
 };
 
 export const ENDERECO = {
-  linha1: 'Av. Pres. Juscelino Kubitschek, 1703 | 1º Andar',
-  linha2: 'Vila Nova Conceição — São Paulo/SP | Brasil',
+  linha1: 'Av. Brigadeiro Faria Lima, 3477 | 16º Andar',
+  linha2: 'São Paulo/SP | Brasil',
   maps:
     'https://www.google.com/maps/search/?api=1&query=' +
-    encodeURIComponent('Av. Pres. Juscelino Kubitschek, 1703, São Paulo - SP'),
+    encodeURIComponent('Av. Brigadeiro Faria Lima, 3477, São Paulo - SP'),
 };
 
 export interface ItemMenu {
@@ -53,5 +53,5 @@ export const DESCRICOES = {
   quemSomos:
     'Somos uma holding que reúne diferentes frentes de negócios: incorporação imobiliária, educação, energia, infraestrutura e área financeira.',
   contato:
-    'Fale com o Grupo 4M. Av. Pres. Juscelino Kubitschek, 1703, São Paulo/SP — (11) 3049 9700.',
+    'Fale com o Grupo 4M. Av. Brigadeiro Faria Lima, 3477, São Paulo/SP — (11) 3049 9700.',
 } as const;
