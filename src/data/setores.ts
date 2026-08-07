@@ -10,7 +10,7 @@ import type { ImageMetadata } from 'astro';
 
 import fotoMuse from '../assets/projetos/muse.jpg';
 import fotoSalma from '../assets/projetos/salma-tower.jpg';
-import fotoBosque from '../assets/projetos/bosque-ipiranga.webp';
+import fotoBosque from '../assets/projetos/bosque-ipiranga.jpg';
 import fotoUnieduk from '../assets/projetos/unieduk-campus.jpg';
 import marcaSuape from '../assets/projetos/suape.webp';
 
@@ -55,7 +55,7 @@ export const SETORES: Setor[] = [
     imagemCard: fotoMuse,
     imagemImpacto: fotoBosque,
     altCard: 'Fachada do edifício Muse Itaim, torre com jardins verticais',
-    altImpacto: 'Vista aérea dos edifícios do Bosque Ipiranga cercados de área verde',
+    altImpacto: 'Perspectiva dos edifícios do Bosque Ipiranga, com lojas no térreo e paisagismo',
   },
   {
     id: 'energia',
