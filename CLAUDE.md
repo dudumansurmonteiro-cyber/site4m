@@ -39,7 +39,7 @@ Manter os **slugs atuais dos projetos na raiz** (ex.: `/izzy-campinas/`, `/suape
 
 | Setor | Categoria | Projeto | Slug |
 | --- | --- | --- | --- |
-| Imobiliário | Edifícios | Muse | `/muse/` |
+| Imobiliário | Edifícios | Muse Itaim | `/muse/` |
 | Imobiliário | Edifícios | Bosque Ipiranga | `/bosque-ipiranga/` |
 | Imobiliário | Edifícios | Izzy Campinas | `/izzy-campinas/` |
 | Imobiliário | Edifícios | Salma Tower | `/salma-tower/` |
@@ -97,7 +97,7 @@ Não incluir o crédito "Desenvolvido por Mindy Marketing" (era da agência do s
 
 > Planejamos, investimos, desenvolvemos e gerenciamos empreendimentos residenciais, comerciais e loteamentos urbanos, com foco em urbanização planejada, qualidade construtiva e geração de valor no longo prazo.
 >
-> Projetos como Salma Tower, Alphagran e Muse refletem nossa capacidade de identificar localizações estratégicas, estruturar produtos imobiliários alinhados à demanda do mercado e entregar empreendimentos com alto potencial de valorização e liquidez — contribuindo para a transformação positiva das cidades onde atuamos.
+> Projetos como Salma Tower, Alphagran e Muse Itaim refletem nossa capacidade de identificar localizações estratégicas, estruturar produtos imobiliários alinhados à demanda do mercado e entregar empreendimentos com alto potencial de valorização e liquidez — contribuindo para a transformação positiva das cidades onde atuamos.
 
 Depois, grade de projetos agrupada em **Edifícios**, **Loteamentos** e **Terrenos** (lista da seção 3).
 
@@ -145,7 +145,7 @@ Destaque único: **BIB — Banco Industrial do Brasil** (link para `/banco-indus
 
 > Em poucos anos de trajetória, crescemos e diversificamos. Começamos com investimentos em projetos imobiliários de alto padrão e, a partir dessa base sólida, expandimos para outros setores estratégicos.
 >
-> Entre os marcos mais importantes, vale destacar o desenvolvimento de empreendimentos residenciais e comerciais que elevaram o padrão de urbanização, como o Salma Tower, Alphagran e Muse, além de investimentos em educação, com o Grupo Unieduk, e em energia, com a Suape Termelétrica e a Guaçu.
+> Entre os marcos mais importantes, vale destacar o desenvolvimento de empreendimentos residenciais e comerciais que elevaram o padrão de urbanização, como o Salma Tower, Alphagran e Muse Itaim, além de investimentos em educação, com o Grupo Unieduk, e em energia, com a Suape Termelétrica e a Guaçu.
 >
 > Esses projetos reforçam a infraestrutura de cidades e abrem caminho para novas oportunidades de crescimento.
 
@@ -161,7 +161,7 @@ Destaque único: **BIB — Banco Industrial do Brasil** (link para `/banco-indus
 
 **Nosso impacto** (4 blocos com imagem):
 
-1. **Projetos imobiliários** — Empreendimentos como Salma Tower, Alphagran e Muse transformam regiões urbanas, criam novos espaços de convivência e impulsionam a valorização imobiliária.
+1. **Projetos imobiliários** — Empreendimentos como Salma Tower, Alphagran e Muse Itaim transformam regiões urbanas, criam novos espaços de convivência e impulsionam a valorização imobiliária.
 2. **Energia** — Usinas como Suape Termelétrica e Guaçu fortalecem a infraestrutura energética e estimulam o desenvolvimento regional.
 3. **Educação** — O Grupo Unieduk amplia o acesso ao conhecimento, capacitando profissionais e gerando inclusão social.
 4. **Financeiro** — O Grupo 4M realizou a construção do Banco Industrial do Brasil em São Paulo.

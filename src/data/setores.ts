@@ -49,12 +49,12 @@ export const SETORES: Setor[] = [
     textoHome:
       'Planejamos, investimos, desenvolvemos e gerenciamos empreendimentos residenciais, comerciais e loteamentos urbanos, com foco em urbanização planejada, qualidade construtiva e geração de valor no longo prazo.',
     intro2:
-      'Projetos como Salma Tower, Alphagran e Muse refletem nossa capacidade de identificar localizações estratégicas, estruturar produtos imobiliários alinhados à demanda do mercado e entregar empreendimentos com alto potencial de valorização e liquidez — contribuindo para a transformação positiva das cidades onde atuamos.',
+      'Projetos como Salma Tower, Alphagran e Muse Itaim refletem nossa capacidade de identificar localizações estratégicas, estruturar produtos imobiliários alinhados à demanda do mercado e entregar empreendimentos com alto potencial de valorização e liquidez — contribuindo para a transformação positiva das cidades onde atuamos.',
     metaDescription: DESCRICOES.imobiliario,
     categorias: ['Edifícios', 'Loteamentos', 'Terrenos'],
     imagemCard: fotoMuse,
     imagemImpacto: fotoBosque,
-    altCard: 'Fachada do edifício Muse, torre com jardins verticais',
+    altCard: 'Fachada do edifício Muse Itaim, torre com jardins verticais',
     altImpacto: 'Vista aérea dos edifícios do Bosque Ipiranga cercados de área verde',
   },
   {
