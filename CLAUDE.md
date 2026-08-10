@@ -270,7 +270,7 @@ Se os downloads falharem por falta de acesso à rede, criar a pasta `src/assets/
 
 **Tipografia** (via `@fontsource`):
 
-- **Display:** Newsreader (400 e 500; itálico só para destaques pontuais como "Investir, desenvolver e estruturar."). Títulos grandes, tracking levemente negativo.
+- **Display:** Newsreader (400 e 500). Títulos grandes, tracking levemente negativo.
 - **Texto:** Archivo (400/500/600).
 - **Dados:** Archivo com `font-variant-numeric: tabular-nums` para metragens, MW e telefone.
 - **Escala:** 14 / 16 / 18 / 22 / 28 / 36 / 48 / 64px, line-height generoso no corpo (1.6) e apertado nos títulos (1.05–1.15).
