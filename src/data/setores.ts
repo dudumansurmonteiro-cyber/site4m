@@ -12,7 +12,7 @@ import fotoMuse from '../assets/projetos/muse.jpg';
 import fotoSalma from '../assets/projetos/salma-tower.jpg';
 import fotoBosque from '../assets/projetos/bosque-ipiranga.jpg';
 import fotoUnieduk from '../assets/projetos/unieduk-campus.jpg';
-import marcaSuape from '../assets/projetos/suape.webp';
+import fotoSuape from '../assets/projetos/suape.jpg';
 
 import { DESCRICOES, rota } from './site';
 
@@ -68,12 +68,10 @@ export const SETORES: Setor[] = [
       'Nossa atuação no setor é orientada por eficiência operacional, viabilidade econômica e visão de longo prazo, buscando projetos que gerem impacto positivo, estabilidade e retorno consistente.',
     metaDescription: DESCRICOES.energia,
     categorias: ['Geração', 'Transmissão'],
-    imagemCard: marcaSuape,
-    imagemCardModo: 'conter',
-    imagemImpacto: marcaSuape,
-    imagemImpactoModo: 'conter',
-    altCard: 'Logomarca da Suape Energia',
-    altImpacto: 'Logomarca da Suape Energia',
+    imagemCard: fotoSuape,
+    imagemImpacto: fotoSuape,
+    altCard: 'Vista aérea noturna da termelétrica Suape II, com casas de máquinas e subestação iluminadas',
+    altImpacto: 'Vista aérea noturna da termelétrica Suape II, com casas de máquinas e subestação iluminadas',
   },
   {
     id: 'educacao',
