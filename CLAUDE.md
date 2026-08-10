@@ -137,7 +137,7 @@ Destaque único: **BIB — Banco Industrial do Brasil** (link para `/banco-indus
 
 > **Investir, desenvolver e estruturar.**
 >
-> O Grupo 4M nasceu em São Paulo em 2017 com um propósito claro: investir em projetos que transformem cidades e gerem valor duradouro.
+> O Grupo 4M nasceu em São Paulo com um propósito claro: investir em projetos que transformem cidades e gerem valor duradouro.
 >
 > Hoje somos uma holding que reúne diferentes frentes de negócios – incorporação imobiliária, educação, energia, infraestrutura e área financeira – sempre com a mesma ideia em mente: gerar valor de forma sustentável, criar oportunidades e impulsionar o desenvolvimento econômico e social.
 
