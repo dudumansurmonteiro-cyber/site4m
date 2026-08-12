@@ -86,8 +86,8 @@ export const SETORES: Setor[] = [
     categorias: ['Ensino'],
     imagemCard: fotoUnieduk,
     imagemImpacto: fotoUnieduk,
-    altCard: 'Prédio da UniEduk — Centro Escola de Especialidades Médicas',
-    altImpacto: 'Prédio da UniEduk — Centro Escola de Especialidades Médicas',
+    altCard: 'Vista aérea do campus da UniMax, instituição do Grupo Unieduk',
+    altImpacto: 'Vista aérea do campus da UniMax, instituição do Grupo Unieduk',
   },
   {
     id: 'financeiro',
