@@ -1,51 +1,50 @@
 ---
+/**
+ * Quem Somos (CLAUDE.md, seção 4.7) — copy oficial na íntegra.
+ * "O que fazemos" e "Nosso impacto" reutilizam a malha 01–04 (seção 7).
+ * Correção obrigatória nº 2: o card Financeiro usa o texto de Financeiro.
+ */
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import ValueItem from '../components/ValueItem.astro';
-import { SETORES } from '../lib/dados';
-import { imagemSite } from '../lib/imagens';
-import { comBase } from '../lib/util';
-
-// "O que fazemos": os 4 cards usam os textos oficiais dos setores (seção
-// 4.2). O card Financeiro usa o texto de Financeiro — erro nº 2 do site
-// atual, corrigido (seção 5).
-const fazemos = SETORES.map((setor) => ({
-  ...setor,
-  icone: imagemSite(`icone-${setor.slug}.png`),
-}));
+import { SETORES } from '../data/setores';
+import { DESCRICOES } from '../data/site';
 
 const impacto = [
   {
     indice: '01',
     titulo: 'Projetos imobiliários',
     texto:
-      'Empreendimentos como Izzy Campinas, Alphagran e Saint Paul transformam regiões urbanas, criam novos espaços de convivência e impulsionam a valorização imobiliária.',
-    imagem: imagemSite('impacto-imobiliario.webp'),
-    alt: 'Vista aérea dos edifícios do Bosque Ipiranga cercados de área verde',
+      'Empreendimentos como Salma Tower, Alphagran e Muse Itaim transformam regiões urbanas, criam novos espaços de convivência e impulsionam a valorização imobiliária.',
+    imagem: SETORES[0].imagemImpacto,
+    modo: SETORES[0].imagemImpactoModo,
+    alt: SETORES[0].altImpacto,
   },
   {
     indice: '02',
     titulo: 'Energia',
     texto:
       'Usinas como Suape Termelétrica e Guaçu fortalecem a infraestrutura energética e estimulam o desenvolvimento regional.',
-    imagem: imagemSite('impacto-energia.jpg'),
-    alt: 'Setor de energia do Grupo 4M',
+    imagem: SETORES[1].imagemImpacto,
+    modo: SETORES[1].imagemImpactoModo,
+    alt: SETORES[1].altImpacto,
   },
   {
     indice: '03',
     titulo: 'Educação',
     texto:
       'O Grupo Unieduk amplia o acesso ao conhecimento, capacitando profissionais e gerando inclusão social.',
-    imagem: imagemSite('impacto-educacao.jpg'),
-    alt: 'Campus da UniEduK, com prédios entre áreas verdes',
+    imagem: SETORES[2].imagemImpacto,
+    modo: SETORES[2].imagemImpactoModo,
+    alt: SETORES[2].altImpacto,
   },
   {
     indice: '04',
     titulo: 'Financeiro',
-    texto:
-      'O Grupo 4M realizou a construção do Banco Industrial do Brasil em São Paulo.',
-    imagem: imagemSite('impacto-financeiro.jpg'),
-    alt: 'Torre de vidro da Salma Tower, sede do Banco Industrial do Brasil',
+    texto: 'O Grupo 4M realizou a construção do Banco Industrial do Brasil em São Paulo.',
+    imagem: SETORES[3].imagemImpacto,
+    modo: SETORES[3].imagemImpactoModo,
+    alt: SETORES[3].altImpacto,
   },
 ];
 
@@ -88,233 +87,210 @@ const valores = [
 ];
 ---
 
-<Base
-  titulo="Quem Somos"
-  descricao="Somos uma holding que reúne diferentes frentes de negócios: incorporação imobiliária, educação, energia, infraestrutura e área financeira."
->
+<Base titulo="Quem Somos | Grupo 4M" descricao={DESCRICOES.quemSomos}>
+  <!-- Abertura -->
   <section class="bg-grafite text-branco">
-    <div class="container-site section-pad">
-      <p class="hero-entrada eyebrow text-bronze">Quem somos</p>
-      <h1
-        class="hero-entrada titulo-display mt-6 max-w-4xl text-4xl italic md:text-5xl"
-      >
+    <div class="container-site hero-anim pt-24 pb-16 md:pt-36 md:pb-24">
+      <p class="eyebrow text-aco-claro">Quem somos</p>
+      <h1 class="titulo-display mt-4 max-w-[18ch] text-36 text-balance md:text-48 lg:text-64">
         Investir, desenvolver e estruturar.
       </h1>
-      <div class="hero-entrada mt-8 max-w-2xl space-y-5 text-lg text-pedra/85">
-        <p>
-          O Grupo 4M nasceu em São Paulo em 2017 com um propósito claro:
-          investir em projetos que transformem cidades e gerem valor
-          duradouro.
-        </p>
-        <p>
-          Hoje somos uma holding que reúne diferentes frentes de negócios –
-          incorporação imobiliária, educação, energia, infraestrutura e área
-          financeira – sempre com a mesma ideia em mente: gerar valor de forma
-          sustentável, criar oportunidades e impulsionar o desenvolvimento
-          econômico e social.
-        </p>
+    </div>
+  </section>
+
+  <section class="bg-branco">
+    <div class="container-site py-20 md:py-28">
+      <div class="grid md:grid-cols-12" data-reveal>
+        <div class="md:col-span-9 lg:col-span-8">
+          <p class="titulo-display text-22 text-balance md:text-28">
+            O Grupo 4M nasceu em São Paulo com um propósito claro: investir em projetos
+            que transformem cidades e gerem valor duradouro.
+          </p>
+          <p class="mt-8 max-w-[68ch] text-16 text-aco-escuro md:text-18">
+            Hoje somos uma holding que reúne diferentes frentes de negócios – incorporação
+            imobiliária, educação, energia, infraestrutura e área financeira – sempre com a mesma
+            ideia em mente: gerar valor de forma sustentável, criar oportunidades e impulsionar o
+            desenvolvimento econômico e social.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section-pad" aria-labelledby="titulo-historia">
-    <div class="container-site">
-      <div class="filete-bronze pt-5" data-revelar>
-        <p class="eyebrow text-bronze">Trajetória</p>
-        <h2 id="titulo-historia" class="titulo-display mt-4 text-3xl md:text-4xl">
-          Nossa história
-        </h2>
+  <!-- Nossa história -->
+  <section aria-labelledby="titulo-historia" class="bg-pedra">
+    <div class="container-site py-20 md:py-28">
+      <div data-reveal>
+        <span class="filete" aria-hidden="true"></span>
+        <h2 id="titulo-historia" class="titulo-display mt-6 text-28 md:text-36">Nossa história</h2>
       </div>
-      <div class="mt-10 max-w-none space-y-5 text-lg" data-revelar>
-        <p class="medida-texto">
-          Em poucos anos de trajetória, crescemos e diversificamos. Começamos
-          com investimentos em projetos imobiliários de alto padrão e, a
-          partir dessa base sólida, expandimos para outros setores
-          estratégicos.
-        </p>
-        <p class="medida-texto">
-          Entre os marcos mais importantes, vale destacar o desenvolvimento de
-          empreendimentos residenciais e comerciais que elevaram o padrão de
-          urbanização, como o Izzy Campinas, Alphagran e Saint Paul, além de
-          investimentos em educação, com o Grupo Unieduk, e em energia, com a
-          Suape Termelétrica e a Guaçu.
-        </p>
-        <p class="medida-texto">
-          Esses projetos reforçam a infraestrutura de cidades e abrem caminho
-          para novas oportunidades de crescimento.
-        </p>
+      <div class="mt-10 grid md:grid-cols-12" data-reveal>
+        <div class="flex max-w-[68ch] flex-col gap-6 text-16 md:col-span-9 md:text-18 lg:col-span-8">
+          <p>
+            Em poucos anos de trajetória, crescemos e diversificamos. Começamos com investimentos
+            em projetos imobiliários de alto padrão e, a partir dessa base sólida, expandimos para
+            outros setores estratégicos.
+          </p>
+          <p>
+            Entre os marcos mais importantes, vale destacar o desenvolvimento de empreendimentos
+            residenciais e comerciais que elevaram o padrão de urbanização, como o Salma Tower,
+            Alphagran e Muse Itaim, além de investimentos em educação, com o Grupo Unieduk, e em
+            energia, com a Suape Termelétrica e a Guaçu.
+          </p>
+          <p>
+            Esses projetos reforçam a infraestrutura de cidades e abrem caminho para novas
+            oportunidades de crescimento.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section-pad bg-pedra" aria-labelledby="titulo-fazemos">
-    <div class="container-site">
-      <div class="filete-bronze pt-5" data-revelar>
-        <p class="eyebrow text-bronze">Frentes de atuação</p>
-        <h2 id="titulo-fazemos" class="titulo-display mt-4 text-3xl md:text-4xl">
-          O que fazemos
-        </h2>
+  <!-- O que fazemos: malha 01–04 -->
+  <section aria-labelledby="titulo-fazemos" class="bg-branco">
+    <div class="container-site py-20 md:py-28">
+      <div data-reveal>
+        <span class="filete" aria-hidden="true"></span>
+        <h2 id="titulo-fazemos" class="titulo-display mt-6 text-28 md:text-36">O que fazemos</h2>
       </div>
-      <div class="mt-14 grid gap-x-10 gap-y-14 md:grid-cols-2">
+      <div class="mt-12 grid gap-x-10 gap-y-14 md:grid-cols-2">
         {
-          fazemos.map((setor) => (
-            <article data-revelar>
-              <Image
-                src={setor.icone}
-                alt=""
-                width={56}
-                height={56}
-                class="h-14 w-14"
-              />
-              <div class="mt-5 flex items-baseline gap-4">
-                <span
-                  class="text-sm font-semibold text-bronze numeros-tabulares"
-                  aria-hidden="true"
-                >
-                  {setor.indice}
-                </span>
-                <h3 class="titulo-display text-2xl">
-                  <a
-                    href={comBase(`/${setor.slug}/`)}
-                    class="transition-colors hover:text-bronze"
-                  >
+          SETORES.map((setor) => (
+            <div data-reveal>
+              <div>
+                <h3 class="titulo-display text-22 md:text-28">
+                  <a href={setor.href} class="transition-colors hover:text-bronze-escuro">
                     {setor.nome}
                   </a>
                 </h3>
+                <p class="mt-3 max-w-[58ch] text-16 text-aco-escuro">{setor.textoHome}</p>
               </div>
-              <p class="mt-3 medida-texto text-base text-aco">{setor.texto}</p>
-            </article>
+            </div>
           ))
         }
       </div>
     </div>
   </section>
 
-  <section class="section-pad" aria-labelledby="titulo-destacamos">
-    <div class="container-site">
-      <div class="filete-bronze pt-5" data-revelar>
-        <p class="eyebrow text-bronze">Diferenciais</p>
-        <h2
-          id="titulo-destacamos"
-          class="titulo-display mt-4 text-3xl md:text-4xl"
-        >
+  <!-- Por que nos destacamos -->
+  <section aria-labelledby="titulo-destacamos" class="bg-pedra">
+    <div class="container-site py-20 md:py-28">
+      <div data-reveal>
+        <span class="filete" aria-hidden="true"></span>
+        <h2 id="titulo-destacamos" class="titulo-display mt-6 text-28 md:text-36">
           Por que nos destacamos
         </h2>
       </div>
-      <div class="mt-10 space-y-5 text-lg" data-revelar>
-        <p class="medida-texto">
-          O que nos move é a capacidade de criar e transformar espaços urbanos
-          em polos de desenvolvimento. Diversificamos nossas áreas de atuação
-          para ser uma empresa sólida em qualquer cenário econômico.
-        </p>
-        <p class="medida-texto">
-          Somos reconhecidos pela excelência em planejamento e gestão de
-          empreendimentos, atuando desde a aquisição de terrenos estratégicos
-          até a entrega de projetos de alto padrão.
-        </p>
-        <p class="medida-texto">
-          Contamos com parcerias estratégicas no Brasil e no exterior,
-          garantindo geração de empregos, melhorias de infraestrutura e
-          impacto positivo para as comunidades.
-        </p>
+      <div class="mt-10 grid md:grid-cols-12" data-reveal>
+        <div class="flex max-w-[68ch] flex-col gap-6 text-16 md:col-span-9 md:text-18 lg:col-span-8">
+          <p>
+            O que nos move é a capacidade de criar e transformar espaços urbanos em polos de
+            desenvolvimento. Diversificamos nossas áreas de atuação para ser uma empresa sólida em
+            qualquer cenário econômico.
+          </p>
+          <p>
+            Somos reconhecidos pela excelência em planejamento e gestão de empreendimentos,
+            atuando desde a aquisição de terrenos estratégicos até a entrega de projetos de alto
+            padrão.
+          </p>
+          <p>
+            Contamos com parcerias estratégicas no Brasil e no exterior, garantindo geração de
+            empregos, melhorias de infraestrutura e impacto positivo para as comunidades.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section-pad bg-pedra" aria-labelledby="titulo-impacto">
-    <div class="container-site">
-      <div class="filete-bronze pt-5" data-revelar>
-        <p class="eyebrow text-bronze">Presença real</p>
-        <h2 id="titulo-impacto" class="titulo-display mt-4 text-3xl md:text-4xl">
-          Nosso impacto
-        </h2>
+  <!-- Nosso impacto: malha 01–04 com imagens -->
+  <section aria-labelledby="titulo-impacto" class="bg-branco">
+    <div class="container-site py-20 md:py-28">
+      <div data-reveal>
+        <span class="filete" aria-hidden="true"></span>
+        <h2 id="titulo-impacto" class="titulo-display mt-6 text-28 md:text-36">Nosso impacto</h2>
       </div>
-      <div class="mt-14 grid gap-x-10 gap-y-16 md:grid-cols-2">
+      <div class="mt-12 grid gap-x-10 gap-y-16 md:grid-cols-2">
         {
           impacto.map((bloco) => (
-            <article data-revelar>
-              <div class="overflow-hidden">
-                <Image
-                  src={bloco.imagem}
-                  alt={bloco.alt}
-                  widths={[480, 768, 1200]}
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  class="aspect-[4/3] w-full object-cover"
-                />
+            <article data-reveal>
+              {bloco.modo === 'conter' ? (
+                <div class="flex aspect-[3/2] w-full items-center justify-center border border-linha bg-branco p-12">
+                  <Image src={bloco.imagem} alt={bloco.alt} class="max-h-full w-auto max-w-full object-contain" />
+                </div>
+              ) : (
+                <div class="overflow-hidden bg-grafite">
+                  <Image
+                    src={bloco.imagem}
+                    alt={bloco.alt}
+                    widths={[480, 800, 1200, 1600]}
+                    sizes="(min-width: 768px) 46vw, 92vw"
+                    class="aspect-[3/2] w-full object-cover"
+                  />
+                </div>
+              )}
+              <div class="mt-6">
+                <div>
+                  <h3 class="titulo-display text-22 md:text-28">{bloco.titulo}</h3>
+                  <p class="mt-3 max-w-[58ch] text-16 text-aco-escuro">{bloco.texto}</p>
+                </div>
               </div>
-              <div class="mt-6 flex items-baseline gap-4">
-                <span
-                  class="text-sm font-semibold text-bronze numeros-tabulares"
-                  aria-hidden="true"
-                >
-                  {bloco.indice}
-                </span>
-                <h3 class="titulo-display text-2xl">{bloco.titulo}</h3>
-              </div>
-              <p class="mt-3 medida-texto text-base text-aco">{bloco.texto}</p>
             </article>
           ))
         }
       </div>
-      <p
-        class="titulo-display mt-16 max-w-3xl text-xl italic text-tinta"
-        data-revelar
-      >
-        Em todas as iniciativas, levamos a sério o compromisso com
-        sustentabilidade e uso responsável de recursos.
+      <p class="mt-16 max-w-[68ch] text-16 md:text-18" data-reveal>
+        Em todas as iniciativas, levamos a sério o compromisso com sustentabilidade e uso
+        responsável de recursos.
       </p>
     </div>
   </section>
 
-  <section class="section-pad bg-grafite text-branco" aria-labelledby="titulo-missao">
-    <div class="container-site">
-      <div class="filete-bronze pt-5" data-revelar>
-        <p class="eyebrow text-bronze">Propósito</p>
-        <h2 id="titulo-missao" class="titulo-display mt-4 text-3xl md:text-4xl">
-          Nossa missão
-        </h2>
+  <!-- Nossa missão -->
+  <section aria-labelledby="titulo-missao" class="bg-grafite text-branco">
+    <div class="container-site py-24 md:py-32">
+      <div data-reveal>
+        <span class="filete" aria-hidden="true"></span>
+        <h2 id="titulo-missao" class="titulo-display mt-6 text-28 md:text-36">Nossa missão</h2>
       </div>
-      <div class="mt-10 space-y-5 text-lg text-pedra/85" data-revelar>
-        <p class="medida-texto">
-          A missão do Grupo 4M é investir, desenvolver e estruturar projetos
-          que transformem cidades e gerem valor duradouro, promovendo
-          crescimento econômico aliado a impacto social positivo e uso
-          responsável dos recursos. Atuamos de forma integrada nos setores
-          imobiliário, educacional, energético, de infraestrutura e
-          financeiro, sempre com foco em planejamento estratégico, excelência
-          na execução e visão de longo prazo.
-        </p>
-        <p class="medida-texto">
-          Buscamos criar empreendimentos que elevem o padrão urbano,
-          fortaleçam a infraestrutura regional, ampliem o acesso à educação e
-          contribuam para uma matriz energética mais robusta e eficiente.
-        </p>
-        <p class="medida-texto">
-          Nosso compromisso é gerar oportunidades, impulsionar o
-          desenvolvimento das comunidades onde atuamos e construir negócios
-          sólidos e sustentáveis, capazes de atravessar diferentes ciclos
-          econômicos e deixar um legado.
-        </p>
+      <div class="mt-10 grid md:grid-cols-12" data-reveal>
+        <div class="md:col-span-10 lg:col-span-9">
+          <p class="titulo-display text-22 text-balance text-branco md:text-28">
+            A missão do Grupo 4M é investir, desenvolver e estruturar projetos que transformem
+            cidades e gerem valor duradouro, promovendo crescimento econômico aliado a impacto
+            social positivo e uso responsável dos recursos. Atuamos de forma integrada nos setores
+            imobiliário, educacional, energético, de infraestrutura e financeiro, sempre com foco
+            em planejamento estratégico, excelência na execução e visão de longo prazo.
+          </p>
+          <div class="mt-8 flex max-w-[68ch] flex-col gap-6 text-16 text-aco-claro md:text-18">
+            <p>
+              Buscamos criar empreendimentos que elevem o padrão urbano, fortaleçam a
+              infraestrutura regional, ampliem o acesso à educação e contribuam para uma matriz
+              energética mais robusta e eficiente.
+            </p>
+            <p>
+              Nosso compromisso é gerar oportunidades, impulsionar o desenvolvimento das
+              comunidades onde atuamos e construir negócios sólidos e sustentáveis, capazes de
+              atravessar diferentes ciclos econômicos e deixar um legado.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section-pad" aria-labelledby="titulo-valores">
-    <div class="container-site">
-      <div class="filete-bronze pt-5" data-revelar>
-        <p class="eyebrow text-bronze">Princípios</p>
-        <h2 id="titulo-valores" class="titulo-display mt-4 text-3xl md:text-4xl">
-          Nossos valores
-        </h2>
+  <!-- Nossos valores -->
+  <section aria-labelledby="titulo-valores" class="bg-branco">
+    <div class="container-site py-20 md:py-28">
+      <div data-reveal>
+        <span class="filete" aria-hidden="true"></span>
+        <h2 id="titulo-valores" class="titulo-display mt-6 text-28 md:text-36">Nossos valores</h2>
       </div>
-      <div class="mt-14 grid gap-x-10 gap-y-12 md:grid-cols-2">
+      <div class="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2">
         {
-          valores.map((valor, i) => (
-            <ValueItem
-              indice={String(i + 1).padStart(2, '0')}
-              titulo={valor.titulo}
-              texto={valor.texto}
-            />
+          valores.map((valor) => (
+            <div data-reveal>
+              <ValueItem titulo={valor.titulo} texto={valor.texto} />
+            </div>
           ))
         }
       </div>

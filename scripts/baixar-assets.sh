@@ -1,101 +1,70 @@
 #!/usr/bin/env bash
-# Baixa as imagens reais do site atual (www.grupo4m.com) para src/assets/,
-# substituindo os placeholders gerados por scripts/gerar-placeholders.mjs.
+# Baixa as imagens reais do site atual (grupo4m.com) por cima dos placeholders,
+# já renomeadas para os nomes limpos usados pelo código (CLAUDE.md, seção 6).
 #
-# Uso: bash scripts/baixar-assets.sh
-# Requer: curl, acesso à internet.
+# Uso:  bash scripts/baixar-assets.sh
+# Depois rode também:  node scripts/extrair-projetos.mjs
+# (baixa a og:image das 18 páginas de projeto e relata tipo/metragens)
 #
-# Origem dos nomes: seção 6 do CLAUDE.md.
+# Observação: o site atual bloqueia requisições sem User-Agent de navegador,
+# por isso o -A abaixo. Rode este script de uma máquina com acesso normal
+# à internet (ele falha em ambientes com proxy restritivo).
 
 set -uo pipefail
 
-RAIZ="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-ASSETS="$RAIZ/src/assets"
-PROJETOS="$ASSETS/projetos"
-PAGINAS="$RAIZ/scripts/paginas-site-atual"
-BASE="https://www.grupo4m.com"
-UPLOADS="$BASE/wp-content/uploads"
-SUFIXO="grupo-4m-investimento-imobiliario-educacao-energia-financeiro-empresarial-sao-paulo-brasil"
-
-mkdir -p "$ASSETS" "$PROJETOS" "$PAGINAS"
-
+BASE="https://www.grupo4m.com/wp-content/uploads"
+UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+DESTINO="$(cd "$(dirname "$0")/.." && pwd)/src/assets"
 FALHAS=()
 
-baixar() { # baixar <url> <destino>
+baixar() {
   local url="$1" destino="$2"
-  echo "→ $url"
-  if curl -fsSL --retry 2 -o "$destino.tmp" "$url"; then
-    mv "$destino.tmp" "$destino"
-    echo "  OK: $destino"
-  else
-    rm -f "$destino.tmp"
-    echo "  FALHOU (mantendo placeholder): $destino"
+  echo "→ ${destino#"$DESTINO"/}"
+  if ! curl -fsSL --retry 3 --retry-delay 2 -A "$UA" --create-dirs -o "$destino" "$url"; then
+    echo "  FALHOU: $url"
     FALHAS+=("$url")
   fi
 }
 
-echo "== Logo e favicon =="
-baixar "$UPLOADS/2025/12/logo-1-grupo-4m-grupo-privado-de-investimentos-e-operacoes-energia-infraestrutura-real-estate-bancos-educacao-alimentacao.png" "$ASSETS/logo-grupo4m.png"
-baixar "$UPLOADS/2025/12/cropped-logo-2-grupo-4m-grupo-privado-de-investimentos-e-operacoes-energia-infraestrutura-real-estate-bancos-educacao-alimentacao-270x270.png" "$ASSETS/favicon-src.png"
+# Padrão longo que o WordPress usa em quase todos os nomes de arquivo
+P="grupo-4m-investimento-imobiliario-educacao-energia-financeiro-empresarial-sao-paulo-brasil"
 
-echo "== Home e setores =="
-baixar "$UPLOADS/2026/01/imagem-11-$SUFIXO-1.jpg" "$ASSETS/home-hero.jpg"
-baixar "$UPLOADS/2026/01/imagem-3-$SUFIXO.jpg" "$ASSETS/setor-imobiliario.jpg"
-baixar "$UPLOADS/2026/01/imagem-4-$SUFIXO.jpg" "$ASSETS/setor-energia.jpg"
-baixar "$UPLOADS/2026/01/imagem-5-$SUFIXO.jpg" "$ASSETS/setor-educacao.jpg"
-baixar "$UPLOADS/2026/01/imagem-6-$SUFIXO.jpg" "$ASSETS/setor-financeiro.jpg"
+# Logo e favicon
+baixar "$BASE/2025/12/logo-1-grupo-4m-grupo-privado-de-investimentos-e-operacoes-energia-infraestrutura-real-estate-bancos-educacao-alimentacao.png" "$DESTINO/logo-grupo4m.png"
+baixar "$BASE/2025/12/cropped-logo-2-grupo-4m-grupo-privado-de-investimentos-e-operacoes-energia-infraestrutura-real-estate-bancos-educacao-alimentacao-270x270.png" "$DESTINO/favicon-src.png"
 
-echo "== Ícones 'O que fazemos' =="
-baixar "$UPLOADS/2026/01/icone-1-$SUFIXO.png" "$ASSETS/icone-imobiliario.png"
-baixar "$UPLOADS/2026/01/icone-2-$SUFIXO.png" "$ASSETS/icone-energia.png"
-baixar "$UPLOADS/2026/01/icone-3-$SUFIXO.png" "$ASSETS/icone-educacao.png"
-baixar "$UPLOADS/2026/01/icone-4-$SUFIXO.png" "$ASSETS/icone-financeiro.png"
+# Home
+baixar "$BASE/2026/01/imagem-11-$P-1.jpg" "$DESTINO/home-hero.jpg"
+baixar "$BASE/2026/01/imagem-3-$P.jpg"  "$DESTINO/setor-imobiliario.jpg"
+baixar "$BASE/2026/01/imagem-4-$P.jpg"  "$DESTINO/setor-energia.jpg"
+baixar "$BASE/2026/01/imagem-5-$P.jpg"  "$DESTINO/setor-educacao.jpg"
+baixar "$BASE/2026/01/imagem-6-$P.jpg"  "$DESTINO/setor-financeiro.jpg"
 
-echo "== Quem Somos / impacto =="
-baixar "$UPLOADS/2026/01/imagem-12-$SUFIXO-1.jpg" "$ASSETS/impacto-imobiliario.jpg"
-baixar "$UPLOADS/2026/01/imagem-13-$SUFIXO-1.jpg" "$ASSETS/impacto-energia.jpg"
-baixar "$UPLOADS/2026/01/imagem-14-$SUFIXO-1.jpg" "$ASSETS/impacto-educacao.jpg"
-baixar "$UPLOADS/2026/01/imagem-15-$SUFIXO-1.jpg" "$ASSETS/impacto-financeiro.jpg"
+# Ícones "O que fazemos" (Quem Somos)
+baixar "$BASE/2026/01/icone-1-$P.png" "$DESTINO/icone-imobiliario.png"
+baixar "$BASE/2026/01/icone-2-$P.png" "$DESTINO/icone-energia.png"
+baixar "$BASE/2026/01/icone-3-$P.png" "$DESTINO/icone-educacao.png"
+baixar "$BASE/2026/01/icone-4-$P.png" "$DESTINO/icone-financeiro.png"
 
-echo "== Página Imobiliário =="
-baixar "$UPLOADS/2026/01/imagem-33-$SUFIXO.jpg" "$ASSETS/imobiliario-hero.jpg"
+# Quem Somos / impacto
+baixar "$BASE/2026/01/imagem-12-$P-1.jpg" "$DESTINO/impacto-imobiliario.jpg"
+baixar "$BASE/2026/01/imagem-13-$P-1.jpg" "$DESTINO/impacto-energia.jpg"
+baixar "$BASE/2026/01/imagem-14-$P-1.jpg" "$DESTINO/impacto-educacao.jpg"
+baixar "$BASE/2026/01/imagem-15-$P-1.jpg" "$DESTINO/impacto-financeiro.jpg"
 
-echo "== Páginas de projeto (og:image de cada uma) =="
-SLUGS=(
-  muse bosque-ipiranga izzy-campinas salma-tower alphagram jardim-abreus
-  residencial-dunamis residencial-jandira vilas-verdes saint-paul esquina-jk
-  banco-bib fazendas-itu guacu suape agua-vermelha unieduk
-  banco-industrial-do-brasil
-)
+# Página Imobiliário
+baixar "$BASE/2026/01/imagem-33-$P.jpg" "$DESTINO/imobiliario-hero.jpg"
 
-for slug in "${SLUGS[@]}"; do
-  pagina="$PAGINAS/$slug.html"
-  echo "→ $BASE/$slug/"
-  if curl -fsSL --retry 2 -o "$pagina" "$BASE/$slug/"; then
-    og=$(grep -o '<meta[^>]*property="og:image"[^>]*>' "$pagina" \
-      | grep -o 'content="[^"]*"' | head -1 | sed 's/content="//;s/"$//')
-    if [ -n "$og" ]; then
-      baixar "$og" "$PROJETOS/$slug.jpg"
-    else
-      echo "  og:image não encontrada em $BASE/$slug/ (mantendo placeholder)"
-      FALHAS+=("$BASE/$slug/ (og:image)")
-    fi
-  else
-    rm -f "$pagina"
-    echo "  página fora do ar: $BASE/$slug/ (mantendo placeholder)"
-    FALHAS+=("$BASE/$slug/")
-  fi
-done
+# Izzy Campinas (URL conhecida; os demais projetos vêm do extrair-projetos.mjs)
+baixar "$BASE/2026/01/imagem-17-$P.jpg" "$DESTINO/projetos/izzy-campinas.jpg"
 
 echo
-if [ ${#FALHAS[@]} -eq 0 ]; then
-  echo "Todos os assets foram baixados com sucesso."
-else
-  echo "Concluído com ${#FALHAS[@]} falha(s) — placeholders mantidos para:"
-  printf '  - %s\n' "${FALHAS[@]}"
-  echo "Se alguma URL deu 404, abra a página correspondente no site atual e copie a URL exata do HTML (ver CLAUDE.md, seção 6)."
+if [ ${#FALHAS[@]} -gt 0 ]; then
+  echo "${#FALHAS[@]} download(s) falharam. Abra a página correspondente no site"
+  echo "atual, copie a URL exata da imagem no HTML e baixe manualmente:"
+  printf '  %s\n' "${FALHAS[@]}"
+  exit 1
 fi
-
-echo
-echo "As páginas HTML dos projetos ficaram salvas em scripts/paginas-site-atual/."
-echo "Rode 'node scripts/extrair-dados.mjs' para extrair tipo/stats de cada projeto e conferir o frontmatter em src/content/projetos/."
+echo "Todos os assets baixados. Agora rode:"
+echo "  node scripts/extrair-projetos.mjs   # fotos e dados das páginas de projeto"
+echo "  node scripts/gerar-favicon.mjs      # regenera o favicon.ico com o logo real"

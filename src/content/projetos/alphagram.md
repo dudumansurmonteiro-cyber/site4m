@@ -2,9 +2,10 @@
 titulo: "Alphagran"
 slug: "alphagram"
 setor: "imobiliario"
-categoria: "Loteamentos"
+categorias:
+  - "Loteamentos"
 localizacao: "Alphaville"
-imagem: "alphagram.webp"
+imagem: "../../assets/projetos/alphagram.webp"
 imagemAlt: "Vista aérea de Alphaville, com torres residenciais entre lago e áreas verdes"
-ordem: 1
+ordem: 5
 ---

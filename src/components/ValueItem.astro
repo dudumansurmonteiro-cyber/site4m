@@ -1,23 +1,17 @@
 ---
+/**
+ * ValueItem (CLAUDE.md, seção 8): título + texto — usado em
+ * "Nossos valores" e blocos equivalentes.
+ */
 interface Props {
-  indice?: string;
   titulo: string;
   texto: string;
 }
 
-const { indice, titulo, texto } = Astro.props;
+const { titulo, texto } = Astro.props;
 ---
 
-<div class="filete-bronze pt-5" data-revelar>
-  <h3 class="titulo-display flex items-baseline gap-3 text-xl">
-    {
-      indice && (
-        <span class="text-sm font-sans font-semibold text-bronze numeros-tabulares" aria-hidden="true">
-          {indice}
-        </span>
-      )
-    }
-    {titulo}
-  </h3>
-  <p class="mt-3 medida-texto text-base text-aco">{texto}</p>
+<div class="border-t border-linha pt-6">
+  <h3 class="text-18 font-semibold">{titulo}</h3>
+  <p class="mt-3 max-w-[62ch] text-16 text-aco-escuro">{texto}</p>
 </div>

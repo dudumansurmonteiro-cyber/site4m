@@ -1,65 +1,74 @@
 ---
+/**
+ * Componente central de <head> (CLAUDE.md, seções 8 e 9):
+ * title, description, canonical, OG/Twitter e JSON-LD Organization (home).
+ */
 import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import homeHero from '../assets/home-hero.jpg';
+
+import { NOME, URL_SITE, TELEFONE } from '../data/site';
+import ogPadrao from '../assets/home-hero.jpg';
 import logo from '../assets/logo-grupo4m.png';
-import { CONTATO } from '../lib/dados';
-import { comBase } from '../lib/util';
 
 interface Props {
-  /** Título completo da aba (padrão da seção 9 já aplicado por quem chama). */
   titulo: string;
   descricao: string;
-  /** Imagem OG específica (projetos usam a imagem do projeto). */
-  imagemOg?: ImageMetadata;
-  /** JSON-LD Organization — apenas na home. */
+  /** Imagem OG específica da página (padrão: home-hero.jpg). */
+  ogImagem?: ImageMetadata;
+  /** Emite o JSON-LD Organization — usar apenas na home. */
   organizacao?: boolean;
+  /** Impede indexação (página 404). */
+  noindex?: boolean;
 }
 
-const { titulo, descricao, imagemOg, organizacao = false } = Astro.props;
+const {
+  titulo,
+  descricao,
+  ogImagem = ogPadrao,
+  organizacao = false,
+  noindex = false,
+} = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site);
+// Canonical com barra final, no domínio oficial (preserva os slugs atuais)
+const caminho = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+const canonical = new URL(caminho, URL_SITE).href;
+
 const og = await getImage({
-  src: imagemOg ?? homeHero,
+  src: ogImagem,
   width: 1200,
   height: 630,
-  format: 'jpeg',
+  fit: 'cover',
+  format: 'jpg',
 });
-const ogUrl = new URL(og.src, Astro.site);
+const ogUrl = new URL(og.src, URL_SITE).href;
 
-const jsonLdOrganizacao = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'Grupo 4M',
-  url: Astro.site?.toString(),
-  logo: new URL(logo.src, Astro.site).toString(),
-  telephone: CONTATO.telefoneJsonLd,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: CONTATO.enderecoPostal.logradouro,
-    addressLocality: CONTATO.enderecoPostal.cidade,
-    addressRegion: CONTATO.enderecoPostal.uf,
-    addressCountry: CONTATO.enderecoPostal.pais,
-  },
-};
+const jsonLd = organizacao
+  ? JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: NOME,
+      url: `${URL_SITE}/`,
+      logo: new URL(logo.src, URL_SITE).href,
+      telephone: TELEFONE.e164,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Av. Brigadeiro Faria Lima, 3555, 16º Andar',
+        addressLocality: 'São Paulo',
+        addressRegion: 'SP',
+        addressCountry: 'BR',
+      },
+    })
+  : null;
 ---
 
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{titulo}</title>
 <meta name="description" content={descricao} />
-<link rel="canonical" href={canonical} />
-<link
-  rel="icon"
-  type="image/png"
-  sizes="32x32"
-  href={comBase('/favicon-32.png')}
-/>
-<link rel="apple-touch-icon" href={comBase('/apple-touch-icon.png')} />
-<meta name="generator" content={Astro.generator} />
+{noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
 
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Grupo 4M" />
+<meta property="og:site_name" content={NOME} />
 <meta property="og:locale" content="pt_BR" />
 <meta property="og:title" content={titulo} />
 <meta property="og:description" content={descricao} />
@@ -73,11 +82,4 @@ const jsonLdOrganizacao = {
 <meta name="twitter:description" content={descricao} />
 <meta name="twitter:image" content={ogUrl} />
 
-{
-  organizacao && (
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(jsonLdOrganizacao)}
-    />
-  )
-}
+{jsonLd && <script is:inline type="application/ld+json" set:html={jsonLd} />}

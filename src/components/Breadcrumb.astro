@@ -1,0 +1,41 @@
+---
+/**
+ * Breadcrumb das páginas de projeto (CLAUDE.md, seção 4.9):
+ * Setor → Categoria → Projeto.
+ */
+interface Item {
+  rotulo: string;
+  href?: string;
+}
+
+interface Props {
+  itens: Item[];
+}
+
+const { itens } = Astro.props;
+---
+
+<nav aria-label="Trilha de navegação">
+  <ol class="flex flex-wrap items-center gap-x-3 gap-y-1 text-14 text-aco-claro">
+    {
+      itens.map((item, i) => (
+        <li class="flex items-center gap-3">
+          {i > 0 && (
+            <span aria-hidden="true" class="text-aco">
+              /
+            </span>
+          )}
+          {item.href ? (
+            <a href={item.href} class="transition-colors hover:text-branco">
+              {item.rotulo}
+            </a>
+          ) : (
+            <span aria-current="page" class="text-branco/90">
+              {item.rotulo}
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

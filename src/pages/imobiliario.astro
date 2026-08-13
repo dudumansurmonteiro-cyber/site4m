@@ -1,28 +1,5 @@
 ---
-import Setor from '../layouts/Setor.astro';
-import heroImagem from '../assets/imobiliario-hero.jpg';
+import SectorPage from '../components/SectorPage.astro';
 ---
 
-<Setor
-  slug="imobiliario"
-  descricao="Planejamos, investimos, desenvolvemos e gerenciamos empreendimentos residenciais, comerciais e loteamentos urbanos."
-  heroImagem={heroImagem}
-  heroAlt="Torre de vidro da Salma Tower, com vegetação integrada à fachada"
->
-  <Fragment slot="intro">
-    <p>
-      <strong class="font-semibold text-branco"
-        >Planejamos, investimos, desenvolvemos e gerenciamos empreendimentos
-        residenciais, comerciais e loteamentos urbanos</strong
-      > com foco em urbanização planejada, qualidade construtiva e geração de
-      valor no longo prazo.
-    </p>
-    <p class="mt-5">
-      Projetos como Izzy Campinas, Alphagran e Saint Paul refletem nossa
-      capacidade de identificar localizações estratégicas, estruturar produtos
-      imobiliários alinhados à demanda do mercado e entregar empreendimentos
-      com alto potencial de valorização e liquidez, contribuindo para a
-      transformação positiva das cidades onde atuamos.
-    </p>
-  </Fragment>
-</Setor>
+<SectorPage id="imobiliario" />

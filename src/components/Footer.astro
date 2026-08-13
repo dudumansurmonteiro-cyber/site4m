@@ -1,52 +1,56 @@
 ---
+/**
+ * Footer (CLAUDE.md, seções 4.1 e 8): grafite, logo, contato completo,
+ * links do menu, copyright. Sem crédito de agência.
+ */
 import { Image } from 'astro:assets';
 import logo from '../assets/logo-grupo4m.png';
-import { CONTATO, MENU } from '../lib/dados';
-import { comBase } from '../lib/util';
+import { MENU, NOME, TAGLINE, TELEFONE, ENDERECO, rota } from '../data/site';
 
 const ano = new Date().getFullYear();
 ---
 
 <footer class="bg-grafite text-branco">
-  <div class="container-site grid gap-12 py-16 md:grid-cols-[1fr_auto] md:py-20">
-    <div class="max-w-md">
-      <a href={comBase('/')} aria-label="Grupo 4M — página inicial">
-        <Image src={logo} alt="Grupo 4M" height={36} densities={[1, 2]} class="h-9 w-auto" />
-      </a>
-      <address class="mt-8 space-y-3 text-sm leading-relaxed not-italic text-pedra/80">
-        <p>
-          <a
-            href={CONTATO.telefoneHref}
-            class="text-lg font-medium text-branco numeros-tabulares transition-colors hover:text-bronze"
-          >
-            {CONTATO.telefone}
-          </a>
+  <div class="container-site pt-16 pb-10 md:pt-24">
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <a href={rota('/')} class="inline-block" aria-label={`${NOME} — página inicial`}>
+          <Image src={logo} alt={NOME} height={36} densities={[1, 2]} class="h-9 w-auto" />
+        </a>
+        <p class="mt-4 max-w-[36ch] text-14 text-aco-claro">{TAGLINE}</p>
+      </div>
+
+      <nav aria-label="Links do rodapé" class="md:col-span-3">
+        <ul class="flex flex-col gap-3">
+          {
+            MENU.map((item) => (
+              <li>
+                <a href={item.href} class="text-14 text-branco/85 transition-colors hover:text-bronze">
+                  {item.rotulo}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div class="md:col-span-4">
+        <p class="eyebrow text-aco-claro">Telefone</p>
+        <a href={TELEFONE.href} class="tnum mt-2 inline-block text-18 text-branco transition-colors hover:text-bronze">
+          {TELEFONE.display}
+        </a>
+
+        <p class="eyebrow mt-8 text-aco-claro">Endereço</p>
+        <p class="mt-2 text-14 leading-relaxed text-branco/85">
+          {ENDERECO.linha1}
+          <br />
+          {ENDERECO.linha2}
         </p>
-        <p>{CONTATO.endereco}</p>
-      </address>
+      </div>
     </div>
 
-    <nav aria-label="Navegação do rodapé">
-      <ul class="space-y-3">
-        {
-          MENU.map((item) => (
-            <li>
-              <a
-                href={comBase(item.href)}
-                class="text-sm text-pedra/80 transition-colors hover:text-bronze"
-              >
-                {item.rotulo}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-  </div>
-
-  <div class="border-t border-branco/10">
-    <div class="container-site py-6">
-      <p class="text-sm text-pedra/70">© Grupo 4M {ano}</p>
+    <div class="mt-16 border-t border-linha-escura pt-6">
+      <p class="text-14 text-aco-claro">© {NOME} {ano}</p>
     </div>
   </div>
 </footer>

@@ -1,29 +1,49 @@
 ---
+/**
+ * Header (CLAUDE.md, seção 8): logo à esquerda, menu à direita.
+ * variant="overlay" (home): transparente sobre o hero, vira grafite no scroll.
+ * variant="solid": grafite sempre. Menu mobile em tela cheia.
+ */
 import { Image } from 'astro:assets';
 import logo from '../assets/logo-grupo4m.png';
-import { MENU } from '../lib/dados';
-import { comBase } from '../lib/util';
+import { MENU, NOME, TELEFONE, rota } from '../data/site';
 
-const caminhoAtual = Astro.url.pathname;
+interface Props {
+  variant?: 'overlay' | 'solid';
+}
+
+const { variant = 'solid' } = Astro.props;
+const caminhoAtual = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
 ---
 
-<header class="bg-grafite text-branco">
-  <div class="container-site flex h-20 items-center justify-between">
-    <a href={comBase('/')} class="shrink-0" aria-label="Grupo 4M — página inicial">
-      <Image src={logo} alt="Grupo 4M" height={40} densities={[1, 2]} loading="eager" class="h-10 w-auto" />
+<header
+  id="cabecalho"
+  data-variant={variant}
+  class:list={[
+    'fixed inset-x-0 top-0 z-40 transition-colors duration-300',
+    variant === 'solid'
+      ? 'bg-grafite border-b border-linha-escura'
+      : 'bg-transparent data-rolado:bg-grafite data-rolado:border-b data-rolado:border-linha-escura',
+  ]}
+>
+  <div class="container-site flex h-16 items-center justify-between md:h-[72px]">
+    <a href={rota('/')} class="shrink-0" aria-label={`${NOME} — página inicial`}>
+      <Image src={logo} alt={NOME} height={36} densities={[1, 2]} class="h-8 w-auto md:h-9" />
     </a>
 
     <nav aria-label="Navegação principal" class="hidden lg:block">
-      <ul class="flex items-center gap-9">
+      <ul class="flex items-center gap-8">
         {
           MENU.map((item) => (
             <li>
               <a
-                href={comBase(item.href)}
-                aria-current={caminhoAtual === comBase(item.href) ? 'page' : undefined}
+                href={item.href}
+                aria-current={caminhoAtual === item.href ? 'page' : undefined}
                 class:list={[
-                  'text-sm font-medium tracking-wide transition-colors hover:text-bronze',
-                  caminhoAtual === item.href ? 'text-bronze' : 'text-branco',
+                  'text-14 font-medium text-branco/85 transition-colors hover:text-branco',
+                  'aria-[current=page]:text-bronze',
                 ]}
               >
                 {item.rotulo}
@@ -35,53 +55,54 @@ const caminhoAtual = Astro.url.pathname;
     </nav>
 
     <button
-      id="botao-menu"
+      id="abrir-menu"
       type="button"
       class="flex h-11 w-11 items-center justify-center lg:hidden"
+      aria-label="Abrir menu"
       aria-expanded="false"
       aria-controls="menu-mobile"
-      aria-label="Abrir menu"
     >
-      <span class="relative block h-3.5 w-6" aria-hidden="true">
-        <span class="linha-menu absolute top-0 left-0 block h-0.5 w-6 bg-branco transition-transform"></span>
-        <span class="linha-menu absolute bottom-0 left-0 block h-0.5 w-6 bg-branco transition-transform"></span>
+      <span class="flex w-6 flex-col gap-[7px]" aria-hidden="true">
+        <span class="h-[2px] w-full bg-branco"></span>
+        <span class="h-[2px] w-full bg-branco"></span>
       </span>
     </button>
   </div>
+</header>
 
-  <div
-    id="menu-mobile"
-    class="fixed inset-0 z-50 hidden flex-col bg-grafite lg:hidden"
-  >
-    <div class="container-site flex h-20 shrink-0 items-center justify-between">
-      <a href={comBase('/')} aria-label="Grupo 4M — página inicial">
-        <Image src={logo} alt="Grupo 4M" height={40} densities={[1, 2]} loading="eager" class="h-10 w-auto" />
+<!-- Menu mobile em tela cheia (seção 8) -->
+<div id="menu-mobile" class="fixed inset-0 z-50 hidden bg-grafite" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="flex h-full flex-col">
+    <div class="container-site flex h-16 items-center justify-between">
+      <a href={rota('/')} aria-label={`${NOME} — página inicial`}>
+        <Image src={logo} alt={NOME} height={32} densities={[1, 2]} class="h-8 w-auto" />
       </a>
       <button
-        id="botao-fechar-menu"
+        id="fechar-menu"
         type="button"
         class="flex h-11 w-11 items-center justify-center text-branco"
         aria-label="Fechar menu"
       >
         <span class="relative block h-6 w-6" aria-hidden="true">
-          <span class="absolute top-1/2 left-0 block h-0.5 w-6 -translate-y-1/2 rotate-45 bg-branco"></span>
-          <span class="absolute top-1/2 left-0 block h-0.5 w-6 -translate-y-1/2 -rotate-45 bg-branco"></span>
+          <span class="absolute top-1/2 left-0 h-[2px] w-full rotate-45 bg-branco"></span>
+          <span class="absolute top-1/2 left-0 h-[2px] w-full -rotate-45 bg-branco"></span>
         </span>
       </button>
     </div>
-    <nav aria-label="Navegação principal (móvel)" class="flex flex-1 items-center">
-      <ul class="container-site flex flex-col gap-6">
+
+    <nav aria-label="Navegação principal" class="container-site flex flex-1 items-center">
+      <ul class="flex flex-col gap-5">
         {
-          MENU.map((item, i) => (
+          MENU.map((item) => (
             <li>
               <a
-                href={comBase(item.href)}
-                aria-current={caminhoAtual === comBase(item.href) ? 'page' : undefined}
-                class="titulo-display flex items-baseline gap-4 text-3xl text-branco transition-colors hover:text-bronze"
+                href={item.href}
+                aria-current={caminhoAtual === item.href ? 'page' : undefined}
+                class:list={[
+                  'titulo-display text-36 text-branco transition-colors hover:text-bronze',
+                  'aria-[current=page]:text-bronze',
+                ]}
               >
-                <span class="text-sm text-bronze numeros-tabulares" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
                 {item.rotulo}
               </a>
             </li>
@@ -89,32 +110,44 @@ const caminhoAtual = Astro.url.pathname;
         }
       </ul>
     </nav>
+
+    <div class="container-site pb-10">
+      <a href={TELEFONE.href} class="tnum text-16 text-aco-claro transition-colors hover:text-branco">
+        {TELEFONE.display}
+      </a>
+    </div>
   </div>
-</header>
+</div>
 
 <script>
-  const botao = document.getElementById('botao-menu');
-  const fechar = document.getElementById('botao-fechar-menu');
+  const cabecalho = document.getElementById('cabecalho');
   const menu = document.getElementById('menu-mobile');
+  const abrir = document.getElementById('abrir-menu');
+  const fechar = document.getElementById('fechar-menu');
 
-  function alternarMenu(aberto: boolean) {
-    if (!botao || !menu) return;
-    menu.classList.toggle('hidden', !aberto);
-    menu.classList.toggle('flex', aberto);
-    botao.setAttribute('aria-expanded', String(aberto));
-    document.documentElement.classList.toggle('overflow-hidden', aberto);
-    if (aberto) {
-      fechar?.focus();
-    } else {
-      botao.focus();
-    }
+  // Overlay → grafite no scroll
+  if (cabecalho?.dataset.variant === 'overlay') {
+    const atualizar = () => cabecalho.toggleAttribute('data-rolado', window.scrollY > 24);
+    atualizar();
+    addEventListener('scroll', atualizar, { passive: true });
   }
 
-  botao?.addEventListener('click', () => alternarMenu(true));
-  fechar?.addEventListener('click', () => alternarMenu(false));
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && menu && !menu.classList.contains('hidden')) {
-      alternarMenu(false);
-    }
+  const fecharMenu = () => {
+    menu?.classList.add('hidden');
+    abrir?.setAttribute('aria-expanded', 'false');
+    document.documentElement.style.overflow = '';
+    abrir?.focus();
+  };
+
+  abrir?.addEventListener('click', () => {
+    menu?.classList.remove('hidden');
+    abrir.setAttribute('aria-expanded', 'true');
+    document.documentElement.style.overflow = 'hidden';
+    fechar?.focus();
+  });
+
+  fechar?.addEventListener('click', fecharMenu);
+  addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu && !menu.classList.contains('hidden')) fecharMenu();
   });
 </script>

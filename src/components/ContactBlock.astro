@@ -1,121 +1,85 @@
 ---
-import { CONTATO } from '../lib/dados';
+/**
+ * ContactBlock (CLAUDE.md, seções 2, 4.8 e 8): telefone em destaque,
+ * endereço e — apenas quando PUBLIC_FORM_ENDPOINT existir — o formulário.
+ * Sem a variável, a página sai sem form (nunca publicar um form quebrado).
+ */
+import { TELEFONE, ENDERECO } from '../data/site';
 
-// Form só é publicado se o endpoint do provedor (Formspree/Web3Forms)
-// estiver configurado — nunca publicar um form quebrado (seção 2).
-const endpointForm = import.meta.env.PUBLIC_FORM_ENDPOINT as
-  | string
-  | undefined;
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT as string | undefined;
+const temForm = Boolean(endpoint && endpoint.trim());
+
+const campoBase =
+  'w-full border-b border-linha bg-transparent pb-3 pt-2 text-16 text-tinta placeholder:text-aco transition-colors focus:border-bronze focus:outline-none';
 ---
 
-<div class="grid gap-16 lg:grid-cols-2">
-  <div>
-    <p class="eyebrow text-bronze">Telefone</p>
-    <p class="mt-3">
-      <a
-        href={CONTATO.telefoneHref}
-        class="titulo-display text-3xl numeros-tabulares transition-colors hover:text-bronze md:text-4xl"
-      >
-        {CONTATO.telefone}
-      </a>
-    </p>
+<div class="grid gap-16 md:grid-cols-12">
+  <div class:list={[temForm ? 'md:col-span-5' : 'md:col-span-7']}>
+    <p class="eyebrow text-aco-escuro">Telefone</p>
+    <a
+      href={TELEFONE.href}
+      class="tnum mt-3 inline-block text-36 font-medium tracking-tight transition-colors hover:text-bronze-escuro md:text-48"
+    >
+      {TELEFONE.display}
+    </a>
 
-    <p class="eyebrow mt-12 text-bronze">Endereço</p>
-    <address class="mt-3 medida-texto text-lg leading-relaxed not-italic">
-      {CONTATO.endereco}
-    </address>
-
-    <p class="mt-8">
-      <a
-        href="https://maps.google.com/?q=Av.+Pres.+Juscelino+Kubitschek,+1703,+S%C3%A3o+Paulo,+SP"
-        rel="noopener noreferrer"
-        class="text-sm font-semibold tracking-wide text-tinta transition-colors hover:text-bronze"
-      >
-        Ver no mapa <span aria-hidden="true">→</span>
-      </a>
+    <p class="eyebrow mt-12 text-aco-escuro">Endereço</p>
+    <p class="mt-3 max-w-[38ch] text-18 leading-relaxed">
+      {ENDERECO.linha1}
+      <br />
+      {ENDERECO.linha2}
     </p>
+    <a
+      href={ENDERECO.maps}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="eyebrow mt-5 inline-block border-b-2 border-bronze pb-1 text-tinta transition-colors hover:text-bronze-escuro"
+    >
+      Ver no Google Maps
+    </a>
   </div>
 
   {
-    endpointForm && (
-      <form
-        action={endpointForm}
-        method="POST"
-        class="grid gap-6"
-        aria-label="Formulário de contato"
-      >
-        <div class="grid gap-6 sm:grid-cols-2">
+    temForm && (
+      <form action={endpoint} method="POST" class="flex flex-col gap-8 md:col-span-6 md:col-start-7">
+        <div>
+          <label for="nome" class="eyebrow text-aco-escuro">
+            Nome
+          </label>
+          <input id="nome" name="nome" type="text" required autocomplete="name" class:list={[campoBase, 'mt-2']} />
+        </div>
+        <div class="grid gap-8 sm:grid-cols-2">
           <div>
-            <label for="nome" class="text-sm font-medium">
-              Nome
-            </label>
-            <input
-              type="text"
-              id="nome"
-              name="nome"
-              required
-              autocomplete="name"
-              class="mt-2 w-full border border-aco/40 bg-branco px-4 py-3 text-base focus:border-bronze"
-            />
-          </div>
-          <div>
-            <label for="email" class="text-sm font-medium">
+            <label for="email" class="eyebrow text-aco-escuro">
               E-mail
             </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              autocomplete="email"
-              class="mt-2 w-full border border-aco/40 bg-branco px-4 py-3 text-base focus:border-bronze"
-            />
+            <input id="email" name="email" type="email" required autocomplete="email" class:list={[campoBase, 'mt-2']} />
           </div>
-        </div>
-        <div class="grid gap-6 sm:grid-cols-2">
           <div>
-            <label for="telefone" class="text-sm font-medium">
+            <label for="telefone" class="eyebrow text-aco-escuro">
               Telefone
             </label>
-            <input
-              type="tel"
-              id="telefone"
-              name="telefone"
-              autocomplete="tel"
-              class="mt-2 w-full border border-aco/40 bg-branco px-4 py-3 text-base numeros-tabulares focus:border-bronze"
-            />
-          </div>
-          <div>
-            <label for="assunto" class="text-sm font-medium">
-              Assunto
-            </label>
-            <input
-              type="text"
-              id="assunto"
-              name="assunto"
-              required
-              class="mt-2 w-full border border-aco/40 bg-branco px-4 py-3 text-base focus:border-bronze"
-            />
+            <input id="telefone" name="telefone" type="tel" autocomplete="tel" class:list={[campoBase, 'mt-2', 'tnum']} />
           </div>
         </div>
         <div>
-          <label for="mensagem" class="text-sm font-medium">
+          <label for="assunto" class="eyebrow text-aco-escuro">
+            Assunto
+          </label>
+          <input id="assunto" name="assunto" type="text" required class:list={[campoBase, 'mt-2']} />
+        </div>
+        <div>
+          <label for="mensagem" class="eyebrow text-aco-escuro">
             Mensagem
           </label>
-          <textarea
-            id="mensagem"
-            name="mensagem"
-            rows={6}
-            required
-            class="mt-2 w-full border border-aco/40 bg-branco px-4 py-3 text-base focus:border-bronze"
-          />
+          <textarea id="mensagem" name="mensagem" rows={5} required class:list={[campoBase, 'mt-2', 'resize-y']} />
         </div>
         <div>
           <button
             type="submit"
-            class="bg-grafite px-8 py-4 text-sm font-semibold tracking-wide text-branco transition-colors hover:bg-bronze"
+            class="bg-grafite px-10 py-4 text-14 font-medium tracking-[0.08em] text-branco uppercase transition-colors hover:bg-bronze-escuro"
           >
-            Enviar mensagem
+            Enviar
           </button>
         </div>
       </form>

@@ -1,20 +1,20 @@
-name: Publicar no GitHub Pages
+name: Deploy GitHub Pages
 
-# Deploy apenas manual: o branch paralelo (claude/claude-md-briefing-wra9g0)
-# também publica no gh-pages; o gatilho automático foi removido para as duas
-# versões não ficarem se sobrescrevendo. Rode via "Run workflow" no Actions.
 on:
+  push:
+    branches: [claude/claude-md-briefing-wra9g0]
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build-e-publicar:
+  deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -22,16 +22,14 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - name: Build para o Pages (site em subcaminho)
-        run: npm run build
-        env:
-          SITE_URL: https://${{ github.repository_owner }}.github.io
-          BASE_PATH: /${{ github.event.repository.name }}
-      - name: Desativa Jekyll (preserva a pasta _astro)
-        run: touch dist/.nojekyll
-      - name: Publica no branch gh-pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          commit_message: 'Deploy do site (build automático)'
+      - run: npx astro build --site "https://dudumansurmonteiro-cyber.github.io" --base "/site4m"
+      - name: Publica o build na branch gh-pages
+        run: |
+          cd dist
+          touch .nojekyll
+          git init -b gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy do site (build automático de ${GITHUB_SHA::7})"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" gh-pages

@@ -1,45 +1,24 @@
 ---
+/**
+ * Página de erro (CLAUDE.md, seção 3).
+ */
 import Base from '../layouts/Base.astro';
-import { MENU } from '../lib/dados';
-import { comBase } from '../lib/util';
+import { DESCRICOES, rota } from '../data/site';
 ---
 
-<Base
-  titulo="Página não encontrada"
-  descricao="A página que você procura não existe ou mudou de endereço."
->
-  <section class="section-pad">
-    <div class="container-site">
-      <p class="eyebrow text-bronze">Erro 404</p>
-      <h1 class="titulo-display mt-6 max-w-3xl text-4xl md:text-5xl">
+<Base titulo="Página não encontrada | Grupo 4M" descricao={DESCRICOES.home} noindex>
+  <section class="flex min-h-[70svh] items-center bg-grafite text-branco">
+    <div class="container-site hero-anim py-24">
+      <p class="tnum text-14 font-medium text-bronze">404</p>
+      <h1 class="titulo-display mt-4 max-w-[18ch] text-36 text-balance md:text-48">
         Página não encontrada.
       </h1>
-      <p class="mt-6 medida-texto text-lg text-aco">
-        A página que você procura não existe ou mudou de endereço. Use o menu
-        ou volte para a página inicial.
-      </p>
-      <ul class="mt-12 space-y-3">
-        <li>
-          <a
-            href={comBase('/')}
-            class="text-sm font-semibold tracking-wide text-tinta transition-colors hover:text-bronze"
-          >
-            Página inicial <span aria-hidden="true">→</span>
-          </a>
-        </li>
-        {
-          MENU.map((item) => (
-            <li>
-              <a
-                href={comBase(item.href)}
-                class="text-sm font-semibold tracking-wide text-tinta transition-colors hover:text-bronze"
-              >
-                {item.rotulo} <span aria-hidden="true">→</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      <a
+        href={rota('/')}
+        class="eyebrow mt-10 inline-block border-b-2 border-bronze pb-1 text-branco transition-colors hover:text-bronze"
+      >
+        Voltar à página inicial
+      </a>
     </div>
   </section>
 </Base>

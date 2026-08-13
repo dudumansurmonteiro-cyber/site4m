@@ -1,6 +1,5 @@
-# build output
+# build
 dist/
-# generated types
 .astro/
 
 # dependencies
@@ -9,9 +8,9 @@ node_modules/
 # logs
 npm-debug.log*
 
-# environment variables
+# environment
 .env
 .env.production
 
-# macOS-specific files
+# macOS
 .DS_Store

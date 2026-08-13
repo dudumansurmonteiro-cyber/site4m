@@ -1,40 +1,51 @@
 ---
+/**
+ * SectorCard (CLAUDE.md, seção 8): índice 01–04 em bronze, imagem,
+ * título, texto e "Conheça". Usado na malha 2×2 da home.
+ */
 import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
-import { comBase } from '../lib/util';
+import type { Setor } from '../data/setores';
 
 interface Props {
-  indice: string;
-  nome: string;
-  texto: string;
-  href: string;
-  imagem: ImageMetadata;
-  alt: string;
+  setor: Setor;
 }
 
-const { indice, nome, texto, href, imagem, alt } = Astro.props;
+const { setor } = Astro.props;
 ---
 
-<article class="group relative" data-revelar>
-  <div class="overflow-hidden">
-    <Image
-      src={imagem}
-      alt={alt}
-      widths={[480, 768, 1200]}
-      sizes="(min-width: 768px) 50vw, 100vw"
-      class="aspect-[4/3] w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.03]"
-    />
-  </div>
-  <div class="mt-6 flex items-baseline gap-4">
-    <span class="text-sm font-semibold text-bronze numeros-tabulares" aria-hidden="true">
-      {indice}
-    </span>
-    <h3 class="titulo-display text-2xl transition-colors group-hover:text-bronze">
-      <a href={comBase(href)} class="after:absolute after:inset-0">{nome}</a>
-    </h3>
-  </div>
-  <p class="mt-3 medida-texto text-base text-aco">{texto}</p>
-  <p class="mt-4 text-sm font-semibold tracking-wide text-tinta transition-colors group-hover:text-bronze">
-    Conheça <span aria-hidden="true">→</span>
-  </p>
+<article class="group">
+  <a href={setor.href} class="block">
+    {
+      setor.imagemCardModo === 'conter' ? (
+        <div class="flex aspect-[3/2] w-full items-center justify-center border border-linha bg-branco p-12">
+          <Image
+            src={setor.imagemCard}
+            alt={setor.altCard}
+            class="max-h-full w-auto max-w-full object-contain"
+          />
+        </div>
+      ) : (
+        <div class="overflow-hidden bg-grafite">
+          <Image
+            src={setor.imagemCard}
+            alt={setor.altCard}
+            widths={[480, 800, 1200, 1600]}
+            sizes="(min-width: 768px) 46vw, 92vw"
+            class="aspect-[3/2] w-full object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.03]"
+          />
+        </div>
+      )
+    }
+    <div class="mt-6">
+      <div>
+        <h2 class="titulo-display text-28 transition-colors group-hover:text-bronze-escuro md:text-36">
+          {setor.nome}
+        </h2>
+        <p class="mt-3 max-w-[58ch] text-16 text-aco-escuro">{setor.textoHome}</p>
+        <span class="eyebrow mt-5 inline-block border-b-2 border-bronze pb-1 text-tinta">
+          Conheça
+        </span>
+      </div>
+    </div>
+  </a>
 </article>

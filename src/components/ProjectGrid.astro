@@ -1,64 +1,45 @@
 ---
+/**
+ * ProjectGrid (CLAUDE.md, seção 8): agrupa ProjectCards por categoria,
+ * com subtítulos (Edifícios/Loteamentos/…) e âncoras para o breadcrumb.
+ */
 import type { CollectionEntry } from 'astro:content';
 import ProjectCard from './ProjectCard.astro';
-import { imagemProjeto } from '../lib/imagens';
-import { slugificar } from '../lib/util';
+import { ANCORA_CATEGORIA } from '../data/setores';
 
 interface Props {
   projetos: CollectionEntry<'projetos'>[];
-  /** Ordem das categorias (ex.: ["Edifícios", "Loteamentos", "Terrenos"]). */
   categorias: string[];
 }
 
 const { projetos, categorias } = Astro.props;
 
-function daCategoria(categoria: string) {
-  return projetos
-    .filter(
-      (p) =>
-        p.data.categoria === categoria ||
-        p.data.categoriaSecundaria === categoria
-    )
-    .sort((a, b) => a.data.ordem - b.data.ordem);
-}
-
 const grupos = categorias
-  .map((categoria) => ({ categoria, itens: daCategoria(categoria) }))
+  .map((categoria) => ({
+    categoria,
+    ancora: ANCORA_CATEGORIA[categoria] ?? categoria.toLowerCase(),
+    itens: projetos
+      .filter((p) => (p.data.categorias as readonly string[]).includes(categoria))
+      .sort((a, b) => a.data.ordem - b.data.ordem),
+  }))
   .filter((g) => g.itens.length > 0);
-
-function altDe(projeto: CollectionEntry<'projetos'>) {
-  if (projeto.data.imagemAlt) return projeto.data.imagemAlt;
-  return projeto.data.tipo
-    ? `${projeto.data.titulo} — ${projeto.data.tipo}`
-    : projeto.data.titulo;
-}
 ---
 
-<div class="space-y-20">
+<div class="flex flex-col gap-20 md:gap-28">
   {
     grupos.map((grupo) => (
-      <section aria-labelledby={`categoria-${slugificar(grupo.categoria)}`}>
-        <div class="filete-bronze flex items-baseline justify-between pt-5">
-          <h3
-            id={`categoria-${slugificar(grupo.categoria)}`}
-            class="titulo-display text-2xl"
-          >
+      <section id={grupo.ancora} aria-labelledby={`titulo-${grupo.ancora}`} class="scroll-mt-24">
+        <div data-reveal>
+          <span class="filete" aria-hidden="true" />
+          <h2 id={`titulo-${grupo.ancora}`} class="titulo-display mt-6 text-28 md:text-36">
             {grupo.categoria}
-          </h3>
-          <p class="text-sm text-aco numeros-tabulares">
-            {String(grupo.itens.length).padStart(2, '0')}
-          </p>
+          </h2>
         </div>
         <div class="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {grupo.itens.map((projeto) => (
-            <ProjectCard
-              titulo={projeto.data.titulo}
-              categoria={grupo.categoria}
-              href={`/${projeto.data.slug}/`}
-              imagem={imagemProjeto(projeto.data.imagem)}
-              alt={altDe(projeto)}
-              modo={projeto.data.imagemModo}
-            />
+            <div data-reveal>
+              <ProjectCard {projeto} categoria={grupo.categoria} />
+            </div>
           ))}
         </div>
       </section>

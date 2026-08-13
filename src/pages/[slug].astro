@@ -1,12 +1,18 @@
 ---
-import { getCollection } from 'astro:content';
+/**
+ * Página de projeto (CLAUDE.md, seção 4.9): slugs preservados na raiz,
+ * breadcrumb Setor → Categoria → Projeto, imagem hero grande, tipo + stats
+ * em numerais tabulares e "Outros projetos" do mesmo setor. O layout
+ * funciona bem mesmo quando o projeto ainda não tem tipo/stats.
+ */
 import { Image } from 'astro:assets';
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
 import StatBlock from '../components/StatBlock.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import { setorPorSlug } from '../lib/dados';
-import { imagemProjeto } from '../lib/imagens';
-import { comBase, slugificar } from '../lib/util';
+import { SETOR_POR_ID, ANCORA_CATEGORIA } from '../data/setores';
 
 export async function getStaticPaths() {
   const projetos = await getCollection('projetos');
@@ -16,149 +22,143 @@ export async function getStaticPaths() {
   }));
 }
 
+interface Props {
+  projeto: CollectionEntry<'projetos'>;
+}
+
 const { projeto } = Astro.props;
 const dados = projeto.data;
-const setor = setorPorSlug(dados.setor);
-const imagem = imagemProjeto(dados.imagem);
-const alt =
-  dados.imagemAlt ??
-  (dados.tipo ? `${dados.titulo} — ${dados.tipo}` : dados.titulo);
-const temDados =
-  dados.stats.length > 0 || Boolean(dados.descricao) || Boolean(dados.localizacao);
+const setor = SETOR_POR_ID[dados.setor];
+const categoriaPrincipal = dados.categorias[0];
 
-// Meta description gerada a partir de tipo + setor (seção 9)
-const descricao = dados.tipo
-  ? `${dados.titulo}: ${dados.tipo.toLowerCase()} do Grupo 4M no setor ${setor.nome}.`
-  : `${dados.titulo} — projeto do Grupo 4M no setor ${setor.nome}.`;
+const { Content } = await render(projeto);
+const temTexto = Boolean(projeto.body?.trim() || dados.descricao?.trim());
+const temLink = Boolean(dados.linkExterno);
 
-// "Outros projetos": 2–3 cards do mesmo setor (seção 4.9)
-const outros = (
-  await getCollection(
-    'projetos',
-    (p) => p.data.setor === dados.setor && p.data.slug !== dados.slug
-  )
-)
+const outros = (await getCollection('projetos', ({ data }) => data.setor === dados.setor))
+  .filter((p) => p.data.slug !== dados.slug)
   .sort((a, b) => a.data.ordem - b.data.ordem)
   .slice(0, 3);
+
+const descricaoMeta = dados.tipo
+  ? `${dados.titulo}: ${dados.tipo.toLowerCase()} do Grupo 4M no setor ${setor.nome}.`
+  : `${dados.titulo} — projeto do Grupo 4M no setor ${setor.nome}.`;
 ---
 
-<Base titulo={dados.titulo} descricao={descricao} imagemOg={imagem}>
+<Base titulo={`${dados.titulo} | Grupo 4M`} descricao={descricaoMeta} ogImagem={dados.imagem}>
+  <!-- Cabeçalho do projeto -->
   <section class="bg-grafite text-branco">
-    <div class="container-site pt-10 pb-14 md:pt-14 md:pb-20">
-      <nav aria-label="Trilha de navegação">
-        <ol class="flex flex-wrap items-center gap-2 text-sm text-pedra/70">
-          <li>
-            <a
-              href={comBase(`/${setor.slug}/`)}
-              class="transition-colors hover:text-bronze">{setor.nome}</a
-            >
-          </li>
-          <li aria-hidden="true" class="text-aco">/</li>
-          <li>
-            <a
-              href={comBase(
-                `/${setor.slug}/#categoria-${slugificar(dados.categoria)}`
-              )}
-              class="transition-colors hover:text-bronze">{dados.categoria}</a
-            >
-          </li>
-          <li aria-hidden="true" class="text-aco">/</li>
-          <li aria-current="page" class="text-branco">{dados.titulo}</li>
-        </ol>
-      </nav>
-
-      {
-        dados.tipo && (
-          <p class="hero-entrada eyebrow mt-10 text-bronze">{dados.tipo}</p>
-        )
-      }
-      <h1
-        class:list={[
-          'hero-entrada titulo-display max-w-4xl text-4xl md:text-5xl',
-          dados.tipo ? 'mt-4' : 'mt-10',
-        ]}
-      >
-        {dados.titulo}
-      </h1>
-    </div>
-    <div
-      class:list={['hero-entrada', dados.imagemModo === 'conter' && 'bg-pedra']}
-    >
-      <Image
-        src={imagem}
-        alt={alt}
-        widths={[640, 1024, 1440, 1920]}
-        sizes="100vw"
-        loading="eager"
-        fetchpriority="high"
-        class:list={[
-          'h-[46vh] w-full md:h-[62vh]',
-          dados.imagemModo === 'conter'
-            ? 'object-contain p-10 md:p-20'
-            : 'object-cover',
+    <div class="container-site hero-anim pt-16 pb-14 md:pt-24 md:pb-20">
+      <Breadcrumb
+        itens={[
+          { rotulo: setor.nome, href: setor.href },
+          {
+            rotulo: categoriaPrincipal,
+            href: `${setor.href}#${ANCORA_CATEGORIA[categoriaPrincipal] ?? ''}`,
+          },
+          { rotulo: dados.titulo },
         ]}
       />
+      <h1 class="titulo-display mt-8 max-w-[20ch] text-36 text-balance md:text-48 lg:text-64">
+        {dados.titulo}
+      </h1>
+      {
+        (dados.tipo || dados.localizacao) && (
+          <p class="mt-5 text-18 text-aco-claro md:text-22">
+            {[dados.tipo, dados.localizacao].filter(Boolean).join(' · ')}
+          </p>
+        )
+      }
     </div>
   </section>
 
+  <!-- Imagem hero (foto em tela cheia ou logomarca em painel) -->
   {
-    temDados && (
-      <section class="section-pad" aria-label="Dados do projeto">
-        <div class="container-site">
-          {dados.descricao && (
-            <p class="medida-texto text-lg text-tinta" data-revelar>
-              {dados.descricao}
-            </p>
-          )}
-          {(dados.stats.length > 0 || dados.localizacao) && (
-            <dl
-              class:list={[
-                'grid gap-10 sm:grid-cols-2 lg:grid-cols-3',
-                dados.descricao && 'mt-16',
-              ]}
-              data-revelar
-            >
-              {dados.localizacao && (
-                <StatBlock label="Localização" valor={dados.localizacao} />
-              )}
-              {dados.stats.map((stat) => (
-                <StatBlock label={stat.label} valor={stat.valor} />
-              ))}
-            </dl>
-          )}
+    dados.imagemModo === 'conter' ? (
+      <div class="flex justify-center border-b border-linha bg-branco px-6 py-16 md:py-24">
+        <Image
+          src={dados.imagem}
+          alt={dados.imagemAlt}
+          loading="eager"
+          class="h-auto max-h-[220px] w-auto max-w-full object-contain md:max-h-[300px]"
+        />
+      </div>
+    ) : (
+      <div class="bg-grafite">
+        <Image
+          src={dados.imagem}
+          alt={dados.imagemAlt}
+          widths={[768, 1280, 1600, 1920]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="aspect-[16/9] max-h-[78svh] w-full object-cover md:aspect-[21/10]"
+        />
+      </div>
+    )
+  }
+
+  <!-- Dados do empreendimento -->
+  {
+    (dados.stats.length > 0 || temTexto || temLink) && (
+      <section class="bg-branco">
+        <div class="container-site py-20 md:py-28">
+          <div class="grid gap-16 md:grid-cols-12">
+            {(temTexto || temLink) && (
+              <div class="md:col-span-6" data-reveal>
+                {dados.descricao?.trim() && (
+                  <p class="titulo-display text-22 md:text-28">{dados.descricao}</p>
+                )}
+                {projeto.body?.trim() && (
+                  <div class="mt-6 max-w-[68ch] text-16 text-aco-escuro md:text-18 [&_p+p]:mt-4">
+                    <Content />
+                  </div>
+                )}
+                {temLink && (
+                  <a
+                    href={dados.linkExterno!.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class:list={[
+                      temTexto ? 'mt-8' : '',
+                      'eyebrow inline-block border-b-2 border-bronze pb-1 text-tinta transition-colors hover:text-bronze-escuro',
+                    ]}
+                  >
+                    {dados.linkExterno!.label}
+                  </a>
+                )}
+              </div>
+            )}
+            {dados.stats.length > 0 && (
+              <div
+                class:list={[temTexto ? 'md:col-span-6' : 'md:col-span-10 lg:col-span-8']}
+                data-reveal
+              >
+                <StatBlock stats={dados.stats} />
+              </div>
+            )}
+          </div>
         </div>
       </section>
     )
   }
 
+  <!-- Outros projetos do setor -->
   {
     outros.length > 0 && (
-      <section
-        class:list={['section-pad', temDados && 'bg-pedra']}
-        aria-labelledby="titulo-outros"
-      >
-        <div class="container-site">
-          <div class="filete-bronze pt-5" data-revelar>
-            <p class="eyebrow text-bronze">{setor.nome}</p>
-            <h2 id="titulo-outros" class="titulo-display mt-4 text-3xl">
+      <section aria-labelledby="titulo-outros" class="bg-pedra">
+        <div class="container-site py-20 md:py-28">
+          <div data-reveal>
+            <span class="filete" aria-hidden="true" />
+            <h2 id="titulo-outros" class="titulo-display mt-6 text-28 md:text-36">
               Outros projetos
             </h2>
           </div>
-          <div class="mt-12 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
             {outros.map((outro) => (
-              <ProjectCard
-                titulo={outro.data.titulo}
-                categoria={outro.data.categoria}
-                href={`/${outro.data.slug}/`}
-                imagem={imagemProjeto(outro.data.imagem)}
-                alt={
-                  outro.data.imagemAlt ??
-                  (outro.data.tipo
-                    ? `${outro.data.titulo} — ${outro.data.tipo}`
-                    : outro.data.titulo)
-                }
-                modo={outro.data.imagemModo}
-              />
+              <div data-reveal>
+                <ProjectCard projeto={outro} />
+              </div>
             ))}
           </div>
         </div>

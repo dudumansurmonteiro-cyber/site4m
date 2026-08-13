@@ -1,60 +1,77 @@
 # Site institucional — Grupo 4M
 
-Site estático em [Astro](https://astro.build) + Tailwind CSS. Conteúdo em
-pt-BR, sem CMS e sem backend. O briefing completo do projeto está em
-[`CLAUDE.md`](./CLAUDE.md).
+Reconstrução do site [grupo4m.com](https://www.grupo4m.com) como site 100% estático:
+**Astro + Tailwind CSS**, conteúdo em collections, fontes self-hosted, imagens otimizadas.
+O briefing completo do projeto está em [`CLAUDE.md`](./CLAUDE.md) — é a fonte de verdade.
 
-## Como rodar
+## Rodar localmente
 
 ```bash
 npm install
-npm run dev        # desenvolvimento em http://localhost:4321
-npm run build      # build estático em dist/
-npm run preview    # pré-visualiza o build
+npm run dev        # http://localhost:4321
 ```
 
-## Imagens reais do site atual
-
-O repositório contém **placeholders** com os nomes corretos (a rede do
-ambiente de desenvolvimento bloqueava www.grupo4m.com). Para baixar as
-imagens reais e os dados dos projetos:
+Build de produção (gera `dist/`, sem nenhuma dependência de servidor):
 
 ```bash
-bash scripts/baixar-assets.sh    # baixa logo, fotos e og:image de cada projeto
-node scripts/extrair-dados.mjs   # extrai tipo/stats das páginas salvas
+npm run build
+npm run preview    # confere o build localmente
 ```
 
-Depois confira `scripts/dados-extraidos.json` e complete o frontmatter dos
-projetos em `src/content/projetos/*.md` (campos `tipo` e `stats`), removendo
-`dadosPendentes: true` dos projetos completados.
+## Trocar os placeholders pelas fotos reais
 
-## Como editar conteúdo
+O ambiente onde o site foi gerado não tinha acesso ao site atual, então as imagens
+em `src/assets/` são placeholders sóbrios com os **nomes finais corretos**.
+De uma máquina com internet normal:
 
-- **Projetos:** um arquivo Markdown por projeto em `src/content/projetos/`.
-  O frontmatter (título, setor, categoria, tipo, stats, imagem) segue o
-  modelo da seção 4.9 do `CLAUDE.md`. A imagem correspondente fica em
-  `src/assets/projetos/{slug}.jpg`.
-- **Textos institucionais:** copy dos setores e contato em
-  `src/lib/dados.ts`; textos das páginas nos arquivos de `src/pages/`.
-- **Tokens de design:** cores, tipografia e escala em
-  `src/styles/global.css`.
+```bash
+bash scripts/baixar-assets.sh      # logo, favicon, hero, cards, ícones, impacto
+node scripts/extrair-projetos.mjs  # og:image das 18 páginas de projeto + relatório de tipo/metragens
+node scripts/gerar-favicon.mjs     # regenera public/favicon.ico com o logo real
+npm run build                      # re-otimiza tudo
+```
 
-## Deploy
+O segundo script também imprime os candidatos a `tipo` e `stats` de cada projeto,
+para conferir e colar no frontmatter correspondente.
 
-`npm run build` gera `dist/` — publique essa pasta em qualquer host
-estático (Vercel, Netlify, Cloudflare Pages). Não há dependência de
-servidor. O domínio configurado para canonical/sitemap está em
-`astro.config.mjs` (`site`).
+## Editar conteúdo
+
+- **Projetos:** um arquivo por projeto em `src/content/projetos/*.md`
+  (título, setor, categorias, tipo, stats, imagem, alt). Texto adicional pode ser
+  escrito no corpo do arquivo em Markdown — a página exibe automaticamente.
+- **Copy dos setores e da navegação:** `src/data/setores.ts` e `src/data/site.ts`.
+- **Quem Somos:** copy diretamente em `src/pages/quem-somos.astro`.
+- Novos projetos: basta criar o `.md` e colocar a imagem em `src/assets/projetos/` —
+  a página, a grade do setor e o sitemap são gerados sozinhos.
 
 ## Formulário de contato
 
-O form fica oculto até existir a variável de ambiente
-`PUBLIC_FORM_ENDPOINT` (endpoint de um provedor como Formspree ou
-Web3Forms) no momento do build:
+A página `/contato/` sai **sem** formulário por padrão (telefone e endereço em
+destaque). Para ativar, crie um endpoint num provedor tipo
+[Formspree](https://formspree.io) ou [Web3Forms](https://web3forms.com) e defina:
 
 ```bash
-PUBLIC_FORM_ENDPOINT="https://formspree.io/f/SEU_ID" npm run build
+# .env (ou variável de ambiente do host de deploy)
+PUBLIC_FORM_ENDPOINT=https://formspree.io/f/SEU_ID
 ```
 
-Sem a variável, a página de contato mostra telefone e endereço em destaque
-— nunca um form quebrado.
+Sem a variável, nenhum form quebrado é publicado.
+
+## Deploy
+
+Qualquer host estático. Diretório de publicação: `dist/`.
+
+| Host | Config |
+| --- | --- |
+| Vercel | framework Astro (detectado), build `npm run build`, output `dist` |
+| Netlify | build `npm run build`, publish `dist` |
+| Cloudflare Pages | build `npm run build`, output `dist` |
+
+O domínio deve apontar para `https://www.grupo4m.com` (URL configurada em
+`astro.config.mjs` — canonicals, sitemap e OG usam esse valor).
+
+## Pendências com o cliente
+
+Ver a tabela da seção 11 do [`CLAUDE.md`](./CLAUDE.md) (grafia Alphagran/Alphagram,
+e-mail do formulário, hospedagem, fotos/textos adicionais dos projetos). Nenhuma
+delas trava o site — os padrões definidos lá já estão aplicados.
