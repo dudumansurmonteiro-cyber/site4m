@@ -33,6 +33,7 @@ const categoriaPrincipal = dados.categorias[0];
 
 const { Content } = await render(projeto);
 const temTexto = Boolean(projeto.body?.trim() || dados.descricao?.trim());
+const temLink = Boolean(dados.linkExterno);
 
 const outros = (await getCollection('projetos', ({ data }) => data.setor === dados.setor))
   .filter((p) => p.data.slug !== dados.slug)
@@ -99,11 +100,11 @@ const descricaoMeta = dados.tipo
 
   <!-- Dados do empreendimento -->
   {
-    (dados.stats.length > 0 || temTexto) && (
+    (dados.stats.length > 0 || temTexto || temLink) && (
       <section class="bg-branco">
         <div class="container-site py-20 md:py-28">
           <div class="grid gap-16 md:grid-cols-12">
-            {temTexto && (
+            {(temTexto || temLink) && (
               <div class="md:col-span-6" data-reveal>
                 {dados.descricao?.trim() && (
                   <p class="titulo-display text-22 md:text-28">{dados.descricao}</p>
@@ -112,6 +113,19 @@ const descricaoMeta = dados.tipo
                   <div class="mt-6 max-w-[68ch] text-16 text-aco-escuro md:text-18 [&_p+p]:mt-4">
                     <Content />
                   </div>
+                )}
+                {temLink && (
+                  <a
+                    href={dados.linkExterno!.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class:list={[
+                      temTexto ? 'mt-8' : '',
+                      'eyebrow inline-block border-b-2 border-bronze pb-1 text-tinta transition-colors hover:text-bronze-escuro',
+                    ]}
+                  >
+                    {dados.linkExterno!.label}
+                  </a>
                 )}
               </div>
             )}
