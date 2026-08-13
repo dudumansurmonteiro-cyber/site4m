@@ -8,7 +8,7 @@
  */
 import type { ImageMetadata } from 'astro';
 
-import fotoMuse from '../assets/projetos/muse.jpg';
+import fotoMuse from '../assets/projetos/muse-fachada-2.jpg';
 import fotoSalma from '../assets/projetos/salma-tower.jpg';
 import fotoBosque from '../assets/projetos/bosque-ipiranga.jpg';
 import fotoUnieduk from '../assets/projetos/unieduk-campus.jpg';
@@ -54,7 +54,7 @@ export const SETORES: Setor[] = [
     categorias: ['Edifícios', 'Loteamentos', 'Terrenos'],
     imagemCard: fotoMuse,
     imagemImpacto: fotoBosque,
-    altCard: 'Fachada do edifício Muse Itaim, torre com jardins verticais',
+    altCard: 'Fachada do Muse Itaim vista da rua, com jardins verticais nas varandas',
     altImpacto: 'Perspectiva dos edifícios do Bosque Ipiranga, com lojas no térreo e paisagismo',
   },
   {
