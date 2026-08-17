@@ -9,7 +9,7 @@
 import type { ImageMetadata } from 'astro';
 
 import fotoMuse from '../assets/projetos/muse-fachada-2.jpg';
-import fotoSalma from '../assets/projetos/salma-tower.webp';
+import fotoSalma from '../assets/projetos/salma-tower.jpg';
 import fotoBosque from '../assets/projetos/bosque-ipiranga.jpg';
 import fotoUnieduk from '../assets/projetos/unieduk-campus.jpg';
 import fotoSuape from '../assets/projetos/suape.jpg';
