@@ -43,6 +43,13 @@ const outros = (await getCollection('projetos', ({ data }) => data.setor === dad
 const descricaoMeta = dados.tipo
   ? `${dados.titulo}: ${dados.tipo.toLowerCase()} do Grupo 4M no setor ${setor.nome}.`
   : `${dados.titulo} — projeto do Grupo 4M no setor ${setor.nome}.`;
+
+// Fotos de origem pequena (ex.: renders enviados em baixa resolução) não devem
+// esticar até 1920px de largura — preferimos um banner menor e nítido a um
+// grande e borrado. Acima de 1200px de largura na origem, segue o full-bleed.
+const larguraFonte = dados.imagem.width;
+const fotoPequena = dados.imagemModo !== 'conter' && larguraFonte < 1200;
+const larguraMaxHero = fotoPequena ? Math.round(larguraFonte * 1.4) : null;
 ---
 
 <Base titulo={`${dados.titulo} | Grupo 4M`} descricao={descricaoMeta} ogImagem={dados.imagem}>
@@ -84,12 +91,15 @@ const descricaoMeta = dados.tipo
         />
       </div>
     ) : (
-      <div class="bg-grafite">
+      <div
+        class="bg-grafite"
+        style={larguraMaxHero ? `max-width: ${larguraMaxHero}px; margin-inline: auto;` : undefined}
+      >
         <Image
           src={dados.imagem}
           alt={dados.imagemAlt}
-          widths={[768, 1280, 1600, 1920]}
-          sizes="100vw"
+          widths={fotoPequena ? [larguraFonte] : [768, 1280, 1600, 1920]}
+          sizes={fotoPequena ? `${larguraMaxHero}px` : '100vw'}
           loading="eager"
           fetchpriority="high"
           class="aspect-[16/9] max-h-[78svh] w-full object-cover md:aspect-[21/10]"
