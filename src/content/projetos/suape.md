@@ -14,6 +14,9 @@ stats:
 descricao: "A UTE Suape II é a maior termelétrica a óleo combustível do Brasil, com 381,2 MW de capacidade instalada."
 imagem: "../../assets/projetos/suape.jpg"
 imagemAlt: "Vista aérea noturna da termelétrica Suape II, com casas de máquinas e subestação iluminadas"
+linkExterno:
+  label: "Acessar o site da Suape Energia"
+  url: "https://www.suapeenergia.com.br/governanca.php"
 ordem: 15
 ---
 
