@@ -11,6 +11,6 @@ imagemAlt: "Logo do BIB — Banco Industrial do Brasil sobre a fachada de vidro 
 imagemModo: "conter"
 linkExterno:
   label: "Acessar o site do Banco Industrial do Brasil"
-  url: "https://www.bancoindustrial.com.br/"
+  url: "https://www.bib.com.br/"
 ordem: 18
 ---
