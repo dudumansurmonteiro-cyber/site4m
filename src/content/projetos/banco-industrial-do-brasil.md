@@ -9,5 +9,8 @@ descricao: "A sede do Banco Industrial do Brasil funciona na Salma Tower, edifí
 imagem: "../../assets/projetos/banco-industrial-do-brasil.jpg"
 imagemAlt: "Logo do BIB — Banco Industrial do Brasil sobre a fachada de vidro da sede, com o lema Excelência no Mercado Financeiro"
 imagemModo: "conter"
+linkExterno:
+  label: "Acessar o site do Banco Industrial do Brasil"
+  url: "https://www.bancoindustrial.com.br/"
 ordem: 18
 ---
