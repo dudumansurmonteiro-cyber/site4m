@@ -44,7 +44,7 @@ Manter os **slugs atuais dos projetos na raiz** (ex.: `/izzy-campinas/`, `/suape
 | Imobiliário | Edifícios | Izzy Campinas | `/izzy-campinas/` |
 | Imobiliário | Edifícios | Salma Tower | `/salma-tower/` |
 | Imobiliário | Loteamentos | Alphagran | `/alphagram/` |
-| Imobiliário | Loteamentos | Jardim Abreus | `/jardim-abreus/` |
+| Imobiliário | Loteamentos | Jardim dos Abreus | `/jardim-abreus/` |
 | Imobiliário | Loteamentos | Residencial Dunamis | `/residencial-dunamis/` |
 | Imobiliário | Loteamentos | Residencial Jandira | `/residencial-jandira/` |
 | Imobiliário | Loteamentos | Vilas Verdes | `/vilas-verdes/` |
