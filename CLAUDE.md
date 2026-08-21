@@ -47,7 +47,7 @@ Manter os **slugs atuais dos projetos na raiz** (ex.: `/izzy-campinas/`, `/suape
 | Imobiliário | Loteamentos | Jardim dos Abreus | `/jardim-abreus/` |
 | Imobiliário | Loteamentos | Residencial Dunamis | `/residencial-dunamis/` |
 | Imobiliário | Loteamentos | Residencial Jandira | `/residencial-jandira/` |
-| Imobiliário | Loteamentos | Vilas Verdes | `/vilas-verdes/` |
+| Imobiliário | Loteamentos | Residencial Manhattan | `/vilas-verdes/` |
 | Imobiliário | Loteamentos | Saint Paul | `/saint-paul/` |
 | Imobiliário | Terrenos | Esquina JK | `/esquina-jk/` |
 | Imobiliário | Terrenos | Banco BIB | `/banco-bib/` |
