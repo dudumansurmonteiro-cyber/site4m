@@ -21,4 +21,4 @@ Localizado em Alphaville, Barueri, o Alphagran ocupa cerca de 279 mil m² de ár
 
 São lotes generosos, a partir de 2.700 m², preparados para uso residencial e comercial, com infraestrutura urbana completa e já entregue — drenagem, água, esgoto, rede elétrica, pavimentação, paisagismo e fiação totalmente subterrânea.
 
-A portaria central com controle de acesso garante a segurança de um condomínio fechado em escala de bairro. Moradia, trabalho, lazer e natureza no mesmo endereço, a poucos minutos do centro empresarial de Alphaville.
+Moradia, trabalho, lazer e natureza no mesmo endereço, a poucos minutos do centro empresarial de Alphaville.
