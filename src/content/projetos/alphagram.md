@@ -13,7 +13,7 @@ stats:
   - { label: "Pista de caminhada suspensa", valor: "2.000 m" }
 descricao: "Um bairro inteiro pensado do zero."
 imagem: "../../assets/projetos/alphagram.jpg"
-imagemAlt: "Vista aérea de Alphaville, com torres residenciais entre lago e áreas verdes"
+imagemAlt: "Vista aérea do Alphagran, com o traçado dos lotes entre a mata preservada e as torres de Alphaville"
 ordem: 5
 ---
 
