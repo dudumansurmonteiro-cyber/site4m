@@ -12,7 +12,7 @@ stats:
   - { label: "Lotes a partir de", valor: "2.700 m²" }
   - { label: "Pista de caminhada suspensa", valor: "2.000 m" }
 descricao: "Um bairro inteiro pensado do zero."
-imagem: "../../assets/projetos/alphagram.webp"
+imagem: "../../assets/projetos/alphagram.jpg"
 imagemAlt: "Vista aérea de Alphaville, com torres residenciais entre lago e áreas verdes"
 ordem: 5
 ---
