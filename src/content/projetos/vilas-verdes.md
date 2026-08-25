@@ -9,15 +9,14 @@ localizacao: "Cruz das Almas, Itu/SP"
 stats:
   - { label: "Área total", valor: "524.953 m²" }
   - { label: "Área verde", valor: "+132 mil m²" }
-  - { label: "Lotes residenciais", valor: "647" }
-  - { label: "Lotes comerciais", valor: "76" }
+  - { label: "Lotes", valor: "1.448" }
 descricao: "Um bairro planejado do tamanho de uma cidade pequena."
 imagem: "../../assets/projetos/vilas-verdes.jpg"
 imagemAlt: "Vista aérea do loteamento Residencial Manhattan, em Itu"
 ordem: 9
 ---
 
-Localizado no bairro Cruz das Almas, em Itu (SP), o Residencial Manhattan ocupa uma área de 524.953 m² — mais de 52 hectares desenhados do zero, com 647 lotes residenciais e 76 lotes comerciais em um projeto de uso misto que coloca moradia e comércio lado a lado.
+Localizado no bairro Cruz das Almas, em Itu (SP), o Residencial Manhattan ocupa uma área de 524.953 m² — mais de 52 hectares desenhados do zero, com 1.448 lotes residenciais e comerciais em um projeto de uso misto que coloca moradia e comércio lado a lado.
 
 O grande diferencial está na generosidade das áreas livres: mais de 132 mil m² de área verde, o equivalente a um quarto de todo o empreendimento, somados a áreas institucionais e sistema de lazer.
 
