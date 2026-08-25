@@ -1,88 +1,32 @@
 ---
 /**
  * Quem Somos (CLAUDE.md, seção 4.7) — copy oficial na íntegra.
- * "O que fazemos" e "Nosso impacto" reutilizam a malha 01–04 (seção 7).
- * Correção obrigatória nº 2: o card Financeiro usa o texto de Financeiro.
+ * "O que fazemos" usa textos próprios desta página (não os cards da home).
  */
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import ValueItem from '../components/ValueItem.astro';
 import { SETORES } from '../data/setores';
 import { DESCRICOES } from '../data/site';
 
-const impacto = [
+const fazemos = [
   {
-    indice: '01',
-    titulo: 'Projetos imobiliários',
+    setor: SETORES[0],
     texto:
-      'Empreendimentos como Salma Tower, Alphagran e Muse Itaim transformam regiões urbanas, criam novos espaços de convivência e impulsionam a valorização imobiliária.',
-    imagem: SETORES[0].imagemImpacto,
-    modo: SETORES[0].imagemImpactoModo,
-    alt: SETORES[0].altImpacto,
+      'Do terreno à entrega: identificamos localizações estratégicas, desenvolvemos e gerenciamos empreendimentos residenciais, comerciais e loteamentos urbanos que valorizam com o tempo.',
   },
   {
-    indice: '02',
-    titulo: 'Energia',
+    setor: SETORES[1],
     texto:
-      'Usinas como Suape Termelétrica e Guaçu fortalecem a infraestrutura energética e estimulam o desenvolvimento regional.',
-    imagem: SETORES[1].imagemImpacto,
-    modo: SETORES[1].imagemImpactoModo,
-    alt: SETORES[1].altImpacto,
+      'Participamos de projetos de geração de grande porte, como a Suape Termelétrica e a Guaçu, que dão segurança à matriz energética e movimentam as regiões onde estão.',
   },
   {
-    indice: '03',
-    titulo: 'Educação',
+    setor: SETORES[2],
     texto:
-      'O Grupo Unieduk amplia o acesso ao conhecimento, capacitando profissionais e gerando inclusão social.',
-    imagem: SETORES[2].imagemImpacto,
-    modo: SETORES[2].imagemImpactoModo,
-    alt: SETORES[2].altImpacto,
+      'Por meio do Grupo Unieduk, ajudamos a formar e capacitar profissionais, ampliando o acesso ao conhecimento e preparando talentos para o mercado.',
   },
   {
-    indice: '04',
-    titulo: 'Financeiro',
-    texto: 'O Grupo 4M realizou a construção do Banco Industrial do Brasil em São Paulo.',
-    imagem: SETORES[3].imagemImpacto,
-    modo: SETORES[3].imagemImpactoModo,
-    alt: SETORES[3].altImpacto,
-  },
-];
-
-const valores = [
-  {
-    titulo: 'Visão de longo prazo',
+    setor: SETORES[3],
     texto:
-      'Investimos com foco em crescimento sustentável, priorizando projetos sólidos, bem estruturados e capazes de gerar valor duradouro ao longo do tempo.',
-  },
-  {
-    titulo: 'Excelência em planejamento e execução',
-    texto:
-      'Buscamos altos padrões de qualidade em todas as etapas dos nossos projetos, desde a concepção até a entrega, com gestão profissional e atenção aos detalhes.',
-  },
-  {
-    titulo: 'Diversificação com responsabilidade',
-    texto:
-      'Atuamos em diferentes setores estratégicos para garantir solidez e resiliência, sempre avaliando riscos, oportunidades e impactos de forma consciente.',
-  },
-  {
-    titulo: 'Compromisso com o desenvolvimento urbano e social',
-    texto:
-      'Acreditamos que nossos projetos devem contribuir para a melhoria das cidades, geração de empregos, fortalecimento da infraestrutura e avanço social das comunidades onde estamos presentes.',
-  },
-  {
-    titulo: 'Ética, transparência e governança',
-    texto:
-      'Conduzimos nossos negócios com integridade, clareza e respeito às normas, construindo relações de confiança com parceiros, investidores, colaboradores e a sociedade.',
-  },
-  {
-    titulo: 'Sustentabilidade e uso responsável dos recursos',
-    texto:
-      'Incorporamos práticas que valorizam a eficiência, a preservação ambiental e o equilíbrio entre crescimento econômico e responsabilidade socioambiental.',
-  },
-  {
-    titulo: 'Parcerias estratégicas e colaboração',
-    texto:
-      'Valorizamos relações sólidas no Brasil e no exterior, acreditando que a colaboração é essencial para ampliar impacto, inovação e resultados consistentes.',
+      'Estruturamos as operações, o funding e as soluções de capital que sustentam cada frente do grupo — é o que nos permite crescer com solidez em qualquer cenário.',
   },
 ];
 ---
@@ -93,7 +37,7 @@ const valores = [
     <div class="container-site hero-anim pt-24 pb-16 md:pt-36 md:pb-24">
       <p class="eyebrow text-aco-claro">Quem somos</p>
       <h1 class="titulo-display mt-4 max-w-[18ch] text-36 text-balance md:text-48 lg:text-64">
-        Investir, desenvolver e estruturar.
+        Construímos negócios que ficam de pé sozinhos.
       </h1>
     </div>
   </section>
@@ -103,14 +47,17 @@ const valores = [
       <div class="grid md:grid-cols-12" data-reveal>
         <div class="md:col-span-9 lg:col-span-8">
           <p class="titulo-display text-22 text-balance md:text-28">
-            O Grupo 4M nasceu em São Paulo com um propósito claro: investir em projetos
-            que transformem cidades e gerem valor duradouro.
+            O Grupo 4M é uma holding privada de investimentos e operações, sediada na Faria
+            Lima, em São Paulo.
           </p>
           <p class="mt-8 max-w-[68ch] text-16 text-aco-escuro md:text-18">
-            Hoje somos uma holding que reúne diferentes frentes de negócios – incorporação
-            imobiliária, educação, energia, infraestrutura e área financeira – sempre com a mesma
-            ideia em mente: gerar valor de forma sustentável, criar oportunidades e impulsionar o
-            desenvolvimento econômico e social.
+            Atuamos onde enxergamos duas coisas ao mesmo tempo: uma oportunidade real de mercado
+            e a chance de deixar algo melhor do que encontramos — um bairro, uma rede de ensino,
+            a infraestrutura de uma região.
+          </p>
+          <p class="mt-4 max-w-[68ch] text-16 text-aco-escuro md:text-18">
+            Não somos apenas investidores. Entramos nos projetos, operamos, acompanhamos de
+            perto. É assim desde o início.
           </p>
         </div>
       </div>
@@ -127,26 +74,27 @@ const valores = [
       <div class="mt-10 grid md:grid-cols-12" data-reveal>
         <div class="flex max-w-[68ch] flex-col gap-6 text-16 md:col-span-9 md:text-18 lg:col-span-8">
           <p>
-            Em poucos anos de trajetória, crescemos e diversificamos. Começamos com investimentos
-            em projetos imobiliários de alto padrão e, a partir dessa base sólida, expandimos para
-            outros setores estratégicos.
+            Começamos no mercado imobiliário de alto padrão em São Paulo. Foi ali que aprendemos
+            o que sustenta o grupo até hoje: escolher bem a localização, planejar com rigor e
+            entregar com qualidade que o tempo confirma.
           </p>
           <p>
-            Entre os marcos mais importantes, vale destacar o desenvolvimento de empreendimentos
-            residenciais e comerciais que elevaram o padrão de urbanização, como o Salma Tower,
-            Alphagran e Muse Itaim, além de investimentos em educação, com o Grupo Unieduk, e em
-            energia, com a Suape Termelétrica e a Guaçu.
+            Dessa base nasceram empreendimentos como a Salma Tower — hoje sede do Banco
+            Industrial do Brasil, construída pelo grupo —, o Alphagran e o Muse Itaim. E dela
+            também veio a confiança para diversificar: entramos em energia, com a Suape
+            Termelétrica e a Guaçu, e em educação, com a participação no Grupo Unieduk.
           </p>
           <p>
-            Esses projetos reforçam a infraestrutura de cidades e abrem caminho para novas
-            oportunidades de crescimento.
+            Hoje somos quatro frentes que se fortalecem entre si — imobiliário, energia,
+            educação e financeiro — com a área financeira estruturando o capital que viabiliza
+            as demais.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- O que fazemos: malha 01–04 -->
+  <!-- O que fazemos: malha 4M -->
   <section aria-labelledby="titulo-fazemos" class="bg-branco">
     <div class="container-site py-20 md:py-28">
       <div data-reveal>
@@ -155,7 +103,7 @@ const valores = [
       </div>
       <div class="mt-12 grid gap-x-10 gap-y-14 md:grid-cols-2">
         {
-          SETORES.map((setor) => (
+          fazemos.map(({ setor, texto }) => (
             <div data-reveal>
               <div>
                 <h3 class="titulo-display text-22 md:text-28">
@@ -163,7 +111,7 @@ const valores = [
                     {setor.nome}
                   </a>
                 </h3>
-                <p class="mt-3 max-w-[58ch] text-16 text-aco-escuro">{setor.textoHome}</p>
+                <p class="mt-3 max-w-[58ch] text-16 text-aco-escuro">{texto}</p>
               </div>
             </div>
           ))
@@ -172,127 +120,33 @@ const valores = [
     </div>
   </section>
 
-  <!-- Por que nos destacamos -->
-  <section aria-labelledby="titulo-destacamos" class="bg-pedra">
-    <div class="container-site py-20 md:py-28">
-      <div data-reveal>
-        <span class="filete" aria-hidden="true"></span>
-        <h2 id="titulo-destacamos" class="titulo-display mt-6 text-28 md:text-36">
-          Por que nos destacamos
-        </h2>
-      </div>
-      <div class="mt-10 grid md:grid-cols-12" data-reveal>
-        <div class="flex max-w-[68ch] flex-col gap-6 text-16 md:col-span-9 md:text-18 lg:col-span-8">
-          <p>
-            O que nos move é a capacidade de criar e transformar espaços urbanos em polos de
-            desenvolvimento. Diversificamos nossas áreas de atuação para ser uma empresa sólida em
-            qualquer cenário econômico.
-          </p>
-          <p>
-            Somos reconhecidos pela excelência em planejamento e gestão de empreendimentos,
-            atuando desde a aquisição de terrenos estratégicos até a entrega de projetos de alto
-            padrão.
-          </p>
-          <p>
-            Contamos com parcerias estratégicas no Brasil e no exterior, garantindo geração de
-            empregos, melhorias de infraestrutura e impacto positivo para as comunidades.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Nosso impacto: malha 01–04 com imagens -->
-  <section aria-labelledby="titulo-impacto" class="bg-branco">
-    <div class="container-site py-20 md:py-28">
-      <div data-reveal>
-        <span class="filete" aria-hidden="true"></span>
-        <h2 id="titulo-impacto" class="titulo-display mt-6 text-28 md:text-36">Nosso impacto</h2>
-      </div>
-      <div class="mt-12 grid gap-x-10 gap-y-16 md:grid-cols-2">
-        {
-          impacto.map((bloco) => (
-            <article data-reveal>
-              {bloco.modo === 'conter' ? (
-                <div class="flex aspect-[3/2] w-full items-center justify-center border border-linha bg-branco p-12">
-                  <Image src={bloco.imagem} alt={bloco.alt} class="max-h-full w-auto max-w-full object-contain" />
-                </div>
-              ) : (
-                <div class="overflow-hidden bg-grafite">
-                  <Image
-                    src={bloco.imagem}
-                    alt={bloco.alt}
-                    widths={[480, 800, 1200, 1600]}
-                    sizes="(min-width: 768px) 46vw, 92vw"
-                    class="aspect-[3/2] w-full object-cover"
-                  />
-                </div>
-              )}
-              <div class="mt-6">
-                <div>
-                  <h3 class="titulo-display text-22 md:text-28">{bloco.titulo}</h3>
-                  <p class="mt-3 max-w-[58ch] text-16 text-aco-escuro">{bloco.texto}</p>
-                </div>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-      <p class="mt-16 max-w-[68ch] text-16 md:text-18" data-reveal>
-        Em todas as iniciativas, levamos a sério o compromisso com sustentabilidade e uso
-        responsável de recursos.
-      </p>
-    </div>
-  </section>
-
-  <!-- Nossa missão -->
-  <section aria-labelledby="titulo-missao" class="bg-grafite text-branco">
+  <!-- Por que somos diferentes -->
+  <section aria-labelledby="titulo-diferentes" class="bg-grafite text-branco">
     <div class="container-site py-24 md:py-32">
       <div data-reveal>
         <span class="filete" aria-hidden="true"></span>
-        <h2 id="titulo-missao" class="titulo-display mt-6 text-28 md:text-36">Nossa missão</h2>
+        <h2 id="titulo-diferentes" class="titulo-display mt-6 text-28 md:text-36">
+          Por que somos diferentes
+        </h2>
       </div>
       <div class="mt-10 grid md:grid-cols-12" data-reveal>
         <div class="md:col-span-10 lg:col-span-9">
           <p class="titulo-display text-22 text-balance text-branco md:text-28">
-            A missão do Grupo 4M é investir, desenvolver e estruturar projetos que transformem
-            cidades e gerem valor duradouro, promovendo crescimento econômico aliado a impacto
-            social positivo e uso responsável dos recursos. Atuamos de forma integrada nos setores
-            imobiliário, educacional, energético, de infraestrutura e financeiro, sempre com foco
-            em planejamento estratégico, excelência na execução e visão de longo prazo.
+            Muita empresa investe. Poucas constroem, operam e permanecem.
           </p>
           <div class="mt-8 flex max-w-[68ch] flex-col gap-6 text-16 text-aco-claro md:text-18">
             <p>
-              Buscamos criar empreendimentos que elevem o padrão urbano, fortaleçam a
-              infraestrutura regional, ampliem o acesso à educação e contribuam para uma matriz
-              energética mais robusta e eficiente.
+              Nossa diversificação não é dispersão: cada setor em que atuamos reforça os
+              outros, e todos seguem a mesma lógica — visão de longo prazo, execução impecável
+              e impacto real nas cidades e comunidades.
             </p>
             <p>
-              Nosso compromisso é gerar oportunidades, impulsionar o desenvolvimento das
-              comunidades onde atuamos e construir negócios sólidos e sustentáveis, capazes de
-              atravessar diferentes ciclos econômicos e deixar um legado.
+              Fazemos isso com ética, transparência e parcerias sólidas no Brasil e no
+              exterior. E com uma convicção simples: negócio bom é o que atravessa ciclos
+              econômicos e deixa legado.
             </p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Nossos valores -->
-  <section aria-labelledby="titulo-valores" class="bg-branco">
-    <div class="container-site py-20 md:py-28">
-      <div data-reveal>
-        <span class="filete" aria-hidden="true"></span>
-        <h2 id="titulo-valores" class="titulo-display mt-6 text-28 md:text-36">Nossos valores</h2>
-      </div>
-      <div class="mt-12 grid gap-x-10 gap-y-10 md:grid-cols-2">
-        {
-          valores.map((valor) => (
-            <div data-reveal>
-              <ValueItem titulo={valor.titulo} texto={valor.texto} />
-            </div>
-          ))
-        }
       </div>
     </div>
   </section>

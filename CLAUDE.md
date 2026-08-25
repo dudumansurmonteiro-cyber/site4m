@@ -135,56 +135,32 @@ Destaque único: **BIB — Banco Industrial do Brasil** (link para `/banco-indus
 
 **Abertura:**
 
-> **Investir, desenvolver e estruturar.**
+> **Construímos negócios que ficam de pé sozinhos.**
 >
-> O Grupo 4M nasceu em São Paulo com um propósito claro: investir em projetos que transformem cidades e gerem valor duradouro.
+> O Grupo 4M é uma holding privada de investimentos e operações, sediada na Faria Lima, em São Paulo. Atuamos onde enxergamos duas coisas ao mesmo tempo: uma oportunidade real de mercado e a chance de deixar algo melhor do que encontramos — um bairro, uma rede de ensino, a infraestrutura de uma região.
 >
-> Hoje somos uma holding que reúne diferentes frentes de negócios – incorporação imobiliária, educação, energia, infraestrutura e área financeira – sempre com a mesma ideia em mente: gerar valor de forma sustentável, criar oportunidades e impulsionar o desenvolvimento econômico e social.
+> Não somos apenas investidores. Entramos nos projetos, operamos, acompanhamos de perto. É assim desde o início.
 
 **Nossa história:**
 
-> Em poucos anos de trajetória, crescemos e diversificamos. Começamos com investimentos em projetos imobiliários de alto padrão e, a partir dessa base sólida, expandimos para outros setores estratégicos.
+> Começamos no mercado imobiliário de alto padrão em São Paulo. Foi ali que aprendemos o que sustenta o grupo até hoje: escolher bem a localização, planejar com rigor e entregar com qualidade que o tempo confirma.
 >
-> Entre os marcos mais importantes, vale destacar o desenvolvimento de empreendimentos residenciais e comerciais que elevaram o padrão de urbanização, como o Salma Tower, Alphagran e Muse Itaim, além de investimentos em educação, com o Grupo Unieduk, e em energia, com a Suape Termelétrica e a Guaçu.
+> Dessa base nasceram empreendimentos como a Salma Tower — hoje sede do Banco Industrial do Brasil, construída pelo grupo —, o Alphagran e o Muse Itaim. E dela também veio a confiança para diversificar: entramos em energia, com a Suape Termelétrica e a Guaçu, e em educação, com a participação no Grupo Unieduk.
 >
-> Esses projetos reforçam a infraestrutura de cidades e abrem caminho para novas oportunidades de crescimento.
+> Hoje somos quatro frentes que se fortalecem entre si — imobiliário, energia, educação e financeiro — com a área financeira estruturando o capital que viabiliza as demais.
 
-**O que fazemos** (4 cards com ícone — usar os textos dos setores da seção 4.2; **ATENÇÃO:** o card Financeiro usa o texto de Financeiro, não o de Energia — ver seção 5, erro nº 2).
+**O que fazemos** (4 cards, textos próprios desta página — não reutilizar os da seção 4.2):
 
-**Por que nos destacamos:**
+1. **Imobiliário** — Do terreno à entrega: identificamos localizações estratégicas, desenvolvemos e gerenciamos empreendimentos residenciais, comerciais e loteamentos urbanos que valorizam com o tempo.
+2. **Energia** — Participamos de projetos de geração de grande porte, como a Suape Termelétrica e a Guaçu, que dão segurança à matriz energética e movimentam as regiões onde estão.
+3. **Educação** — Por meio do Grupo Unieduk, ajudamos a formar e capacitar profissionais, ampliando o acesso ao conhecimento e preparando talentos para o mercado.
+4. **Financeiro** — Estruturamos as operações, o funding e as soluções de capital que sustentam cada frente do grupo — é o que nos permite crescer com solidez em qualquer cenário.
 
-> O que nos move é a capacidade de criar e transformar espaços urbanos em polos de desenvolvimento. Diversificamos nossas áreas de atuação para ser uma empresa sólida em qualquer cenário econômico.
+**Por que somos diferentes:**
+
+> Muita empresa investe. Poucas constroem, operam e permanecem. Nossa diversificação não é dispersão: cada setor em que atuamos reforça os outros, e todos seguem a mesma lógica — visão de longo prazo, execução impecável e impacto real nas cidades e comunidades.
 >
-> Somos reconhecidos pela excelência em planejamento e gestão de empreendimentos, atuando desde a aquisição de terrenos estratégicos até a entrega de projetos de alto padrão.
->
-> Contamos com parcerias estratégicas no Brasil e no exterior, garantindo geração de empregos, melhorias de infraestrutura e impacto positivo para as comunidades.
-
-**Nosso impacto** (4 blocos com imagem):
-
-1. **Projetos imobiliários** — Empreendimentos como Salma Tower, Alphagran e Muse Itaim transformam regiões urbanas, criam novos espaços de convivência e impulsionam a valorização imobiliária.
-2. **Energia** — Usinas como Suape Termelétrica e Guaçu fortalecem a infraestrutura energética e estimulam o desenvolvimento regional.
-3. **Educação** — O Grupo Unieduk amplia o acesso ao conhecimento, capacitando profissionais e gerando inclusão social.
-4. **Financeiro** — O Grupo 4M realizou a construção do Banco Industrial do Brasil em São Paulo.
-
-**Fecho:** Em todas as iniciativas, levamos a sério o compromisso com sustentabilidade e uso responsável de recursos.
-
-**Nossa missão:**
-
-> A missão do Grupo 4M é investir, desenvolver e estruturar projetos que transformem cidades e gerem valor duradouro, promovendo crescimento econômico aliado a impacto social positivo e uso responsável dos recursos. Atuamos de forma integrada nos setores imobiliário, educacional, energético, de infraestrutura e financeiro, sempre com foco em planejamento estratégico, excelência na execução e visão de longo prazo.
->
-> Buscamos criar empreendimentos que elevem o padrão urbano, fortaleçam a infraestrutura regional, ampliem o acesso à educação e contribuam para uma matriz energética mais robusta e eficiente.
->
-> Nosso compromisso é gerar oportunidades, impulsionar o desenvolvimento das comunidades onde atuamos e construir negócios sólidos e sustentáveis, capazes de atravessar diferentes ciclos econômicos e deixar um legado.
-
-**Nossos valores** (7 itens, título + texto):
-
-1. **Visão de longo prazo** — Investimos com foco em crescimento sustentável, priorizando projetos sólidos, bem estruturados e capazes de gerar valor duradouro ao longo do tempo.
-2. **Excelência em planejamento e execução** — Buscamos altos padrões de qualidade em todas as etapas dos nossos projetos, desde a concepção até a entrega, com gestão profissional e atenção aos detalhes.
-3. **Diversificação com responsabilidade** — Atuamos em diferentes setores estratégicos para garantir solidez e resiliência, sempre avaliando riscos, oportunidades e impactos de forma consciente.
-4. **Compromisso com o desenvolvimento urbano e social** — Acreditamos que nossos projetos devem contribuir para a melhoria das cidades, geração de empregos, fortalecimento da infraestrutura e avanço social das comunidades onde estamos presentes.
-5. **Ética, transparência e governança** — Conduzimos nossos negócios com integridade, clareza e respeito às normas, construindo relações de confiança com parceiros, investidores, colaboradores e a sociedade.
-6. **Sustentabilidade e uso responsável dos recursos** — Incorporamos práticas que valorizam a eficiência, a preservação ambiental e o equilíbrio entre crescimento econômico e responsabilidade socioambiental.
-7. **Parcerias estratégicas e colaboração** — Valorizamos relações sólidas no Brasil e no exterior, acreditando que a colaboração é essencial para ampliar impacto, inovação e resultados consistentes.
+> Fazemos isso com ética, transparência e parcerias sólidas no Brasil e no exterior. E com uma convicção simples: negócio bom é o que atravessa ciclos econômicos e deixa legado.
 
 ### 4.8 Página Contato (nova)
 
