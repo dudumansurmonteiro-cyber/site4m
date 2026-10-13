@@ -59,7 +59,13 @@ Sem a variável, nenhum form quebrado é publicado.
 
 ## Deploy
 
-Qualquer host estático. Diretório de publicação: `dist/`.
+**Em produção:** GitHub Pages. O workflow `.github/workflows/pages.yml` faz o build a
+cada push na branch de trabalho e publica `dist/` na branch `gh-pages`. O domínio
+`www.grupo4m.com` é definido por `public/CNAME` (vai junto em todo build — não apagar).
+Nas configurações do repositório (Settings → Pages), a fonte é a branch `gh-pages` e o
+domínio personalizado é `www.grupo4m.com` com "Enforce HTTPS" ligado.
+
+Qualquer outro host estático também serve. Diretório de publicação: `dist/`.
 
 | Host | Config |
 | --- | --- |

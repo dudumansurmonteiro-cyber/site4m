@@ -22,7 +22,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npx astro build --site "https://dudumansurmonteiro-cyber.github.io" --base "/site4m"
+      # Domínio próprio (www.grupo4m.com, via public/CNAME): build na raiz,
+      # com o `site` do astro.config.mjs.
+      - run: npx astro build
       - name: Publica o build na branch gh-pages
         run: |
           cd dist

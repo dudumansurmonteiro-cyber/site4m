@@ -322,7 +322,7 @@ Sem gradientes decorativos, sem glassmorphism, sem emojis, sem carrossel automá
 | Salma Tower é Edifício, Terreno ou ambos? | Ambos (como no site atual) |
 | Querem formulário de contato? Para qual e-mail? | Página de contato sem form (tel + endereço), form pronto atrás de env var |
 | "Alimentação" entra como setor? | Não |
-| Onde vão hospedar / domínio aponta para onde? | Build estático agnóstico de host |
+| Onde vão hospedar / domínio aponta para onde? | **Resolvido:** GitHub Pages (workflow `pages.yml` publica o build na branch `gh-pages`), domínio `www.grupo4m.com` via `public/CNAME`; o apex `grupo4m.com` redireciona para `www` |
 | Há fotos e textos adicionais dos projetos? | Layout preparado para receber mais conteúdo depois |
 
 ## 12. Processo de trabalho (nesta ordem)
