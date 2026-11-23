@@ -4,6 +4,10 @@ slug: "bosque-ipiranga"
 setor: "imobiliario"
 categorias:
   - "Edifícios"
+stats:
+  - { label: "Dormitórios", valor: "2" }
+  - { label: "Área de lazer", valor: "15.000 m²" }
+  - { label: "Opções de lazer", valor: "+20" }
 imagem: "../../assets/projetos/bosque-ipiranga.jpg"
 imagemAlt: "Perspectiva dos edifícios do Bosque Ipiranga, com lojas no térreo e paisagismo"
 descricao: "Morar bem, com natureza e conveniência, em um dos bairros mais tradicionais de São Paulo."

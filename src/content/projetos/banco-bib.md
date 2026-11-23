@@ -6,6 +6,9 @@ categorias:
   - "Terrenos"
 localizacao: "Av. Presidente Juscelino Kubitschek, 1703"
 descricao: "Localizado na Avenida Presidente Juscelino Kubitschek, 1703, um dos endereços mais desejados de São Paulo, o empreendimento nasce com uma proposta inovadora: reunir, em um único complexo de uso misto, uma torre corporativa de alto padrão e uma torre residencial com lojas no térreo e fachada ativa, trazendo um novo ar para a região."
+stats:
+  - { label: "Área construída", valor: "+60 mil m²" }
+  - { label: "Torres", valor: "2" }
 imagem: "../../assets/projetos/banco-bib.jpg"
 imagemAlt: "Perspectiva do Projeto JK, torre de vidro com terraços verdes na Av. Juscelino Kubitschek"
 ordem: 12

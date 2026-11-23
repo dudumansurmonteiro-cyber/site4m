@@ -4,6 +4,8 @@ slug: "unieduk"
 setor: "educacao"
 categorias:
   - "Ensino"
+stats:
+  - { label: "Instituições de ensino", valor: "3" }
 imagem: "../../assets/projetos/unieduk.webp"
 imagemAlt: "Logomarca da UniEduK, com as instituições unifaj, unimax e faagroh"
 imagemModo: "conter"

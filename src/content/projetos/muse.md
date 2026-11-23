@@ -4,6 +4,9 @@ slug: "muse"
 setor: "imobiliario"
 categorias:
   - "Edifícios"
+stats:
+  - { label: "Unidades", valor: "29" }
+  - { label: "Apartamentos", valor: "123 a 278 m²" }
 imagem: "../../assets/projetos/muse.jpg"
 imagemAlt: "Fachada do edifício Muse Itaim, torre com jardins verticais nas sacadas"
 descricao: "No coração do Itaim Bibi, o Muse nasceu para renovar a percepção de arquitetura em um dos bairros mais valorizados de São Paulo."
