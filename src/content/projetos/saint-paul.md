@@ -13,7 +13,7 @@ stats:
   - { label: "Lazer e área verde", valor: "~90 mil m²" }
 descricao: "Um residencial fechado desenhado junto da mata, em Itu."
 imagem: "../../assets/projetos/saint-paul.webp"
-imagemAlt: "Vista aérea da portaria do Reserva Saint Paul, com o muro perimetral e a mata preservada ao lado"
+imagemAlt: "Vista aérea do Reserva Saint Paul ao entardecer, com a portaria, as casas e a mata preservada ao lado"
 ordem: 10
 ---
 
