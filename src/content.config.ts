@@ -27,7 +27,7 @@ const projetos = defineCollection({
       imagem: image(),
       imagemAlt: z.string(),
       /** 'cobrir' = foto em tela cheia; 'conter' = logomarca centrada em painel. */
-      imagemModo: z.enum(['cobrir', 'conter']).default('cobrir'),
+      imagemModo: z.enum(['cobrir', 'conter', 'conter-grande']).default('cobrir'),
       descricao: z.string().optional(),
       /** Link para um site externo do projeto (ex.: portal do aluno). */
       linkExterno: z.object({ label: z.string(), url: z.string().url() }).optional(),

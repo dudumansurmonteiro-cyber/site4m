@@ -48,7 +48,7 @@ const descricaoMeta = dados.tipo
 // esticar até 1920px de largura — preferimos um banner menor e nítido a um
 // grande e borrado. Acima de 1200px de largura na origem, segue o full-bleed.
 const larguraFonte = dados.imagem.width;
-const ehCobrir = dados.imagemModo !== 'conter';
+const ehCobrir = !dados.imagemModo.startsWith('conter');
 // Foto vertical pequena: o recorte largo do banner cortaria o prédio no meio,
 // então ela aparece inteira, centralizada sobre o fundo grafite.
 const retratoPequeno = ehCobrir && dados.imagem.height > larguraFonte && larguraFonte < 1200;
@@ -85,13 +85,18 @@ const larguraMaxHero = fotoPequena ? Math.round(larguraFonte * 1.4) : null;
 
   <!-- Imagem hero (foto em tela cheia ou logomarca em painel) -->
   {
-    dados.imagemModo === 'conter' ? (
+    dados.imagemModo.startsWith('conter') ? (
       <div class="flex justify-center border-b border-linha bg-branco px-6 py-16 md:py-24">
         <Image
           src={dados.imagem}
           alt={dados.imagemAlt}
           loading="eager"
-          class="h-auto max-h-[220px] w-auto max-w-full object-contain md:max-h-[300px]"
+          class:list={[
+            'h-auto w-auto max-w-full object-contain',
+            dados.imagemModo === 'conter-grande'
+              ? 'max-h-[420px] md:max-h-[560px]'
+              : 'max-h-[220px] md:max-h-[300px]',
+          ]}
         />
       </div>
     ) : retratoPequeno ? (

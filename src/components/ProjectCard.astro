@@ -18,7 +18,7 @@ const { projeto, categoria = projeto.data.categorias[0] } = Astro.props;
 <article class="group">
   <a href={rota(`/${projeto.data.slug}/`)} class="block">
     {
-      projeto.data.imagemModo === 'conter' ? (
+      projeto.data.imagemModo.startsWith('conter') ? (
         <div class="flex aspect-[8/5] w-full items-center justify-center border border-linha bg-branco p-8">
           <Image
             src={projeto.data.imagem}

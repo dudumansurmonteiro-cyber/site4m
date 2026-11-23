@@ -11,7 +11,7 @@ stats:
   - { label: "Área total construída", valor: "2.635,76 m²" }
 imagem: "../../assets/projetos/izzy-campinas.png"
 imagemAlt: "Render do Izzy Campinas com a logomarca do empreendimento, torre residencial em Campinas"
-imagemModo: "conter"
+imagemModo: "conter-grande"
 descricao: "O Izzy chega a Campinas para traduzir um novo jeito de morar: prático, moderno e conectado ao ritmo de uma das cidades que mais crescem no interior de São Paulo."
 ordem: 3
 ---
