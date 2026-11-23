@@ -12,7 +12,7 @@ stats:
   - { label: "Lotes a partir de", valor: "125 m²" }
   - { label: "Áreas verdes", valor: "11.450 m²" }
 descricao: "Um bairro planejado no Votupoca, em Jandira."
-imagem: "../../assets/projetos/altos-de-jandira.png"
+imagem: "../../assets/projetos/altos-de-jandira.webp"
 imagemAlt: "Render aéreo do loteamento Altos de Jandira, com as quadras de casas entre ruas arborizadas"
 ordem: 11
 ---
