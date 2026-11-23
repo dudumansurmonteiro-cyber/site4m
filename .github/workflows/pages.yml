@@ -22,6 +22,10 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      # TEMPORÁRIO: enquanto o DNS do grupo4m.com não aponta para o GitHub Pages,
+      # o preview roda em github.io/site4m. Quando o DNS estiver pronto, voltar a
+      # buildar na raiz (`npx astro build`, sem --site/--base) e recriar public/CNAME
+      # com "www.grupo4m.com".
       - run: npx astro build --site "https://dudumansurmonteiro-cyber.github.io" --base "/site4m"
       - name: Publica o build na branch gh-pages
         run: |

@@ -7,10 +7,9 @@ categorias:
 localizacao: "Faria Lima, São Paulo/SP"
 descricao: "A sede do Banco Industrial do Brasil funciona na Salma Tower, edifício do próprio Grupo 4M, na região da Faria Lima, em São Paulo."
 imagem: "../../assets/projetos/banco-industrial-do-brasil.jpg"
-imagemAlt: "Marca do Banco Industrial do Brasil sobre fachada de vidro, com o slogan Excelência no mercado financeiro"
-imagemModo: "conter"
+imagemAlt: "Logo do BIB — Banco Industrial do Brasil sobre a fachada de vidro da sede, com o lema Excelência no Mercado Financeiro"
 linkExterno:
-  label: "Conhecer o Banco Industrial do Brasil"
+  label: "Acessar o site do Banco Industrial do Brasil"
   url: "https://www.bib.com.br/"
 ordem: 18
 ---
