@@ -1,8 +1,8 @@
 name: Deploy GitHub Pages
 
 on:
-  push:
-    branches: [claude/claude-md-briefing-wra9g0]
+  # Deploy manual apenas: o site é publicado pelo branch de trabalho
+  # (claude/claude-md-briefing-9og1ab), que contém o conteúdo mais recente.
   workflow_dispatch:
 
 permissions:
@@ -22,11 +22,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      # TEMPORÁRIO: enquanto o DNS do grupo4m.com não aponta para o GitHub Pages,
-      # o preview roda em github.io/site4m. Quando o DNS estiver pronto, voltar a
-      # buildar na raiz (`npx astro build`, sem --site/--base) e recriar public/CNAME
-      # com "www.grupo4m.com".
-      - run: npx astro build --site "https://dudumansurmonteiro-cyber.github.io" --base "/site4m"
+      # Build no domínio oficial (www.grupo4m.com); public/CNAME informa o
+      # domínio ao GitHub Pages.
+      - run: npx astro build
       - name: Publica o build na branch gh-pages
         run: |
           cd dist
